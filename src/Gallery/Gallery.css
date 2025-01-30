@@ -1,0 +1,21 @@
+.gallery-masonry {
+  display: flex;
+  margin-left: -16px; /* Space between columns */
+  width: auto;
+}
+
+.gallery-column {
+  padding-left: 16px; /* Space between items in each column */
+  background-clip: padding-box;
+}
+
+.gallery-item {
+  margin-bottom: 16px; /* Space between images */
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}

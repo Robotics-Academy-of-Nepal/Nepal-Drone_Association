@@ -6,12 +6,7 @@ import image from './assets/drone.png';
 import drone1 from './assets/drone1.png';
 import drone2 from './assets/drone2.png';
 import drone3 from './assets/drone3.png';
-import drone4 from "./assets/drone4.png";
-import drone5 from "./assets/drone5.png";
-import drone9 from "./assets/drone9.png";
-import drone10 from  "./assets/drone10.png";
-// import drone6 from "./assets/drone6.png";
-// import drone7 from "./assets/drone7.png";
+import Navbar from "./NavBar";
 
 function Homepage() {
 
@@ -19,6 +14,7 @@ function Homepage() {
 
     return (
         <>
+        <Navbar />
             <div
                 class="container mx-auto px-4 mt-2"
             >
@@ -53,7 +49,7 @@ function Homepage() {
 
                 <div class="flex flex-col lg:flex-row items-center lg:items-stretch p-4 rounded-2xl">
                     <div class="w-fit lg:w-1/2 flex">
-                    <img src={drone1} class="w-100 h-auto lg:h-100 object-cover rounded-2xl"></img>
+                    <img src={drone1} class="w-200 h-auto lg:h-100 object-cover rounded-2xl"></img>
                     </div>
 
                     <div class="w-fit mx-2 lg:w-1/1 bg-[rgb(219,219,219)] p-6 flex items-center justify-center rounded-2xl">
@@ -71,8 +67,8 @@ function Homepage() {
 
 
 
-                <div class="flex flex-col lg:flex-row items-center lg:items-stretch p-4 rounded-2xl">
-                    <div class="bg-[rgb(219,219,219)] w-fit lg:w-1/1  bg-gray-300 p-6 flex items-center justify-center rounded-2xl">
+                <div class="flex flex-col lg:flex-row items-center lg:items-stretch rounded-2xl">
+                    <div class="bg-[rgb(219,219,219)] w-fit lg:w-1/1 p-6 bg-gray-300 flex items-center justify-center rounded-2xl">
                     <div>
                         <h2 class="text-lg md:text-xl font-bold text-center">Hovering and Automatic Flight Positioning</h2>
                         <p class="mt-2 text-sm md:text-base text-center">Besides being able to fly without you worrying about it ramming into
@@ -82,31 +78,15 @@ function Homepage() {
                             in place when necessary, and it can stay put for hours.</p>
                          </div>
                     </div>
-                    <div class="w-fit lg:w-1/2 flex mx-2">
-                        <img class="w-100 h-auto lg:h-100 object-cover rounded-2xl" src={drone2}></img>
+                    <div class="w-fit lg:w-1/2 flex mx-2 w-fit">
+                        <img class="w-150 h-auto lg:h-100 object-cover rounded-2xl" src={drone2}></img>
                     </div>
                 </div>
 
 
-                <div class="w-full mt-2">
-                    <img src={drone3}></img>
+                <div class="lg:w-full mt-2 flex">
+                    <img class="w-full lg:w-full" src={drone3}></img>
                 </div>
-
-
-                {/* <div class="flex">
-                    <div className="image5">
-                        <img className="image8" src={drone4}></img>
-                    </div>
-                    <div className="image6">
-                        <div className="image7">
-                            <img className="image9" src={drone5}></img>
-                            <img className="image9" src={drone9}></img>
-                        </div>
-                        <div className="image20">
-                            <img className="image21" src={drone10}></img>
-                        </div>
-                    </div>
-                </div> */}
 
 
                 <div class="flex flex-col lg:flex-row items-center lg:items-stretch p-4 rounded-2xl" >
