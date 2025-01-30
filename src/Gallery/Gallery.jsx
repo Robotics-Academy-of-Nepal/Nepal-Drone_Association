@@ -10,6 +10,7 @@ import drone10 from '../assets/drone10.png';
 import drone11 from '../assets/drone11.png';
 import './gallery1.css';
 import Navbar from "../NavBar";
+import Footer from "../Footer";
 
 const Gallery = () => {
 
@@ -44,6 +45,7 @@ const Gallery = () => {
         <h1>Gallery</h1>
           <Gallery2 images={adjustedImages} />
       </div>
+      <Footer />
     </>
   );
 };

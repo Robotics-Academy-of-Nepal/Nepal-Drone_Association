@@ -7,6 +7,7 @@ import drone1 from './assets/drone1.png';
 import drone2 from './assets/drone2.png';
 import drone3 from './assets/drone3.png';
 import Navbar from "./NavBar";
+import Footer from "./Footer";
 
 function Homepage() {
 
@@ -93,27 +94,27 @@ function Homepage() {
                     <div class="bg-[rgb(219,219,219)] w-fit lg:w-1/1 p-6 text-center rounded-2xl mx-4 border-2">
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta praesentium vitae perspiciatis voluptas incidunt velit, aut sapiente? Assumenda eum illo. <br>
                         </br>
-                        <div class="block w-fit lg:w-1/1  bg-gray-300 p-6 rounded-2xl">
+                        <div class="block w-fit lg:w-1/1 p-6 rounded-2xl">
                             <div>
                                 <span>Lorem, ipsum dolor.</span><br></br>
                                 Lorem ipsum dolor sit.
                             </div>
                         </div>
                     </div>
-                    <div class="bg-[rgb(219,219,219)] w-fit lg:w-1/1 p-6 rounded-2xl mx-4 border-2 ">
+                    <div class="bg-[rgb(219,219,219)] w-fit lg:w-1/1 p-6 text-center rounded-2xl mx-4 border-2">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos natus ratione culpa repudiandae corporis? Vitae alias, unde labore nulla libero ipsa <br>
                         </br>
-                        <div class="flex items-center justify-center mt-4">
+                        <div class="block w-fit lg:w-1/1  p-6 rounded-2xl">
                             <div>
                                 <span>Lorem, ipsum dolor.</span><br></br>
                                 Lorem ipsum dolor sit.
                             </div>
                         </div>
                     </div>
-                    <div class="bg-[rgb(219,219,219)] w-fit lg:w-1/1 p-6 rounded-2xl mx-4 border-2">
+                    <div class="bg-[rgb(219,219,219)] w-fit lg:w-1/1 p-6 text-center rounded-2xl mx-4 border-2">
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima voluptates illum iure repudiandae, explicabo deserunt accusantium<br>
                         </br>
-                        <div class="flex items-center justify-center mt-4">
+                        <div class="block w-fit lg:w-1/1 p-6 rounded-2xl">
                             <div>
                                 <span>Lorem, ipsum dolor.</span><br></br>
                                 Lorem ipsum dolor sit.
@@ -122,6 +123,7 @@ function Homepage() {
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     )
 }
