@@ -8,8 +8,27 @@ import drone2 from './assets/drone2.png';
 import drone3 from './assets/drone3.png';
 import Navbar from "./NavBar";
 import Footer from "./Footer";
+import { Camera, Battery, Gauge } from "lucide-react";
 
 function Homepage() {
+
+    const specs = [
+        {
+          icon: <Camera className="w-8 h-8 mb-3" />,
+          title: "Camera",
+          description: "20 MP Resolution 4k at 30 FPS",
+        },
+        {
+          icon: <Battery className="w-8 h-8 mb-3" />,
+          title: "Battery",
+          description: "Max Flight time 45 Minutes",
+        },
+        {
+          icon: <Gauge className="w-8 h-8 mb-3" />,
+          title: "Speed",
+          description: "Max Speed 79 MPH (22m/s)",
+        },
+      ];
 
 
 
@@ -29,21 +48,20 @@ function Homepage() {
                 </div>
 
 
-                <div class="mt-2 text-wrap items-center flex flex-col md:flex-row lg:flex-row items-center lg:items-stretch">
-                    <div class="bg-[rgb(219,219,219)] rounded-xl mx-1">
-                        <img class=" mx-auto sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3" src={image1}></img>
-                        <p class="text-wrap text-center m:text-lg md:text-4xl lg:text-4xl xl:text-4xl font-bold mt-1">Camera</p>
-                        <p class="text-wrap text-center m:text-md md:text-md lg:text-md xl:text-md mt-2 mb-2">20 MP Resolution 4k at 30 FPS</p>
-                    </div>
-                    <div class="bg-[rgb(219,219,219)] rounded-xl mx-1">
-                        <img class="mx-auto sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3" src={image2}></img>
-                        <p class="text-wrap text-center m:text-lg md:text-4xl lg:text-4xl xl:text-4xl font-bold mt-1">Battery</p>
-                        <p class="text-wrap text-center m:text-md md:text-md lg:text-md xl:text-md mt-2 mb-2">Max Flight time 45 Minutes</p>
-                    </div>
-                    <div class="bg-[rgb(219,219,219)] rounded-xl mx-1">
-                        <img class="mx-auto sm:w-1/3  md:w-1/3 lg:w-1/3 xl:w-1/3" src={image3}></img>
-                        <p class="text-wrap text-center m:text-lg md:text-4xl lg:text-4xl xl:text-4xl font-bold mt-1">Speed</p>
-                        <p class="text-wrap text-center m:text-md md:text-md lg:text-md xl:text-md mt-2 mb-2">Max Speed 79 MPH (22 m/s)</p>
+                <div className="rounded-lg mx-auto p-6 bg-[rgb(219,219,219)] mt-2">
+                    <div className=" rounded-lg p-6">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            {specs.map((spec, index) => (
+                            <div
+                                key={spec.title}
+                                className="flex flex-col items-center text-center p-4"
+                            >
+                            {spec.icon}
+                            <h3 className="text-lg font-semibold mb-2">{spec.title}</h3>
+                            <p className="text-sm text-gray-600">{spec.description}</p>
+                            </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
 
