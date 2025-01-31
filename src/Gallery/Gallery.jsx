@@ -42,7 +42,7 @@ const Gallery = () => {
     <>
     <Navbar />
       <div className="gallery-container">
-        <h1>Gallery</h1>
+        <h1 class="text-3xl font-bold mt-4 mb-4">Gallery</h1>
           <Gallery2 images={adjustedImages} />
       </div>
       <Footer />
