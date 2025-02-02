@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Loader2 } from 'lucide-react';
+import { Loader2, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -7,6 +8,7 @@ const Login = () => {
     email: '',
     password: ''
   });
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,7 +28,10 @@ const Login = () => {
 
     <div className=" p-8 rounded-xl shadow-2xl w-full max-w-md transform transition-all duration-500 hover:scale-105 relative z-10 antialiased">
         <div className="text-center mb-8 transform-gpu">
+          <div className='flex justify-between items-center'>
           <h1 className="text-3xl font-bold mb-2 subpixel-antialiased">Login</h1>
+          <Link to="/"><X size={24} /></Link>
+          </div> 
           <p className="text-gray-400 subpixel-antialiased">Access your drone dashboard</p>
         </div>
 
