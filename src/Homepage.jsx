@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import image1 from './assets/camera.png';
 import image2 from './assets/battery.png';
 import image3 from './assets/speed.png';
@@ -11,6 +11,13 @@ import Footer from "./Footer";
 import { Camera, Battery, Gauge } from "lucide-react";
 
 function Homepage() {
+
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        // Trigger animation after component mount
+        setIsVisible(true);
+      }, []);
 
     const specs = [
         {
@@ -42,8 +49,18 @@ function Homepage() {
                     <div class="sm:text-lg md:text-4xl lg:text-4xl xl:text-4xl px-2">
                         <p>The most interesting drone in the world</p>
                     </div>
-                    <div class="h-auto">
-                        <img src={image}></img>
+                    <div className="relative h-auto overflow-hidden">
+                        <div
+                        className={`transform transition-all duration-1000 ease-out
+                            ${isVisible ? 'translate-x-0' : 'translate-x-full'}
+                                `}
+                        >
+                        <img 
+                        src={image} 
+                        alt="Drone"
+                        className="w-full h-auto object-contain animate-hover"
+                        />
+                        </div>
                     </div>
                 </div>
 
@@ -144,6 +161,6 @@ function Homepage() {
             <Footer />
         </>
     )
-}
+}  
 
 export default Homepage;
