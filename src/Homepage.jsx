@@ -3,6 +3,9 @@ import image from './assets/drone.png';
 import drone1 from './assets/drone1.png';
 import drone2 from './assets/drone2.png';
 import drone3 from './assets/drone3.png';
+import drone18 from './assets/drone18.jpg';
+import drone19 from './assets/drone19.jpg';
+import drone21 from './assets/drone21.jpg';
 import Navbar from "./NavBar";
 import Footer from "./Footer";
 import { Camera, Battery, Gauge } from "lucide-react";
@@ -81,7 +84,7 @@ function Homepage() {
 
                 <div class="flex flex-col lg:flex-row items-center lg:items-stretch p-4 rounded-2xl">
                     <div class="w-fit lg:w-1/2 flex">
-                    <img src={drone1} class="w-200 h-auto lg:h-100 object-cover rounded-2xl"></img>
+                    <img src={drone19} class="w-200 h-auto lg:h-100 object-cover rounded-2xl"></img>
                     </div>
 
                     <div class="w-fit mx-2 lg:w-1/1 bg-[rgb(219,219,219)] p-6 flex items-center justify-center rounded-2xl">
@@ -111,13 +114,13 @@ function Homepage() {
                          </div>
                     </div>
                     <div class="w-fit lg:w-1/2 flex mx-2 w-fit">
-                        <img class="w-150 h-auto lg:h-100 object-cover rounded-2xl" src={drone2}></img>
+                        <img class="w-150 h-auto lg:h-100 object-cover rounded-2xl" src={drone21}></img>
                     </div>
                 </div>
 
 
                 <div class="lg:w-full mt-2 flex">
-                    <img class="w-full lg:w-full" src={drone3}></img>
+                    <img class="w-full lg:w-full" src={drone18}></img>
                 </div>
 
 

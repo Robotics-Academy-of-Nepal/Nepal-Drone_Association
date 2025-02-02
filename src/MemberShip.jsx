@@ -2,6 +2,7 @@ import React from 'react';
 import drone8 from './assets/drone8.png';
 import Navbar from './NavBar';
 import Footer from './Footer';
+import drone13 from './assets/drone13.jpg';
 
 const MembershipForm = () => {
   return (
@@ -13,7 +14,7 @@ const MembershipForm = () => {
             
           <div className="relative h-64 lg:h-auto">
             <img
-              src={drone8}
+              src={drone13}
               alt="Mountain landscape with drone"
               className="w-full h-full object-cover rounded-lg shadow-lg"
             />

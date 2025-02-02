@@ -3,6 +3,8 @@ import Navbar from "./NavBar";
 import Footer from "./Footer";
 import drone10 from "./assets/drone10.png";
 import drone11 from "./assets/drone11.png";
+import drone14 from './assets/drone14.jpg';
+import drone12 from './assets/drone12.jpg';
 
 function About(){
     return(
@@ -12,7 +14,7 @@ function About(){
       <div className="p-1">
         <div className="relative">
           <img 
-            src={drone10}
+            src={drone14}
             alt="Placeholder" 
             className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] object-cover rounded-lg"
           />
@@ -61,7 +63,7 @@ function About(){
                 </div>
             </div>
             <div class="w-fit lg:w-1/2 flex mx-2 w-fit">
-                <img class="w-150 h-auto lg:h-100 object-cover rounded-2xl" src={drone11}></img>
+                <img class="w-150 h-auto lg:h-100 object-cover rounded-2xl" src={drone12}></img>
             </div>
         </div>
         
