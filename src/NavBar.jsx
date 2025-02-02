@@ -1,16 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState,useRef,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
   return (
-    <nav className="bg-white shadow-md">
+    <nav className="bg-white shadow-md" ref={menuRef}>
       <div className="max-w-8xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
