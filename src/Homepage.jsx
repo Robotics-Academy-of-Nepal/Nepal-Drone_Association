@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import image1 from './assets/camera.png';
-import image2 from './assets/battery.png';
-import image3 from './assets/speed.png';
 import image from './assets/drone.png';
 import drone1 from './assets/drone1.png';
 import drone2 from './assets/drone2.png';
@@ -15,7 +12,6 @@ function Homepage() {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        // Trigger animation after component mount
         setIsVisible(true);
       }, []);
 
@@ -46,7 +42,7 @@ function Homepage() {
                 class="container mx-auto px-4 mt-2"
             >
                 <div class="mt-2 w-full text-wrap flex items-center bg-[rgb(219,219,219)] rounded-md px-2 lg:flex-row">
-                    <div class="sm:text-lg md:text-4xl lg:text-4xl xl:text-4xl px-2">
+                    <div class="sm:text-lg md:text-4xl lg:text-6xl xl:text-7xl px-4">
                         <p>The most interesting drone in the world</p>
                     </div>
                     <div className="relative h-auto overflow-hidden">
