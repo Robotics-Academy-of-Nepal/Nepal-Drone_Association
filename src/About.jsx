@@ -10,7 +10,7 @@ function About(){
         <Navbar />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-2">
       <div className="p-1">
-        <div className="relative">
+        <div>
           <img 
             src={drone10}
             alt="Placeholder" 
