@@ -19,12 +19,14 @@ function About(){
             className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] object-cover rounded-lg"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent rounded-lg" />
+          
+          
           <div className="absolute inset-0 p-4 sm:p-6 lg:p-8 flex flex-col justify-end">
             <h2 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2">
-              Lorem, ipsum dolor.
+              About us
             </h2>
             <p className="text-white/90 text-sm sm:text-base md:text-lg mt-2 sm:mt-4 max-w-2xl">
-              Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+              Know something about us.
             </p>
           </div>
         </div>
@@ -33,13 +35,11 @@ function About(){
         <div class="flex flex-col lg:flex-row items-center lg:items-stretch rounded-2xl mt-2 mb-4">
         <div class="bg-[rgb(219,219,219)] w-fit lg:w-1/1 p-6 bg-gray-300 rounded-2xl">
             <p class=" md:text-xl font-bold text-4xl ">About us</p>
-            <p class="mt-2 text-sm md:text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident possimus 
-                        deserunt quam error. Ut ratione nobis hic praesentium, facere repellendus tempora iure nulla cupiditate, et repudiandae? 
-                        Eos eaque tempore doloremque at quis saepe adipisci iure quibusdam, perspiciatis unde. Corrupti et temporibus vero consequuntur
-                         laudantium officia modi, aspernatur similique tempora. Sapiente quidem modi sint, quod unde fuga? Nesciunt magni modi 
-                         iste quas aperiam nam tenetur repellendus, expedita voluptas saepe deleniti vitae veniam soluta nihil aliquam. Adipisci 
-                         quod amet asperiores laborum! Veniam delectus possimus sed rerum iste
-                         cumque recusandae est quasi, minima ex veritatis omnis officia autem ab blanditiis eveniet fuga iure!</p>
+            <p class="mt-2 text-sm md:text-base">The Nepal Drone Association (NDA) is the premier organization dedicated to uniting and empowering the growing community of drone professionals, enthusiasts, and businesses in Nepal. Our association was founded with a clear mission: to foster a thriving drone ecosystem, advocate for the rights of industry stakeholders, and establish Nepal as a leader in drone technology and innovation.<br></br>
+In recent years, drones have revolutionized industries worldwide, from agriculture and infrastructure to disaster management and environmental conservation. Nepal, with its unique geographical challenges and developmental aspirations, stands to gain immensely from the application of drone technology. However, the absence of a unified platform to address the needs of this emerging sector has been a significant barrier to its growth. NDA was established to fill this gap and to drive progress in Nepal’s drone industry.<br></br>
+Despite its immense potential, Nepal's drone industry faces several significant challenges. Drone professionals and businesses lack a unified platform to advocate for their needs and safeguard their rights. The absence of clear and comprehensive regulations has slowed innovation and adoption of drone technology. Additionally, many stakeholders remain unaware of the full potential of drones or lack the skills to use them effectively. This fragmented ecosystem, with minimal coordination between professionals, businesses, and government agencies, has hindered the sector's growth and prevented it from reaching its full potential.<br></br>
+Recognizing these challenges, the Nepal Drone Association was established to address these gaps and drive progress in the drone industry. Serving as the umbrella organization for all drone professionals, enthusiasts, and businesses in Nepal, the Association advocates for inclusive policies that foster innovation and fair labor practices. It is dedicated to providing education, training, and certifications to develop a skilled workforce while fostering partnerships with local and international stakeholders to share expertise and resources. Through these initiatives, the Nepal Drone Association aims to unify and empower the drone community, driving sustainable growth and innovation in Nepal’s drone sector.<br></br>
+</p>
         </div>
 
         </div>
@@ -48,15 +48,9 @@ function About(){
         <div class="flex flex-col lg:flex-row items-center lg:items-stretch rounded-2xl mt-2 mb-4">
             <div class="bg-[rgb(219,219,219)] w-fit lg:w-1/1 p-6 bg-gray-300 flex items-center justify-center rounded-2xl">
                 <div>
-                    <h2 class="text-lg md:text-xl font-bold text-center">Lorem ipsum dolor sit amet.
+                    <h2 class="text-lg md:text-xl font-bold text-center">Our Mission.
                     </h2>
-                    <p class="mt-2 text-sm md:text-base text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident possimus 
-                        deserunt quam error. Ut ratione nobis hic praesentium, facere repellendus tempora iure nulla cupiditate, et repudiandae? 
-                        Eos eaque tempore doloremque at quis saepe adipisci iure quibusdam, perspiciatis unde. Corrupti et temporibus vero consequuntur
-                         laudantium officia modi, aspernatur similique tempora. Sapiente quidem modi sint, quod unde fuga? Nesciunt magni modi 
-                         iste quas aperiam nam tenetur repellendus, expedita voluptas saepe deleniti vitae veniam soluta nihil aliquam. Adipisci 
-                         quod amet asperiores laborum! Veniam delectus possimus sed rerum iste
-                         cumque recusandae est quasi, minima ex veritatis omnis officia autem ab blanditiis eveniet fuga iure!</p>
+                    <p class="mt-2 text-sm md:text-base text-center">To foster a thriving drone ecosystem in Nepal by supporting professionals, advocating for industry-friendly policies, and promoting the safe and innovative application of drone technology.</p>
                     <p class="mt-2 text-sm md:text-base text-center">
                     DroCam has included its Vision Positioning System(VPS), VPS locks the drone<br></br>
                     in place when necessary, and it can stay put for hours.</p>
@@ -66,6 +60,44 @@ function About(){
                 <img class="w-150 h-auto lg:h-100 object-cover rounded-2xl" src={drone12}></img>
             </div>
         </div>
+
+        <div class="flex flex-col lg:flex-row items-center lg:items-stretch rounded-2xl mt-2 mb-4">
+        <div class="bg-[rgb(219,219,219)] w-fit lg:w-1/1 p-6 bg-gray-300 rounded-2xl">
+            <p class=" md:text-xl font-bold text-4xl ">Our Vision</p>
+            <p class="mt-2 text-sm md:text-base">To establish Nepal as a global leader in drone technology, leveraging its potential to drive sustainable development and create new opportunities in diverse industries.
+</p>
+        </div>
+
+        </div>
+
+        <div class="flex flex-col lg:flex-row items-center lg:items-stretch rounded-2xl mt-2 mb-4">
+        <div class="bg-[rgb(219,219,219)] w-fit lg:w-1/1 p-6 bg-gray-300 rounded-2xl">
+            <p class=" md:text-xl font-bold text-4xl ">What We Do</p>
+            <p class="mt-2 text-sm md:text-base">1.	Professional Support: We act as an umbrella organization for all drone professionals and businesses, providing guidance, resources, and opportunities for growth.
+<br></br>2.	Advocacy: We represent the drone community to the Nepal Government, advocating for policies that support fair labor practices, innovation, and growth in the sector.
+<br></br>3.	Policy Assistance: We work closely with government agencies to draft and amend drone-related laws and policies, ensuring they are forward-looking and inclusive.
+<br></br>4.	Networking & Collaboration: We connect members with national and international organizations, fostering partnerships and knowledge exchange.
+<br></br>5.	Education & Training: We organize workshops, training sessions, and certification programs to enhance skills and ensure safety in drone operations.
+<br></br>6.	Sector Expansion: We actively promote the use of drones in agriculture, disaster management, infrastructure development, and other fields to contribute to Nepal's progress.
+
+</p>
+        </div>
+
+        </div>
+
+        <div class="flex flex-col lg:flex-row items-center lg:items-stretch rounded-2xl mt-2 mb-4">
+        <div class="bg-[rgb(219,219,219)] w-fit lg:w-1/1 p-6 bg-gray-300 rounded-2xl">
+            <p class=" md:text-xl font-bold text-4xl ">Why Choose NDA</p>
+            <p class="mt-2 text-sm md:text-base">●	Expert Guidance: Led by experienced professionals, NDA offers unparalleled insights and leadership in the drone sector.
+<br></br>●	Advocacy & Representation: We ensure that the voices of drone professionals and businesses are heard at the policy-making level.
+<br></br>●	Innovation & Growth: Our initiatives drive innovation, helping members stay ahead in the rapidly evolving drone industry.
+<br></br><br></br>Join us in shaping the future of drone technology in Nepal. Together, we can harness the potential of drones to transform industries, improve lives, and contribute to a sustainable and prosperous future.
+
+</p>
+        </div>
+
+        </div>
+
         
       </div>
       <Footer />
