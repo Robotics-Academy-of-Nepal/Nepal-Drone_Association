@@ -2,6 +2,8 @@ import React from 'react';
 import facebook from './assets/facebook.png';
 import instagram from './assets/instagram.png';
 import twitter from './assets/twitter.png';
+import linkedin from './assets/linkedin.jpg';
+import NDA from './assets/NDA.jpg';
 
 const Footer = () => {
   const footerLinks = {
@@ -41,9 +43,16 @@ const Footer = () => {
           {/* Logo and Social Section */}
           <div className="lg:col-span-2">
             <div className="mb-4">
-              <h2 className="text-xl font-bold">Logo</h2>
+              <img src={NDA} className="rounded-3xl"></img>
               <p className="text-gray-400 mt-2 text-sm">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Nepal Drone Association<br></br>
+              nepaldroneassociation.org.np<br></br>
+              info@nepaldroneassociation.org.np<br></br>
+              +977-9843723924<br></br>
+              Lamtingan Marg, Ward No.4, Kathmandu Metropolitan<br></br>
+              Opposite to J.P House<br></br>
+              27.726352000141453, 85.33294069528846<br></br>
+
               </p>
             </div>
             <div className="flex space-x-4">
@@ -54,7 +63,7 @@ const Footer = () => {
                 <img src={instagram} className="w-10 h-10 bg-white rounded-full"></img>
               </a>
               <a href="#" className="p-2 rounded-full">
-                <img src={twitter} className="w-10 h-10 bg-white rounded-full"></img>
+                <img src={linkedin} className="w-10 h-10 rounded-full"></img>
               </a>
             </div>
           </div>
