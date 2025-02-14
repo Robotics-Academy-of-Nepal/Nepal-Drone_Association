@@ -41,10 +41,9 @@ function Homepage() {
     return (
         <>
         <Navbar />
-            <div
-                class="container mx-auto px-4 mt-2"
-            >
-                <div class="mt-2 w-full text-wrap flex items-center bg-[rgb(219,219,219)] rounded-md px-2 lg:flex-row">
+            <div class="container mx-auto px-4 mt-2">
+                <div class="bg-[rgb(219,219,219)]">
+                <div class="mt-2 w-full text-wrap flex items-center rounded-md px-2 lg:flex-row">
                     <div class="sm:text-lg md:text-4xl lg:text-6xl xl:text-7xl px-4">
                         <p>The most interesting drone in the world</p>
                     </div>
@@ -64,7 +63,7 @@ function Homepage() {
                 </div>
 
 
-                <div className="rounded-lg mx-auto p-6 bg-[rgb(219,219,219)] mt-2">
+                <div className="rounded-lg mx-auto p-6  mt-2">
                     <div className=" rounded-lg p-6">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             {specs.map((spec, index) => (
@@ -80,9 +79,10 @@ function Homepage() {
                         </div>
                     </div>
                 </div>
+                </div>
 
 
-                <div class="flex flex-col lg:flex-row items-center lg:items-stretch p-4 rounded-2xl">
+                <div class="flex flex-col lg:flex-row items-center lg:items-stretch mt-2 mb-2 rounded-2xl">
                     <div class="w-fit lg:w-1/2 flex">
                     <img src={drone19} class="w-200 h-auto lg:h-100 object-cover rounded-2xl"></img>
                     </div>
@@ -120,7 +120,7 @@ function Homepage() {
 
 
                 <div class="lg:w-full mt-2 flex">
-                    <img class="w-full lg:w-full" src={drone18}></img>
+                    <img class="w-full rounded-2xl cursor-pointer lg:w-full" src={drone18}></img>
                 </div>
 
 

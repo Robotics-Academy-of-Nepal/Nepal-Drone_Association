@@ -47,6 +47,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-8">
             <Link to="/about" className="text-black hover:text-gray-600">About Us</Link>
             <Link to="/gallery" className="text-black hover:text-gray-600">Gallery</Link>
+            <Link to="/team" className="text-black hover:text-gray-600">Members</Link>
             <Link to="/member" className="text-black hover:text-gray-600">
               Become a Member
             </Link>

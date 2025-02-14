@@ -5,6 +5,7 @@ import MembershipForm from './MemberShip';
 import { Routes, Route } from 'react-router-dom';  // Remove BrowserRouter import
 import About from './About';
 import Login from './Login';
+import TeamPage from './Team';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/member" element={<MembershipForm />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/team" element={<TeamPage />} />
         <Route path="*" element={<div>Page not found</div>} />
       </Routes>
     </>
