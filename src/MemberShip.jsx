@@ -1,14 +1,143 @@
-import React from 'react';
-import drone8 from './assets/drone8.png';
+import React, { useState } from 'react';
+import axios from 'axios';
+import drone13 from './assets/drone13.jpg';
+import { Upload } from 'lucide-react';
 import Navbar from './NavBar';
 import Footer from './Footer';
-import drone13 from './assets/drone13.jpg';
 
 const MembershipForm = () => {
+  const [memberType, setMemberType] = useState('individual');
+  const [formData, setFormData] = useState({
+    fullName: '',
+    address: '',
+    contact: '',
+    email: '',
+    experience: '',
+    orgName: '',
+    orgWeblink: '',
+    orgSocial: '',
+  });
+  const [files, setFiles] = useState({
+    citizenship: null,
+    regDocument: null,
+  });
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const validateFileSize = (file) => {
+    const maxSize = 2 * 1024 * 1024; // 2MB in bytes
+    return file.size <= maxSize;
+  };
+
+  const handleFileChange = (e) => {
+    const { name, files: uploadedFiles } = e.target;
+    const file = uploadedFiles[0];
+
+    if (file) {
+      if (!validateFileSize(file)) {
+        setErrors(prev => ({
+          ...prev,
+          [name]: 'File size must be less than 2MB'
+        }));
+        return;
+      }
+
+      setFiles(prev => ({
+        ...prev,
+        [name]: file
+      }));
+      setErrors(prev => ({
+        ...prev,
+        [name]: null
+      }));
+    }
+  };
+
+  const FileUploadBox = ({ id, label }) => (
+    <div className="mt-1">
+      <label 
+        htmlFor={id}
+        className="flex justify-center w-full h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-blue-500 focus:outline-none"
+      >
+        <span className="flex flex-col items-center justify-center space-y-2">
+          <Upload className="w-6 h-6 text-gray-600" />
+          <span className="font-medium text-gray-600 text-center">
+            {files[id] ? files[id].name : `Drop your ${label} here or click to browse`}
+          </span>
+          <span className="text-xs text-gray-500">
+            PNG, JPG, PDF up to 2MB
+          </span>
+        </span>
+        <input 
+          type="file" 
+          id={id} 
+          name={id} 
+          className="hidden" 
+          accept=".jpg,.jpeg,.png,.pdf"
+          onChange={handleFileChange}
+        />
+      </label>
+      {errors[id] && (
+        <p className="mt-1 text-sm text-red-600">{errors[id]}</p>
+      )}
+    </div>
+  );
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setErrors({});
+
+    try {
+      const formDataToSend = new FormData();
+      
+      // Append all form fields
+      Object.entries(formData).forEach(([key, value]) => {
+        if (memberType === 'individual' && ['orgName', 'orgWeblink', 'orgSocial'].includes(key)) {
+          return;
+        }
+        formDataToSend.append(key, value);
+      });
+
+      // Append files
+      formDataToSend.append('citizenship', files.citizenship);
+      if (memberType === 'organizational' && files.regDocument) {
+        formDataToSend.append('regDocument', files.regDocument);
+      }
+
+      formDataToSend.append('memberType', memberType);
+
+      const response = await axios.post('/api/membership', formDataToSend, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      if (response.data.success) {
+        // Handle success (e.g., show success message, redirect)
+        alert('Application submitted successfully!');
+      }
+    } catch (error) {
+      setErrors({
+        submit: error.response?.data?.message || 'Failed to submit application. Please try again.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <>
     <Navbar />
-    <div className="min-h-screen bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             
@@ -20,85 +149,147 @@ const MembershipForm = () => {
             />
           </div>
           
-          <div className="bg-white rounded-lg shadow-lg p-8">
+          <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8">
             <div className="max-w-md mx-auto">
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
                 Become a member
               </h1>
-              <p className="text-gray-600 mb-8">
-                Join us
+              <p className="text-gray-600 mb-6 sm:mb-8">
+                Join us and be part of Nepal's drone community
               </p>
               
-              <form className="space-y-6">
-                <div>
-                  <label 
-                    htmlFor="firstName" 
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    First Name
-                  </label>
-                  <input
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                    placeholder="First name"
-                  />
-                </div>
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                {/* Basic Information */}
+                {Object.entries({
+                  fullName: 'Full Name',
+                  address: 'Address',
+                  contact: 'Contact No.',
+                  email: 'Email',
+                }).map(([key, label]) => (
+                  <div key={key}>
+                    <label 
+                      htmlFor={key} 
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      {label} *
+                    </label>
+                    <input
+                      type={key === 'email' ? 'email' : 'text'}
+                      id={key}
+                      name={key}
+                      value={formData[key]}
+                      onChange={handleInputChange}
+                      required
+                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                      placeholder={`Your ${label.toLowerCase()}`}
+                    />
+                  </div>
+                ))}
 
                 <div>
                   <label 
-                    htmlFor="lastName" 
+                    htmlFor="experience" 
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Last Name
+                    Your Drone Related Experience *
                   </label>
-                  <input
-                    type="text"
-                    id="lastName"
-                    name="lastName"
+                  <textarea
+                    id="experience"
+                    name="experience"
+                    value={formData.experience}
+                    onChange={handleInputChange}
+                    required
+                    rows={4}
                     className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                    placeholder="Last name"
+                    placeholder="Describe your drone-related experience"
                   />
                 </div>
 
+                {/* Membership Type Selection */}
                 <div>
-                  <label 
-                    htmlFor="email" 
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Email
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Membership Type *
                   </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                    placeholder="Email"
-                  />
+                  <div className="flex flex-wrap gap-4">
+                    <label className="flex items-center">
+                      <input
+                        type="radio"
+                        name="memberType"
+                        value="individual"
+                        checked={memberType === 'individual'}
+                        onChange={(e) => setMemberType(e.target.value)}
+                        className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      />
+                      <span className="ml-2 text-sm text-gray-700">Individual / Freelancer</span>
+                    </label>
+                    <label className="flex items-center">
+                      <input
+                        type="radio"
+                        name="memberType"
+                        value="organizational"
+                        checked={memberType === 'organizational'}
+                        onChange={(e) => setMemberType(e.target.value)}
+                        className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      />
+                      <span className="ml-2 text-sm text-gray-700">Organizational</span>
+                    </label>
+                  </div>
                 </div>
 
+                {/* Organizational Fields */}
+                {memberType === 'organizational' && (
+                  <>
+                    {Object.entries({
+                      orgName: 'Organization Name',
+                      orgWeblink: 'Organization Weblink',
+                      orgSocial: 'Organization Social Media Link',
+                    }).map(([key, label]) => (
+                      <div key={key}>
+                        <label 
+                          htmlFor={key} 
+                          className="block text-sm font-medium text-gray-700"
+                        >
+                          {label} *
+                        </label>
+                        <input
+                          type={key.includes('link') ? 'url' : 'text'}
+                          id={key}
+                          name={key}
+                          value={formData[key]}
+                          onChange={handleInputChange}
+                          required
+                          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                          placeholder={key.includes('link') ? 'https://...' : label}
+                        />
+                      </div>
+                    ))}
+                  </>
+                )}
+
+                {/* File Upload Sections */}
                 <div>
-                  <label 
-                    htmlFor="password" 
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Password
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Citizenship Document *
                   </label>
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                    placeholder="Password"
-                  />
+                  <FileUploadBox id="citizenship" label="citizenship document" />
                 </div>
 
+                {memberType === 'organizational' && (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Organization Registration Document *
+                    </label>
+                    <FileUploadBox id="regDocument" label="registration document" />
+                  </div>
+                )}
+
+                {/* Terms and Submit */}
                 <div className="flex items-center">
                   <input
                     id="terms"
                     name="terms"
                     type="checkbox"
+                    required
                     className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                   />
                   <label 
@@ -109,11 +300,16 @@ const MembershipForm = () => {
                   </label>
                 </div>
 
+                {errors.submit && (
+                  <p className="text-sm text-red-600">{errors.submit}</p>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+                  disabled={isSubmitting}
+                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Join
+                  {isSubmitting ? 'Submitting...' : 'Submit Application'}
                 </button>
               </form>
             </div>
