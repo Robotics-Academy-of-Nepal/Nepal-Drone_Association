@@ -9,9 +9,12 @@ import drone21 from './assets/drone21.jpg';
 import Navbar from "./NavBar";
 import Footer from "./Footer";
 import { Camera, Battery, Gauge } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 function Homepage() {
 
+    const [currentSlide, setCurrentSlide] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -36,6 +39,89 @@ function Homepage() {
         },
       ];
 
+
+      //sliders code
+      const slides = [
+        {
+          preview: (
+            <div className="bg-[rgb(219,219,219)] w-full p-6 text-center rounded-2xl border-2">
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta praesentium vitae perspiciatis voluptas incidunt velit, aut sapiente? Assumenda eum illo.</p>
+              <div className="block p-6 rounded-2xl">
+                <div>
+                  <span>Lorem, ipsum dolor.</span>
+                  <br />
+                  Lorem ipsum dolor sit.
+                </div>
+              </div>
+            </div>
+          ),
+          fullContent: {
+            title: "News 1",
+            description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque maiores ratione 
+            nemo error possimus sequi nam modi expedita totam, recusandae facilis quod iusto eos! 
+            Necessitatibus vitae nihil ratione assumenda cupiditate!
+    
+            Ullam corporis suscipit minus ducimus esse architecto ratione error amet ipsum laudantium 
+            temporibus eos accusantium, ab dolores aspernatur dignissimos commodi debitis facilis 
+            exercitationem voluptatum blanditiis! Quas delectus magnam nulla rem.`
+          }
+        },
+        {
+          preview: (
+            <div className="bg-[rgb(219,219,219)] w-full p-6 text-center rounded-2xl border-2">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos natus ratione culpa repudiandae corporis? Vitae alias, unde labore nulla libero ipsa</p>
+              <div className="block p-6 rounded-2xl">
+                <div>
+                  <span>Lorem, ipsum dolor.</span>
+                  <br />
+                  Lorem ipsum dolor sit.
+                </div>
+              </div>
+            </div>
+          ),
+          fullContent: {
+            title: "News 2",
+            description: `Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad 
+            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident.`
+          }
+        },
+        {
+          preview: (
+            <div className="bg-[rgb(219,219,219)] w-full p-6 text-center rounded-2xl border-2">
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima voluptates illum iure repudiandae, explicabo deserunt accusantium</p>
+              <div className="block p-6 rounded-2xl">
+                <div>
+                  <span>Lorem, ipsum dolor.</span>
+                  <br />
+                  Lorem ipsum dolor sit.
+                </div>
+              </div>
+            </div>
+          ),
+          fullContent: {
+            title: "News 3",
+            description: `At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis 
+            praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi.
+    
+            Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id 
+            quod maxime placeat facere possimus.`
+          }
+        }
+      ];
+    
+      const nextSlide = (e) => {
+        e.stopPropagation();
+        setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+      };
+    
+      const prevSlide = (e) => {
+        e.stopPropagation();
+        setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+      };
+    
 
 
     return (
@@ -124,38 +210,92 @@ function Homepage() {
                 </div>
 
 
-                <div class="flex flex-col lg:flex-row items-center lg:items-stretch p-4 rounded-2xl" >
-                    <div class="bg-[rgb(219,219,219)] w-fit lg:w-1/1 p-6 text-center rounded-2xl mx-4 border-2">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta praesentium vitae perspiciatis voluptas incidunt velit, aut sapiente? Assumenda eum illo. <br>
-                        </br>
-                        <div class="block w-fit lg:w-1/1 p-6 rounded-2xl">
-                            <div>
-                                <span>Lorem, ipsum dolor.</span><br></br>
-                                Lorem ipsum dolor sit.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-[rgb(219,219,219)] w-fit lg:w-1/1 p-6 text-center rounded-2xl mx-4 border-2">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos natus ratione culpa repudiandae corporis? Vitae alias, unde labore nulla libero ipsa <br>
-                        </br>
-                        <div class="block w-fit lg:w-1/1  p-6 rounded-2xl">
-                            <div>
-                                <span>Lorem, ipsum dolor.</span><br></br>
-                                Lorem ipsum dolor sit.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-[rgb(219,219,219)] w-fit lg:w-1/1 p-6 text-center rounded-2xl mx-4 border-2">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima voluptates illum iure repudiandae, explicabo deserunt accusantium<br>
-                        </br>
-                        <div class="block w-fit lg:w-1/1 p-6 rounded-2xl">
-                            <div>
-                                <span>Lorem, ipsum dolor.</span><br></br>
-                                Lorem ipsum dolor sit.
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {/* news flash sliders */}
+
+                <div className="relative w-full max-w-6xl mx-auto mt-4 mb-4">
+        {/* Main Slider Container */}
+        <div className="relative overflow-hidden rounded-2xl">
+          {/* Current Slide */}
+          <div 
+            className="transition-transform duration-300 ease-in-out cursor-pointer"
+            onClick={() => setIsModalOpen(true)}
+          >
+            {slides[currentSlide].preview}
+          </div>
+
+          {/* Navigation Buttons */}
+          <button 
+            onClick={prevSlide}
+            className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          <button 
+            onClick={nextSlide}
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all"
+            aria-label="Next slide"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+        </div>
+
+        {/* Slide Indicators */}
+        <div className="flex justify-center gap-2 mt-4">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={(e) => {
+                e.stopPropagation();
+                setCurrentSlide(index);
+              }}
+              className={`w-2 h-2 rounded-full transition-all ${
+                currentSlide === index ? 'bg-blue-600 w-4' : 'bg-gray-300'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
+          onClick={() => setIsModalOpen(false)}
+        >
+          <div 
+            className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto transform transition-all"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-semibold">
+                  {slides[currentSlide].fullContent.title}
+                </h2>
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                  aria-label="Close modal"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+              
+              <div className="prose max-w-none">
+                {slides[currentSlide].fullContent.description.split('\n').map((paragraph, index) => (
+                  paragraph.trim() && (
+                    <p key={index} className="mb-4">
+                      {paragraph.trim()}
+                    </p>
+                  )
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
             </div>
             <Footer />
         </>
