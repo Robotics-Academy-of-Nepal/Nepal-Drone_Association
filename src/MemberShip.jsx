@@ -8,18 +8,19 @@ import Footer from './Footer';
 const MembershipForm = () => {
   const [memberType, setMemberType] = useState('individual');
   const [formData, setFormData] = useState({
-    fullName: '',
+    first_name: '',
+    last_name: '',
     address: '',
-    contact: '',
+    contact_no: '',
     email: '',
-    experience: '',
-    orgName: '',
-    orgWeblink: '',
-    orgSocial: '',
+    drone_experience: '',
+    organization_name: '',
+    organization_weblink: '',
+    organization_social_media_link: '',
   });
   const [files, setFiles] = useState({
-    citizenship: null,
-    regDocument: null,
+    citizenship_upload: null,
+    regd_document_upload: null,
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -101,28 +102,27 @@ const MembershipForm = () => {
       
       // Append all form fields
       Object.entries(formData).forEach(([key, value]) => {
-        if (memberType === 'individual' && ['orgName', 'orgWeblink', 'orgSocial'].includes(key)) {
+        if (memberType === 'individual' && ['organization_name', 'organization_weblink', 'organization_social_media_link'].includes(key)) {
           return;
         }
         formDataToSend.append(key, value);
       });
 
       // Append files
-      formDataToSend.append('citizenship', files.citizenship);
-      if (memberType === 'organizational' && files.regDocument) {
-        formDataToSend.append('regDocument', files.regDocument);
+      formDataToSend.append('citizenship_upload', files.citizenship_upload);
+      if (memberType === 'organizational' && files.regd_document_upload) {
+        formDataToSend.append('regd_document_upload', files.regd_document_upload);
       }
 
-      formDataToSend.append('memberType', memberType);
+      formDataToSend.append('involvement_type', memberType);
 
-      const response = await axios.post('/api/membership', formDataToSend, {
+      const response = await axios.post('http://127.0.0.1:8000/app/signup/', formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
 
-      if (response.data.success) {
-        // Handle success (e.g., show success message, redirect)
+      if (response.data.status === "success") {
         alert('Application submitted successfully!');
       }
     } catch (error) {
@@ -149,7 +149,7 @@ const MembershipForm = () => {
             />
           </div>
           
-          <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8">
+          <div className="bg-gradient-to-b from-red-100 to-blue-100 rounded-lg shadow-lg p-4 sm:p-8">
             <div className="max-w-md mx-auto">
               <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
                 Become a member
@@ -161,9 +161,10 @@ const MembershipForm = () => {
               <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 {/* Basic Information */}
                 {Object.entries({
-                  fullName: 'Full Name',
+                  first_name: 'First Name',
+                  last_name: 'Last Name',
                   address: 'Address',
-                  contact: 'Contact No.',
+                  contact_no: 'Contact No.',
                   email: 'Email',
                 }).map(([key, label]) => (
                   <div key={key}>
@@ -188,15 +189,15 @@ const MembershipForm = () => {
 
                 <div>
                   <label 
-                    htmlFor="experience" 
+                    htmlFor="drone_experience" 
                     className="block text-sm font-medium text-gray-700"
                   >
                     Your Drone Related Experience *
                   </label>
                   <textarea
-                    id="experience"
-                    name="experience"
-                    value={formData.experience}
+                    id="drone_experience"
+                    name="drone_experience"
+                    value={formData.drone_experience}
                     onChange={handleInputChange}
                     required
                     rows={4}
@@ -240,9 +241,9 @@ const MembershipForm = () => {
                 {memberType === 'organizational' && (
                   <>
                     {Object.entries({
-                      orgName: 'Organization Name',
-                      orgWeblink: 'Organization Weblink',
-                      orgSocial: 'Organization Social Media Link',
+                      organization_name: 'Organization Name',
+                      organization_weblink: 'Organization Weblink',
+                      organization_social_media_link: 'Organization Social Media Link',
                     }).map(([key, label]) => (
                       <div key={key}>
                         <label 
@@ -271,7 +272,7 @@ const MembershipForm = () => {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Citizenship Document *
                   </label>
-                  <FileUploadBox id="citizenship" label="citizenship document" />
+                  <FileUploadBox id="citizenship_upload" label="citizenship document" />
                 </div>
 
                 {memberType === 'organizational' && (
@@ -279,7 +280,7 @@ const MembershipForm = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Organization Registration Document *
                     </label>
-                    <FileUploadBox id="regDocument" label="registration document" />
+                    <FileUploadBox id="regd_document_upload" label="registration document" />
                   </div>
                 )}
 

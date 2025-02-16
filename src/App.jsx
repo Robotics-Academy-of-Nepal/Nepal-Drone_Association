@@ -6,6 +6,8 @@ import { Routes, Route } from 'react-router-dom';  // Remove BrowserRouter impor
 import About from './About';
 import Login from './Login';
 import TeamPage from './Team';
+import AdminPanel from './Admin';
+import AdminDashboard from './UserData';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/member" element={<MembershipForm />} />
         <Route path="/login" element={<Login />} />
         <Route path="/team" element={<TeamPage />} />
+        <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/admindashboard" element={<AdminDashboard />} />
         <Route path="*" element={<div>Page not found</div>} />
       </Routes>
     </>

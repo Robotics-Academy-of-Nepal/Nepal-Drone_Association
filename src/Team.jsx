@@ -57,7 +57,7 @@ const TeamPage = () => {
     <Navbar />
     <div className="container mx-auto px-4 mt-2">
       {/* Header Section */}
-      <div className="max-w-8xl mx-auto mb-8 bg-[rgb(219,219,219)] rounded-md p-4">
+      <div className="max-w-8xl mx-auto mb-8 bg-gradient-to-b from-red-100 to-blue-100 rounded-md p-4">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Nepal Drone Association</h1>
         <p className="text-gray-900 text-lg mb-8">
         At the Nepal Drone Association, our team is the cornerstone of our mission to drive 
@@ -82,7 +82,7 @@ const TeamPage = () => {
       </div>
 
       {/* Executive Members Table */}
-      <div className="max-w-8xl mx-auto mb-8 rounded-lg shadow-md overflow-hidden bg-[rgb(219,219,219)] p-4">
+      <div className="max-w-8xl mx-auto mb-8 rounded-lg shadow-md overflow-hidden bg-gradient-to-b from-red-100 to-blue-100 p-4">
         <div className="p-4 border-b border-gray-200">
           <h1 className="text-2xl font-semibold text-gray-900">Executive Members</h1>
         </div>
@@ -116,7 +116,7 @@ const TeamPage = () => {
       </div>
 
       {/* Organizational Members Section */}
-      <div className="max-w-8xl mx-auto rounded-lg shadow-md overflow-hidden bg-[rgb(219,219,219)] p-4 mb-4">
+      <div className="max-w-8xl mx-auto rounded-lg shadow-md overflow-hidden bg-gradient-to-b from-red-200 to-blue-200 p-4 mb-4">
         <div className="p-6 border-b border-gray-200">
           <h2 className="text-xl font-semibold text-gray-900">Organizational Members</h2>
         </div>

@@ -33,20 +33,20 @@ function About(){
       </div>
 
         <div class="flex flex-col lg:flex-row items-center lg:items-stretch rounded-2xl mt-2 mb-4">
-        <div class="bg-[rgb(219,219,219)] w-fit lg:w-1/1 p-6 bg-gray-300 rounded-2xl">
+        <div class="bg-gradient-to-b from-red-100 to-blue-100 w-fit lg:w-1/1 p-6 bg-gray-300 rounded-2xl">
             <p class=" md:text-xl font-bold text-4xl ">About us</p>
             <p class="mt-2 text-sm md:text-base">The Nepal Drone Association (NDA) is the premier organization dedicated to uniting and empowering the growing community of drone professionals, enthusiasts, and businesses in Nepal. Our association was founded with a clear mission: to foster a thriving drone ecosystem, advocate for the rights of industry stakeholders, and establish Nepal as a leader in drone technology and innovation.<br></br>
-In recent years, drones have revolutionized industries worldwide, from agriculture and infrastructure to disaster management and environmental conservation. Nepal, with its unique geographical challenges and developmental aspirations, stands to gain immensely from the application of drone technology. However, the absence of a unified platform to address the needs of this emerging sector has been a significant barrier to its growth. NDA was established to fill this gap and to drive progress in Nepal’s drone industry.<br></br>
-Despite its immense potential, Nepal's drone industry faces several significant challenges. Drone professionals and businesses lack a unified platform to advocate for their needs and safeguard their rights. The absence of clear and comprehensive regulations has slowed innovation and adoption of drone technology. Additionally, many stakeholders remain unaware of the full potential of drones or lack the skills to use them effectively. This fragmented ecosystem, with minimal coordination between professionals, businesses, and government agencies, has hindered the sector's growth and prevented it from reaching its full potential.<br></br>
-Recognizing these challenges, the Nepal Drone Association was established to address these gaps and drive progress in the drone industry. Serving as the umbrella organization for all drone professionals, enthusiasts, and businesses in Nepal, the Association advocates for inclusive policies that foster innovation and fair labor practices. It is dedicated to providing education, training, and certifications to develop a skilled workforce while fostering partnerships with local and international stakeholders to share expertise and resources. Through these initiatives, the Nepal Drone Association aims to unify and empower the drone community, driving sustainable growth and innovation in Nepal’s drone sector.<br></br>
-</p>
+            In recent years, drones have revolutionized industries worldwide, from agriculture and infrastructure to disaster management and environmental conservation. Nepal, with its unique geographical challenges and developmental aspirations, stands to gain immensely from the application of drone technology. However, the absence of a unified platform to address the needs of this emerging sector has been a significant barrier to its growth. NDA was established to fill this gap and to drive progress in Nepal’s drone industry.<br></br>
+            Despite its immense potential, Nepal's drone industry faces several significant challenges. Drone professionals and businesses lack a unified platform to advocate for their needs and safeguard their rights. The absence of clear and comprehensive regulations has slowed innovation and adoption of drone technology. Additionally, many stakeholders remain unaware of the full potential of drones or lack the skills to use them effectively. This fragmented ecosystem, with minimal coordination between professionals, businesses, and government agencies, has hindered the sector's growth and prevented it from reaching its full potential.<br></br>
+            Recognizing these challenges, the Nepal Drone Association was established to address these gaps and drive progress in the drone industry. Serving as the umbrella organization for all drone professionals, enthusiasts, and businesses in Nepal, the Association advocates for inclusive policies that foster innovation and fair labor practices. It is dedicated to providing education, training, and certifications to develop a skilled workforce while fostering partnerships with local and international stakeholders to share expertise and resources. Through these initiatives, the Nepal Drone Association aims to unify and empower the drone community, driving sustainable growth and innovation in Nepal’s drone sector.<br></br>
+          </p>
         </div>
 
         </div>
 
 
         <div class="flex flex-col lg:flex-row items-center lg:items-stretch rounded-2xl mt-2 mb-4">
-            <div class="bg-[rgb(219,219,219)] w-fit lg:w-1/1 p-6 bg-gray-300 flex items-center justify-center rounded-2xl">
+            <div class="bg-gradient-to-tr from-red-100 to-blue-100 w-fit lg:w-1/1 p-6 bg-gray-300 flex items-center justify-center rounded-2xl">
                 <div>
                     <h2 class="text-lg md:text-xl font-bold text-center">Our Mission.
                     </h2>
@@ -62,16 +62,16 @@ Recognizing these challenges, the Nepal Drone Association was established to add
         </div>
 
         <div class="flex flex-col lg:flex-row items-center lg:items-stretch rounded-2xl mt-2 mb-4">
-        <div class="bg-[rgb(219,219,219)] w-fit lg:w-1/1 p-6 bg-gray-300 rounded-2xl">
+        <div class="bg-gradient-to-b from-red-100 to-blue-100 w-fit lg:w-1/1 p-6 bg-gray-300 rounded-2xl">
             <p class=" md:text-xl font-bold text-4xl ">Our Vision</p>
             <p class="mt-2 text-sm md:text-base">To establish Nepal as a global leader in drone technology, leveraging its potential to drive sustainable development and create new opportunities in diverse industries.
-</p>
+        </p>
         </div>
 
         </div>
 
         <div class="flex flex-col lg:flex-row items-center lg:items-stretch rounded-2xl mt-2 mb-4">
-        <div class="bg-[rgb(219,219,219)] w-fit lg:w-1/1 p-6 bg-gray-300 rounded-2xl">
+        <div class="bg-gradient-to-b from-red-100 to-blue-100 w-fit lg:w-1/1 p-6 bg-gray-300 rounded-2xl">
             <p class=" md:text-xl font-bold text-4xl ">What We Do</p>
             <p class="mt-2 text-sm md:text-base">1.	Professional Support: We act as an umbrella organization for all drone professionals and businesses, providing guidance, resources, and opportunities for growth.
 <br></br>2.	Advocacy: We represent the drone community to the Nepal Government, advocating for policies that support fair labor practices, innovation, and growth in the sector.
@@ -86,7 +86,7 @@ Recognizing these challenges, the Nepal Drone Association was established to add
         </div>
 
         <div class="flex flex-col lg:flex-row items-center lg:items-stretch rounded-2xl mt-2 mb-4">
-        <div class="bg-[rgb(219,219,219)] w-fit lg:w-1/1 p-6 bg-gray-300 rounded-2xl">
+        <div class="bg-gradient-to-b from-red-100 to-blue-100 w-fit lg:w-1/1 p-6 bg-gray-300 rounded-2xl">
             <p class=" md:text-xl font-bold text-4xl ">Why Choose NDA</p>
             <p class="mt-2 text-sm md:text-base">●	Expert Guidance: Led by experienced professionals, NDA offers unparalleled insights and leadership in the drone sector.
 <br></br>●	Advocacy & Representation: We ensure that the voices of drone professionals and businesses are heard at the policy-making level.

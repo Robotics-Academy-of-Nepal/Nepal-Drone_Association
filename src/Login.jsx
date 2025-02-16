@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Loader2, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -8,12 +9,34 @@ const Login = () => {
     email: '',
     password: ''
   });
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => setLoading(false), 2000);
+    setError('');
+
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/app/login/', formData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.data.token) {
+        localStorage.setItem('token', response.data.token);
+        if (response.data.is_superuser) {
+          navigate('/admin');
+        } else {
+          navigate('/');
+        }
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || 'Failed to login. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -24,13 +47,13 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 overflow-hidden relative">
+    <div className="min-h-screen bg-gray-300 flex items-center justify-center p-4 overflow-hidden relative">
 
-    <div className=" p-8 rounded-xl shadow-2xl w-full max-w-md transform transition-all duration-500 hover:scale-105 relative z-10 antialiased">
+      <div className=" p-8 rounded-xl bg-gradient-to-tr from-red-200 to-blue-200 shadow-2xl w-full max-w-md transform transition-all duration-500 hover:scale-105 relative z-10 antialiased">
         <div className="text-center mb-8 transform-gpu">
           <div className='flex justify-between items-center'>
-          <h1 className="text-3xl font-bold mb-2 subpixel-antialiased">Login</h1>
-          <Link to="/"><X size={24} /></Link>
+            <h1 className="text-3xl font-bold mb-2 subpixel-antialiased">Login</h1>
+            <Link to="/"><X size={24} /></Link>
           </div> 
           <p className="text-gray-400 subpixel-antialiased">Access your drone dashboard</p>
         </div>
@@ -65,6 +88,10 @@ const Login = () => {
               required
             />
           </div>
+
+          {error && (
+            <p className="text-sm text-red-600">{error}</p>
+          )}
 
           <div className="flex items-center justify-between">
             <div className="flex items-center">

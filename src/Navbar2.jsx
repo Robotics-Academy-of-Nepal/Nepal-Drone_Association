@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import NDA from './assets/NDA.jpg';
 
-const Navbar = () => {
+const Navbar2 = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -45,13 +45,9 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/about" className="text-black hover:text-gray-600">About Us</Link>
-            <Link to="/gallery" className="text-black hover:text-gray-600">Gallery</Link>
-            <Link to="/team" className="text-black hover:text-gray-600">Members</Link>
-            <Link to="/member" className="text-black hover:text-gray-600">
-              Become a Member
-            </Link>
-            <Link to="/login" className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-600">LOGIN</Link>
+            <Link to="/admindashboard" className="text-black hover:text-gray-600">Dashboard</Link>
+            <Link to="/admin" className="text-black hover:text-gray-600">Admin Panel</Link>
+            <Link to="/" className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-600">LOGOUT</Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -73,35 +69,23 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <Link
-                to="/about"
+            <Link
+                to="/admin"
                 className="block px-3 py-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-md"
               >
-                About Us
+                Admin Panel
               </Link>
               <Link
-                to="/gallery"
+                to="/admindashboard"
                 className="block px-3 py-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-md"
               >
-                Gallery
+                Dashboard
               </Link>
               <Link
-                to="/team"
-                className="block px-3 py-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-md"
-              >
-                Members
-              </Link>
-              <Link
-                to="/member"
-                className="block px-3 py-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-md"
-              >
-                Become a Member
-              </Link>
-              <Link
-                to="/login"
+                to="/"
                 className="block px-3 py-2 text-white bg-black hover:bg-gray-600 rounded-md"
               >
-                LOGIN
+                LOGOUT
               </Link>
             </div>
           </div>
@@ -111,4 +95,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbar2;
