@@ -26,7 +26,7 @@ const NewsList = () => {
 
   const fetchNews = async () => {
     try {
-      const response = await axios.get('/api/images/', { headers });
+      const response = await axios.get('https://4dkf27s7-8000.inc1.devtunnels.ms/app/images/', { headers });
       setNews(response.data);
       setLoading(false);
     } catch (err) {
@@ -50,7 +50,7 @@ const NewsList = () => {
       formData.append('title', editForm.title);
       formData.append('description', editForm.description);
       
-      await axios.patch(`/api/images/${editingId}/`, formData, {
+      await axios.patch(`https://4dkf27s7-8000.inc1.devtunnels.ms/app/images/${editingId}/`, formData, {
         headers: {
           ...headers,
           'Content-Type': 'multipart/form-data',
@@ -67,7 +67,7 @@ const NewsList = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this news item?')) {
       try {
-        await axios.delete(`/api/images/${id}/`, { headers });
+        await axios.delete(`https://4dkf27s7-8000.inc1.devtunnels.ms/app/images/${id}/`, { headers });
         fetchNews();
       } catch (err) {
         setError('Failed to delete news item');
@@ -96,10 +96,10 @@ const NewsList = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {news.map((item) => (
           <div key={item.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-            {item.image && (
+            {item.image_url && (
               <div className="w-full h-48 overflow-hidden">
                 <img
-                  src={item.image}
+                  src={item.image_url}
                   alt={item.title}
                   className="w-full h-full object-cover"
                 />

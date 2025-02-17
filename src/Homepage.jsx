@@ -24,7 +24,7 @@ function Homepage() {
 
   const fetchImages = async () => {
     try {
-      const response = await axios.get('/api/images/');
+      const response = await axios.get('https://4dkf27s7-8000.inc1.devtunnels.ms/app/images/');
       setImages(response.data);
       setLoading(false);
     } catch (err) {
@@ -59,7 +59,7 @@ function Homepage() {
       preview: (
         <div className="bg-gradient-to-r from-red-200 via-purple-100 to-blue-200 w-full p-6 text-center rounded-2xl border-2">
           <img 
-            src={image.image} 
+            src={image.image_url} 
             alt={image.title} 
             className="w-full h-48 object-cover rounded-lg mb-4"
           />
@@ -74,7 +74,7 @@ function Homepage() {
       fullContent: {
         title: image.title,
         description: image.description,
-        image: image.image
+        image: image.image_url
       }
     }));
   };

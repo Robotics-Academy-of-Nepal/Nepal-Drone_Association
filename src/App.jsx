@@ -7,8 +7,8 @@ import About from './About';
 import Login from './Login';
 import TeamPage from './Team';
 import AdminPanel from './Admin';
-import AdminDashboard from './UserData';
 import NewsList from './News';
+import UserList from './UserData';
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/admin" element={<AdminPanel />} />
-        <Route path="/admindashboard" element={<AdminDashboard />} />
+        <Route path="/admindashboard" element={<UserList />} />
         <Route path="/newslist" element={<NewsList />} />
         <Route path="*" element={<div>Page not found</div>} />
       </Routes>

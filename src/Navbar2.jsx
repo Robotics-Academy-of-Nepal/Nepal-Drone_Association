@@ -24,6 +24,16 @@ const Navbar2 = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleLogout = () => {
+    const confirmLogout = window.confirm("Are you sure you want to logout?");
+    if (confirmLogout) {
+      // Remove the token from local storage
+      localStorage.removeItem('token');
+      // Optionally, you can redirect the user to the login page or home page
+      window.location.href = '/';
+    }
+  };
+
   return (
     <nav className="bg-white shadow-md" ref={menuRef}>
       <div className="max-w-8xl mx-auto px-4">
@@ -48,7 +58,7 @@ const Navbar2 = () => {
             <Link to="/admindashboard" className="text-black hover:text-gray-600">Users</Link>
             <Link to="/newslist" className="text-black hover:text-gray-600">News</Link>
             <Link to="/admin" className="text-black hover:text-gray-600">Admin Panel</Link>
-            <Link to="/" className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-600">LOGOUT</Link>
+            <button onClick={handleLogout} className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-600">LOGOUT</button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -70,7 +80,7 @@ const Navbar2 = () => {
         {isOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <Link
+              <Link
                 to="/admin"
                 className="block px-3 py-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-md"
               >
@@ -88,12 +98,12 @@ const Navbar2 = () => {
               >
                 Users
               </Link>
-              <Link
-                to="/"
-                className="block px-3 py-2 text-white bg-black hover:bg-gray-600 rounded-md"
+              <button
+                onClick={handleLogout}
+                className="block w-full text-left px-3 py-2 text-white bg-black hover:bg-gray-600 rounded-md"
               >
                 LOGOUT
-              </Link>
+              </button>
             </div>
           </div>
         )}
