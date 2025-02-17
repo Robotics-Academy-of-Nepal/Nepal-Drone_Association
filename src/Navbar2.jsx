@@ -30,7 +30,7 @@ const Navbar2 = () => {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center h-full py-2">
-            <Link to="/" className="flex items-center h-full group">
+            <span className="flex items-center h-full group">
               <img 
                 src={NDA} 
                 alt="NDA Logo" 
@@ -40,12 +40,13 @@ const Navbar2 = () => {
                   maxWidth: '120px'
                 }}
               />
-            </Link>
+            </span>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/admindashboard" className="text-black hover:text-gray-600">Dashboard</Link>
+            <Link to="/admindashboard" className="text-black hover:text-gray-600">Users</Link>
+            <Link to="/newslist" className="text-black hover:text-gray-600">News</Link>
             <Link to="/admin" className="text-black hover:text-gray-600">Admin Panel</Link>
             <Link to="/" className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-600">LOGOUT</Link>
           </div>
@@ -76,10 +77,16 @@ const Navbar2 = () => {
                 Admin Panel
               </Link>
               <Link
+                to="/newslist"
+                className="block px-3 py-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-md"
+              >
+                News
+              </Link>
+              <Link
                 to="/admindashboard"
                 className="block px-3 py-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-md"
               >
-                Dashboard
+                Users
               </Link>
               <Link
                 to="/"
