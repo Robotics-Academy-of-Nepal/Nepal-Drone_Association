@@ -55,8 +55,8 @@ const Navbar2 = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/admindashboard" className="text-black hover:text-gray-600">Users</Link>
-            <Link to="/newslist" className="text-black hover:text-gray-600">News</Link>
+            <Link to="/admindashboard" className="text-black hover:text-gray-600">User Management</Link>
+            <Link to="/galleryupload" className="text-black hover:text-gray-600">Gallery Management</Link>
             <Link to="/admin" className="text-black hover:text-gray-600">Admin Panel</Link>
             <button onClick={handleLogout} className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-600">LOGOUT</button>
           </div>
@@ -87,16 +87,16 @@ const Navbar2 = () => {
                 Admin Panel
               </Link>
               <Link
-                to="/newslist"
+                to="/galleryupload"
                 className="block px-3 py-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-md"
               >
-                News
+                Gallery Management
               </Link>
               <Link
                 to="/admindashboard"
                 className="block px-3 py-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-md"
               >
-                Users
+                User Management
               </Link>
               <button
                 onClick={handleLogout}
