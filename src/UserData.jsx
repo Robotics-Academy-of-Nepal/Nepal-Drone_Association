@@ -100,29 +100,29 @@ const UserList = () => {
                   <td className="px-4 py-2">{user.drone_experience}</td>
                   <td className="px-4 py-2 capitalize">{user.involvement_type}</td>
                   <td className="px-4 py-2">
-                    {user.citizenship_url ? (
-                      <img
-                        src={user.citizenship_url}
-                        alt="Citizenship Document"
-                        className="w-16 h-16 object-cover rounded cursor-pointer hover:opacity-75 transition-opacity"
-                        onClick={() => setSelectedImage(user.citizenship_url)}
-                      />
-                    ) : (
-                      'N/A'
-                    )}
-                  </td>
-                  <td className="px-4 py-2">
-                    {user.regd_document_url ? (
-                      <img
-                        src={user.regd_document_url}
-                        alt="Registration Document"
-                        className="w-16 h-16 object-cover rounded cursor-pointer hover:opacity-75 transition-opacity"
-                        onClick={() => setSelectedImage(user.regd_document_url)}
-                      />
-                    ) : (
-                      'N/A'
-                    )}
-                  </td>
+  {user.citizenship_url ? (
+    <img
+      src={user.citizenship_url} // Use citizenship_url instead of citizenship_upload
+      alt="Citizenship Document"
+      className="w-16 h-16 object-cover rounded cursor-pointer hover:opacity-75 transition-opacity"
+      onClick={() => setSelectedImage(user.citizenship_url)}
+    />
+  ) : (
+    'N/A'
+  )}
+</td>
+<td className="px-4 py-2">
+  {user.regd_document_url ? (
+    <img
+      src={user.regd_document_url} // Use regd_document_url instead of regd_document_upload
+      alt="Registration Document"
+      className="w-16 h-16 object-cover rounded cursor-pointer hover:opacity-75 transition-opacity"
+      onClick={() => setSelectedImage(user.regd_document_url)}
+    />
+  ) : (
+    'N/A'
+  )}
+</td>
                 </tr>
               ))}
             </tbody>
