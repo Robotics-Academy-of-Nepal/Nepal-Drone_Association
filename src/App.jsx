@@ -5,11 +5,11 @@ import { Routes, Route } from 'react-router-dom';  // Remove BrowserRouter impor
 import About from './About';
 import Login from './Login';
 import TeamPage from './Team';
-import Admin from './Admin';
 import NewsList from './News';
 import UserList from './UserData';
 import ImageUploadManager from './GalleryUpload';
 import ImageGallery from './GalleryDisplay';
+import Homepage2 from './Admin';
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
         <Route path="/member" element={<MembershipForm />} />
         <Route path="/login" element={<Login />} />
         <Route path="/team" element={<TeamPage />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin" element={<Homepage2 />} />
         <Route path="/admindashboard" element={<UserList />} />
         <Route path="/newslist" element={<NewsList />} />
         <Route path="/galleryupload" element={<ImageUploadManager />} />

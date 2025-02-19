@@ -17,15 +17,36 @@ function Homepage() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const slidesPerView = 3;
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const getCardsToShow = () => {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth < 640) return 1; // mobile
+      if (window.innerWidth < 1024) return 2; // tablet
+      return 3; // desktop
+    }
+    return 3;
+  };
+  const [cardsToShow, setCardsToShow] = useState(getCardsToShow());
+  const cardWidth = 33.33; // Fixed width for each card
 
   useEffect(() => {
     setIsVisible(true);
     fetchImages();
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setCardsToShow(getCardsToShow());
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const fetchImages = async () => {
     try {
-      const response = await axios.get('https://4dkf27s7-8000.inc1.devtunnels.ms/app/images/');
+      const response = await axios.get('https://api.nepaldroneassociation.org.np/app/images/');
       setImages(response.data);
       setLoading(false);
     } catch (err) {
@@ -93,28 +114,30 @@ function Homepage() {
       fullContent: {
         title: image.title,
         description: image.description,
-        image: image.image_url
+        image: image.image
       }
     }));
   };
 
   const slides = createSlides();
-  const slidesPerView = 3;
-  const totalSlides = Math.ceil(slides.length / slidesPerView);
+  const totalSlides = Math.ceil(slides.length / Math.min(slidesPerView, slides.length));
 
+  // Update the getVisibleSlides function
   const getVisibleSlides = () => {
-    const startIdx = currentSlide * slidesPerView;
-    return slides.slice(startIdx, startIdx + slidesPerView);
+    const start = currentSlide;
+    const end = start + slidesPerView;
+    return slides.slice(start, end);
   };
 
   const nextSlide = (e) => {
     e.stopPropagation();
-    setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    const maxSlides = slides.length - cardsToShow;
+    setCurrentIndex(prev => Math.min(prev + 1, maxSlides));
   };
 
   const prevSlide = (e) => {
     e.stopPropagation();
-    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+    setCurrentIndex(prev => Math.max(0, prev - 1));
   };
 
   const openModal = (slideIndex) => {
@@ -199,70 +222,101 @@ function Homepage() {
 
         {/* News slider section */}
         <div className="relative w-full max-w-6xl mx-auto mt-4 mb-4">
-        {loading ? (
-          <div className="text-center p-8 bg-gradient-to-r from-red-200 via-purple-100 to-blue-200 rounded-2xl">
-            Loading news...
-          </div>
-        ) : error ? (
-          <div className="text-center p-8 bg-gradient-to-r from-red-200 via-purple-100 to-blue-200 rounded-2xl">
-            {error}
-          </div>
-        ) : (
-          <>
-           <div className="relative overflow-hidden rounded-2xl p-4">
-              <div className="grid grid-cols-3 gap-6 h-full">
-                {getVisibleSlides().map((slide, index) => {
-                  const absoluteIndex = currentSlide * slidesPerView + index;
-                  return (
-                    <div
-                      key={slide.id}
-                      className="aspect-[3/4] cursor-pointer hover:shadow-lg transition-shadow duration-300"
-                      onClick={() => openModal(absoluteIndex)}
-                    >
-                      {slide.preview}
-                    </div>
-                  );
-                })}
+  {loading ? (
+    <div className="text-center p-8 bg-gradient-to-r from-red-200 via-purple-100 to-blue-200 rounded-2xl">
+      Loading news...
+    </div>
+  ) : error ? (
+    <div className="text-center p-8 bg-gradient-to-r from-red-200 via-purple-100 to-blue-200 rounded-2xl">
+      {error}
+    </div>
+  ) : (
+    <>
+      <div className="relative overflow-hidden rounded-2xl p-4">
+        <div 
+          className="flex transition-transform duration-300 ease-in-out"
+          style={{
+            transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)`,
+            width: `${(slides.length / cardsToShow) * 100}%`
+          }}
+        >
+          {slides.map((slide, index) => (
+            <div
+              key={slide.id}
+              className={`px-2 sm:px-3 transition-all duration-300`}
+              style={{ width: `${100 / cardsToShow}%` }}
+              onClick={() => openModal(index)}
+            >
+              <div className="bg-gradient-to-r from-red-200 via-purple-100 to-blue-200 h-full p-4 sm:p-6 text-center rounded-2xl border-2 flex flex-col cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl">
+                <div className="relative w-full pb-[66.67%] mb-4">
+                  <img 
+                    src={slide.fullContent.image} 
+                    alt={slide.fullContent.title} 
+                    className="absolute inset-0 w-full h-full object-cover rounded-lg"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-bold text-base sm:text-lg mb-2 line-clamp-2">
+                      {slide.fullContent.title}
+                    </h3>
+                    <p className="text-sm sm:text-base line-clamp-3">
+                      {slide.fullContent.description}
+                    </p>
+                  </div>
+                  <div className="mt-4">
+                    <button className="text-blue-600 hover:text-blue-800 font-medium">
+                      Read More
+                    </button>
+                  </div>
+                </div>
               </div>
-
-              {slides.length > slidesPerView && (
-                <>
-                  <button
-                    onClick={prevSlide}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all"
-                    aria-label="Previous slide"
-                  >
-                    <ChevronLeft className="w-6 h-6" />
-                  </button>
-                  <button
-                    onClick={nextSlide}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all"
-                    aria-label="Next slide"
-                  >
-                    <ChevronRight className="w-6 h-6" />
-                  </button>
-                </>
-              )}
             </div>
+          ))}
+        </div>
 
-            <div className="flex justify-center gap-2 mt-4">
-              {Array.from({ length: totalSlides }).map((_, index) => (
-                <button
-                  key={index}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setCurrentSlide(index);
-                  }}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    currentSlide === index ? 'bg-blue-600 w-4' : 'bg-gray-300'
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
+        {slides.length > cardsToShow && (
+          <>
+            <button
+              onClick={prevSlide}
+              disabled={currentIndex === 0}
+              className={`absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-1 sm:p-2 rounded-full shadow-lg transition-all ${
+                currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110'
+              }`}
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6" />
+            </button>
+            <button
+              onClick={nextSlide}
+              disabled={currentIndex >= slides.length - cardsToShow}
+              className={`absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-1 sm:p-2 rounded-full shadow-lg transition-all ${
+                currentIndex >= slides.length - cardsToShow ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110'
+              }`}
+              aria-label="Next slide"
+            >
+              <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6" />
+            </button>
           </>
         )}
       </div>
+
+      <div className="flex justify-center gap-2 mt-4">
+        {Array.from({ length: Math.ceil((slides.length - cardsToShow + 1) / 1) }).map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`w-2 h-2 rounded-full transition-all ${
+              currentIndex === index ? 'bg-blue-600 w-4' : 'bg-gray-300'
+            }`}
+            aria-label={`Go to slide group ${index + 1}`}
+          />
+        ))}
+      </div>
+    </>
+  )}
+</div>
 
       {/* Updated Modal */}
       {isModalOpen && selectedSlideIndex !== null && slides[selectedSlideIndex] && (
@@ -277,9 +331,9 @@ function Homepage() {
             className="bg-gradient-to-r from-red-200 via-purple-100 to-blue-200 rounded-lg w-11/12 max-w-4xl max-h-[90vh] overflow-y-auto transform transition-all"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="p-8">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-semibold">
+            <div className="p-4 sm:p-6 md:p-8">
+              <div className="flex justify-between items-start mb-4">
+                <h2 className="text-xl sm:text-2xl font-semibold pr-4 break-words">
                   {slides[selectedSlideIndex].fullContent.title}
                 </h2>
                 <button
@@ -287,26 +341,26 @@ function Homepage() {
                     setIsModalOpen(false);
                     setSelectedSlideIndex(null);
                   }}
-                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                  className="p-2 hover:bg-gray-100 rounded-full transition-colors flex-shrink-0"
                   aria-label="Close modal"
                 >
-                  <X className="w-8 h-8" />
+                  <X className="w-6 h-6 sm:w-8 sm:h-8" />
                 </button>
               </div>
 
-              <div className="mb-6">
+              <div className="mb-4">
                 <img
                   src={slides[selectedSlideIndex].fullContent.image}
                   alt={slides[selectedSlideIndex].fullContent.title}
-                  className="w-full max-h-[60vh] object-contain rounded-lg"
+                  className="w-full max-h-[50vh] object-contain rounded-lg"
                 />
               </div>
 
-              <div className="prose max-w-none text-lg">
-                <div className="space-y-4">
+              <div className="prose max-w-none">
+                <div className="space-y-4 text-base sm:text-lg">
                   {slides[selectedSlideIndex].fullContent.description.split('\n').map((paragraph, index) => (
                     paragraph.trim() && (
-                      <p key={index} className="mb-4">
+                      <p key={index} className="mb-4 break-words">
                         {paragraph.trim()}
                       </p>
                     )

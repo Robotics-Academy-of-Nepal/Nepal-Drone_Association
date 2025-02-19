@@ -18,7 +18,7 @@ const Login = () => {
     setError('');
 
     try {
-      const response = await axios.post('https://4dkf27s7-8000.inc1.devtunnels.ms/app/login/', formData, {
+      const response = await axios.post('https://api.nepaldroneassociation.org.np/app/login/', formData, {
         headers: {
           'Content-Type': 'application/json',
         },

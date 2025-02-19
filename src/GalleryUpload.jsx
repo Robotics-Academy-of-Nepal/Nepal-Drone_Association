@@ -13,7 +13,7 @@ const ImageUploadManager = () => {
   const token = localStorage.getItem('token');
 
   const axiosInstance = axios.create({
-    baseURL: 'https://4dkf27s7-8000.inc1.devtunnels.ms/app',
+    baseURL: 'https://api.nepaldroneassociation.org.np/app',
     headers: {
       'Authorization': `Token ${token}`
     }
@@ -204,7 +204,7 @@ const ImageUploadManager = () => {
           <div key={image.id} className="relative group">
             <div className="relative">
               <img
-                src={image.image_url}
+                src={image.image}
                 alt={`Upload ${image.id}`}
                 className="w-full h-48 object-cover rounded-lg"
               />

@@ -138,7 +138,7 @@ const MembershipForm = () => {
 
       formDataToSend.append('involvement_type', memberType);
 
-      const response = await axios.post('https://4dkf27s7-8000.inc1.devtunnels.ms/app/signup/', formDataToSend, {
+      const response = await axios.post('https://api.nepaldroneassociation.org.np/app/signup/', formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

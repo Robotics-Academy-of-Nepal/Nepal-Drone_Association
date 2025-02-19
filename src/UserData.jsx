@@ -16,7 +16,7 @@ const UserList = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('https://4dkf27s7-8000.inc1.devtunnels.ms/app/signup/', { headers });
+        const response = await axios.get('https://api.nepaldroneassociation.org.np/app/signup/', { headers });
         
         // Check if the response contains user data
         if (response.data.status === "success" && response.data.users) {

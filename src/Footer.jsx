@@ -1,86 +1,103 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import facebook from './assets/facebook.png';
 import instagram from './assets/instagram.png';
 import twitter from './assets/twitter.png';
 import linkedin from './assets/linkedin.jpg';
 import NDA from './assets/NDA.jpg';
+import logo from './assets/logo.png';
 
 const Footer = () => {
   const footerLinks = {
     about: {
-      title: 'About',
+      title: 'Useful Links',
       links: [
-        { text: 'How it works', href: '#' },
-        { text: 'Featured', href: '#' },
-        { text: 'Partnership', href: '#' },
-        { text: 'Business Relation', href: '#' }
+        { text: 'About Us', to: '/about' },
+        { text: 'Gallery', to: '/gallery' },
+        { text: 'Team Members', to: '/team' },
+        { text: 'Become Member', to: '/member' }
       ]
     },
     explore: {
       title: 'Explore',
       links: [
-        { text: 'Features', href: '#' },
-        { text: 'Showcase', href: '#' },
-        { text: 'Events', href: '#' },
-        { text: 'Sitemap', href: '#' }
+        { text: 'Features', to: '/features' },
+        { text: 'News', to: '/news' },
+        { text: 'Events', to: '/events' },
+        { text: 'Contact', to: '/contact' }
       ]
     },
-    whereToBuy: {
-      title: 'Where to buy',
-      links: [
-        { text: 'Online Store', href: '#' },
-        { text: 'Retail Store', href: '#' },
-        { text: 'Become a Dealer', href: '#' },
-        { text: 'Authorized Retail', href: '#' }
-      ]
-    }
   };
 
   return (
-    <footer className="bg-black text-white px-6 py-12">
+    <footer className="bg-black text-white px-4 sm:px-6 py-8 sm:py-12">
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8">
           {/* Logo and Social Section */}
           <div className="lg:col-span-2">
             <div className="mb-4">
-              <img src={NDA} className="rounded-3xl"></img>
-              <p className="text-gray-400 mt-2 text-sm">
-              Nepal Drone Association<br></br>
-              nepaldroneassociation.org.np<br></br>
-              info@nepaldroneassociation.org.np<br></br>
-              +977-9843723924<br></br>
-              Lamtingan Marg, Ward No.4, Kathmandu Metropolitan<br></br>
-              Opposite to J.P House<br></br>
-              27.726352000141453, 85.33294069528846<br></br>
-
+              <img 
+                src={logo} 
+                alt="Nepal Drone Association Logo"
+                className="w-24 sm:w-28 h-auto rounded-2xl" // Adjusted size
+              />
+              <p className="text-gray-400 mt-4 text-sm space-y-1">
+                <span className="block font-semibold text-white">Nepal Drone Association</span>
+                <span className="block hover:text-white">nepaldroneassociation.org.np</span>
+                <a href="mailto:info@nepaldroneassociation.org.np" className="block hover:text-white">
+                  info@nepaldroneassociation.org.np
+                </a>
+                <a href="tel:+9779843723924" className="block hover:text-white">
+                  +977-9843723924
+                </a>
+                <span className="block">Lamtingan Marg, Ward No.4,</span>
+                <span className="block">Kathmandu Metropolitan</span>
+                <span className="block">Opposite to J.P House</span>
               </p>
             </div>
-            <div className="flex space-x-4">
-              <a href="#" className="p-2 rounded-full" >
-                <img src={facebook} className="w-10 h-8 rounded-full"></img>
+            <div className="flex space-x-4 mt-6">
+              <a 
+                href="" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="p-2 hover:opacity-80 transition-opacity"
+              >
+                <img src={facebook} alt="Facebook" className="w-8 h-8 rounded-full" />
               </a>
-              <a href="#" className="p-2 rounded-full">
-                <img src={instagram} className="w-10 h-10 bg-white rounded-full"></img>
+              <a 
+                href="" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="p-2 hover:opacity-80 transition-opacity"
+              >
+                <img src={instagram} alt="Instagram" className="w-8 h-8 rounded-full" />
               </a>
-              <a href="#" className="p-2 rounded-full">
-                <img src={linkedin} className="w-10 h-10 rounded-full"></img>
+              <a 
+                href="" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="p-2 hover:opacity-80 transition-opacity"
+              >
+                <img src={linkedin} alt="LinkedIn" className="w-8 h-8 rounded-full" />
               </a>
             </div>
           </div>
 
-          {/* Links Sections */}
+          {/* Links Sections with improved spacing and hover effects */}
           {Object.values(footerLinks).map((section) => (
             <div key={section.title} className="lg:col-span-1">
-              <h3 className="font-semibold mb-4">{section.title}</h3>
-              <ul className="space-y-2">
+              <h3 className="font-semibold text-lg mb-4 capitalize">{section.title}</h3>
+              <ul className="space-y-3">
                 {section.links.map((link) => (
                   <li key={link.text}>
-                    <a
-                      href={link.href}
-                      className="text-gray-400 hover:text-white text-sm transition-colors duration-200"
+                    <Link
+                      to={link.to}
+                      className="text-gray-400 hover:text-white text-sm transition-colors duration-200 flex items-center"
                     >
-                      {link.text}
-                    </a>
+                      <span className="hover:translate-x-1 transition-transform duration-200">
+                        {link.text}
+                      </span>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -88,19 +105,19 @@ const Footer = () => {
           ))}
         </div>
 
-        {/* Bottom Section */}
+        {/* Updated copyright section */}
         <div className="border-t border-gray-800 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
             <p className="text-gray-400 text-sm">
-              ©2022 Company Name. All rights reserved
+              © {new Date().getFullYear()} Nepal Drone Association. All rights reserved.
             </p>
             <div className="flex space-x-6">
-              <a href="#" className="text-gray-400 hover:text-white text-sm">
-                Privacy & Policy
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm">
-                Terms & Condition
-              </a>
+              <Link to="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors">
+                Privacy Policy
+              </Link>
+              <Link to="/terms" className="text-gray-400 hover:text-white text-sm transition-colors">
+                Terms & Conditions
+              </Link>
             </div>
           </div>
         </div>

@@ -13,7 +13,7 @@ const ImageGallery = () => {
     const fetchImages = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('https://4dkf27s7-8000.inc1.devtunnels.ms/app/gallery/');
+        const response = await axios.get('https://api.nepaldroneassociation.org.np/app/gallery/');
         
         // Log the response for debugging
         console.log('Raw API Response:', response);
@@ -51,7 +51,7 @@ const ImageGallery = () => {
         {images && images.map((image, index) => (
           <div key={index} className="rounded-lg shadow-lg overflow-hidden">
             <img
-              src={image.image_url}
+              src={image.image}
               alt={`Gallery Image ${index + 1}`}
               className="w-full h-48 object-cover"
               onError={(e) => {

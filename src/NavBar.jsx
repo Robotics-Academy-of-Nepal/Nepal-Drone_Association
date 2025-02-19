@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import NDA from './assets/NDA.jpg';
+import logo from './assets/logo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +33,7 @@ const Navbar = () => {
           <div className="flex-shrink-0 flex items-center h-full py-2">
             <Link to="/" className="flex items-center h-full group">
               <img 
-                src={NDA} 
+                src={logo} 
                 alt="NDA Logo" 
                 className="h-fit w-auto object-contain transition-all duration-300 ease-in-out transform group-hover:scale-132 group-hover:brightness-120 group-hover:shadow-lg"
                 style={{
