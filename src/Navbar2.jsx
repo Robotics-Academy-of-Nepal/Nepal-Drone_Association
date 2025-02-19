@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import NDA from './assets/NDA.jpg';
 
 const Navbar2 = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -30,7 +32,7 @@ const Navbar2 = () => {
       // Remove the token from local storage
       localStorage.removeItem('token');
       // Optionally, you can redirect the user to the login page or home page
-      window.location.href = '/';
+      navigate('/');
     }
   };
 

@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import NDA from './assets/NDA.jpg';
 import logo from './assets/logo.png';
 
 const Navbar = () => {
