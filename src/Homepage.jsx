@@ -19,14 +19,18 @@ function Homepage() {
   const [error, setError] = useState(null);
   const slidesPerView = 3;
   const [currentIndex, setCurrentIndex] = useState(0);
+
+
   const getCardsToShow = () => {
     if (typeof window !== 'undefined') {
       if (window.innerWidth < 640) return 1; // mobile
-      if (window.innerWidth < 1024) return 2; // tablet
-      return 3; // desktop
+      if (window.innerWidth < 1024) return 2; // tablet with 2 cards
+      return 3; // desktop with 3 cards
     }
     return 3;
   };
+
+  
   const [cardsToShow, setCardsToShow] = useState(getCardsToShow());
   const cardWidth = 33.33; // Fixed width for each card
 
@@ -221,102 +225,108 @@ function Homepage() {
         </div>
 
         {/* News slider section */}
-        <div className="relative w-full max-w-6xl mx-auto mt-4 mb-4">
-  {loading ? (
-    <div className="text-center p-8 bg-gradient-to-r from-red-200 via-purple-100 to-blue-200 rounded-2xl">
-      Loading news...
-    </div>
-  ) : error ? (
-    <div className="text-center p-8 bg-gradient-to-r from-red-200 via-purple-100 to-blue-200 rounded-2xl">
-      {error}
-    </div>
-  ) : (
-    <>
-      <div className="relative overflow-hidden rounded-2xl p-4">
-        <div 
-          className="flex transition-transform duration-300 ease-in-out"
-          style={{
-            transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)`,
-            width: `${(slides.length / cardsToShow) * 100}%`
-          }}
-        >
-          {slides.map((slide, index) => (
-            <div
-              key={slide.id}
-              className={`px-2 sm:px-3 transition-all duration-300`}
-              style={{ width: `${100 / cardsToShow}%` }}
-              onClick={() => openModal(index)}
-            >
-              <div className="bg-gradient-to-r from-red-200 via-purple-100 to-blue-200 h-full p-4 sm:p-6 text-center rounded-2xl border-2 flex flex-col cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl">
-                <div className="relative w-full pb-[66.67%] mb-4">
-                  <img 
-                    src={slide.fullContent.image} 
-                    alt={slide.fullContent.title} 
-                    className="absolute inset-0 w-full h-full object-cover rounded-lg"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="flex-1 flex flex-col justify-between">
-                  <div>
-                    <h3 className="font-bold text-base sm:text-lg mb-2 line-clamp-2">
-                      {slide.fullContent.title}
-                    </h3>
-                    <p className="text-sm sm:text-base line-clamp-3">
-                      {slide.fullContent.description}
-                    </p>
-                  </div>
-                  <div className="mt-4">
-                    <button className="text-blue-600 hover:text-blue-800 font-medium">
-                      Read More
-                    </button>
-                  </div>
-                </div>
-              </div>
+        {/* News slider section */}
+        <div className="relative w-full max-w-7xl mx-auto mt-8 mb-8 px-4">
+          {loading ? (
+            <div className="text-center p-8 bg-gradient-to-r from-red-200 via-purple-100 to-blue-200 rounded-2xl">
+              Loading news...
             </div>
-          ))}
+          ) : error ? (
+            <div className="text-center p-8 bg-gradient-to-r from-red-200 via-purple-100 to-blue-200 rounded-2xl">
+              {error}
+            </div>
+          ) : (
+            <>
+              <div className="relative overflow-hidden rounded-2xl p-4">
+                <div 
+                  className="flex transition-transform duration-300 ease-in-out"
+                  style={{
+                    transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)`,
+                    width: `${(slides.length / cardsToShow) * 100}%`
+                  }}
+                >
+                  {slides.map((slide, index) => (
+                    <div
+                      key={slide.id}
+                      className="px-2 transition-all duration-300"
+                      style={{ width: `${300 / cardsToShow}%` }}
+                      onClick={() => openModal(index)}
+                    >
+                      <div className="bg-gradient-to-r from-red-200 via-purple-100 to-blue-200 h-full p-4 text-center rounded-2xl border-2 flex flex-col cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl">
+                        {/* Updated image container with larger width */}
+                        <div className="relative w-full pb-[70.67%] mb-4">
+                          <img 
+                            src={slide.fullContent.image} 
+                            alt={slide.fullContent.title} 
+                            className="absolute inset-0 w-full h-full object-cover rounded-lg"
+                            loading="lazy"
+                          />
+                        </div>
+                        
+                        <div className="flex-1 flex flex-col justify-between">
+                          <div>
+                            <h3 className="font-bold text-xl mb-2 line-clamp-2">
+                              {slide.fullContent.title}
+                            </h3>
+                            <p className="text-base line-clamp-3">
+                              {slide.fullContent.description}
+                            </p>
+                          </div>
+                          <div className="mt-4">
+                            <button className="text-blue-600 hover:text-blue-800 font-medium">
+                              Read More
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Navigation buttons */}
+                {slides.length > cardsToShow && (
+                  <>
+                    <button
+                      onClick={prevSlide}
+                      disabled={currentIndex === 0}
+                      className={`absolute -left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all z-10 ${
+                        currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110'
+                      }`}
+                      aria-label="Previous slide"
+                    >
+                      <ChevronLeft className="w-6 h-6" />
+                    </button>
+                    <button
+                      onClick={nextSlide}
+                      disabled={currentIndex >= slides.length - cardsToShow}
+                      className={`absolute -right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all z-10 ${
+                        currentIndex >= slides.length - cardsToShow ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110'
+                      }`}
+                      aria-label="Next slide"
+                    >
+                      <ChevronRight className="w-6 h-6" />
+                    </button>
+                  </>
+                )}
+              </div>
+
+              {/* Pagination dots */}
+              <div className="flex justify-center gap-2 mt-4">
+                {Array.from({ length: Math.ceil((slides.length - cardsToShow + 1) / 1) }).map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentIndex(index)}
+                    className={`w-2 h-2 rounded-full transition-all ${
+                      currentIndex === index ? 'bg-blue-600 w-4' : 'bg-gray-300'
+                    }`}
+                    aria-label={`Go to slide group ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </div>
 
-        {slides.length > cardsToShow && (
-          <>
-            <button
-              onClick={prevSlide}
-              disabled={currentIndex === 0}
-              className={`absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-1 sm:p-2 rounded-full shadow-lg transition-all ${
-                currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110'
-              }`}
-              aria-label="Previous slide"
-            >
-              <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6" />
-            </button>
-            <button
-              onClick={nextSlide}
-              disabled={currentIndex >= slides.length - cardsToShow}
-              className={`absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-1 sm:p-2 rounded-full shadow-lg transition-all ${
-                currentIndex >= slides.length - cardsToShow ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110'
-              }`}
-              aria-label="Next slide"
-            >
-              <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6" />
-            </button>
-          </>
-        )}
-      </div>
-
-      <div className="flex justify-center gap-2 mt-4">
-        {Array.from({ length: Math.ceil((slides.length - cardsToShow + 1) / 1) }).map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={`w-2 h-2 rounded-full transition-all ${
-              currentIndex === index ? 'bg-blue-600 w-4' : 'bg-gray-300'
-            }`}
-            aria-label={`Go to slide group ${index + 1}`}
-          />
-        ))}
-      </div>
-    </>
-  )}
-</div>
 
       {/* Updated Modal */}
       {isModalOpen && selectedSlideIndex !== null && slides[selectedSlideIndex] && (
