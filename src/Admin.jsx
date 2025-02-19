@@ -24,6 +24,10 @@ const NewsSlider = () => {
     imagePreview: null
   });
 
+  useEffect(() => {
+      setIsVisible(true);
+    }, []);
+
   const specs = [
       {
         icon: <Camera className="w-8 h-8 mb-3" />,
