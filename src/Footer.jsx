@@ -21,10 +21,10 @@ const Footer = () => {
     explore: {
       title: 'Explore',
       links: [
-        { text: 'Features', to: '/features' },
-        { text: 'News', to: '/news' },
-        { text: 'Events', to: '/events' },
-        { text: 'Contact', to: '/contact' }
+        { text: 'Features', to: '/' },
+        { text: 'News', to: '/' },
+        { text: 'Events', to: '/' },
+        { text: 'Contact', to: '/' }
       ]
     },
   };
@@ -57,7 +57,7 @@ const Footer = () => {
             </div>
             <div className="flex space-x-4 mt-6">
               <a 
-                href="" 
+                href="/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="p-2 hover:opacity-80 transition-opacity"
@@ -65,7 +65,7 @@ const Footer = () => {
                 <img src={facebook} alt="Facebook" className="w-8 h-8 rounded-full" />
               </a>
               <a 
-                href="" 
+                href="/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="p-2 hover:opacity-80 transition-opacity"
@@ -73,7 +73,7 @@ const Footer = () => {
                 <img src={instagram} alt="Instagram" className="w-8 h-8 rounded-full" />
               </a>
               <a 
-                href="" 
+                href="/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="p-2 hover:opacity-80 transition-opacity"
@@ -112,10 +112,10 @@ const Footer = () => {
               © {new Date().getFullYear()} Nepal Drone Association. All rights reserved.
             </p>
             <div className="flex space-x-6">
-              <Link to="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors">
+              <Link to="/" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Privacy Policy
               </Link>
-              <Link to="/terms" className="text-gray-400 hover:text-white text-sm transition-colors">
+              <Link to="/" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Terms & Conditions
               </Link>
             </div>
