@@ -295,7 +295,7 @@ function Homepage() {
                     >
                       <div className="bg-gradient-to-r from-red-200 via-purple-100 to-blue-200 h-full p-4 text-center rounded-2xl border-2 flex flex-col cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl">
                         {/* Updated image container with larger width */}
-                        <div className="relative w-full pb-[70.67%] mb-4">
+                        <div className="relative w-full pb-[100%] mb-4">
                           <img 
                             src={slide.fullContent.image} 
                             alt={slide.fullContent.title} 

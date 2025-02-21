@@ -202,7 +202,7 @@ const NewsSlider = () => {
             </div>
     
             {/* Image sections */}
-            <div className="flex flex-col lg:flex-row items-center lg:items-stretch mt-2 mb-2 rounded-2xl">
+            {/* <div className="flex flex-col lg:flex-row items-center lg:items-stretch mt-2 mb-2 rounded-2xl">
               <div className="w-fit lg:w-1/2 flex">
                 <img src={drone19} className="w-200 h-auto lg:h-100 object-cover rounded-2xl" alt="Drone" />
               </div>
@@ -237,7 +237,7 @@ const NewsSlider = () => {
               <div className="w-fit lg:w-1/2 flex mx-2">
                 <img className="w-150 h-auto lg:h-100 object-cover rounded-2xl" src={drone21} alt="Drone" />
               </div>
-            </div>
+            </div> */}
     
             <div className="lg:w-full mt-2 flex">
               <img className="w-full rounded-2xl cursor-pointer lg:w-full" src={drone18} alt="Drone" />
