@@ -7,26 +7,26 @@ import linkedin from './assets/linkedin.jpg';
 import NDA from './assets/NDA.jpg';
 import logo from './assets/logo.png';
 
-const Footer = () => {
+const Footer = ({ onAboutClick, onTeamClick }) => {
   const footerLinks = {
     about: {
       title: 'Useful Links',
       links: [
-        { text: 'About Us', to: '/about' },
-        { text: 'Gallery', to: '/gallery' },
-        { text: 'Team Members', to: '/team' },
-        { text: 'Become Member', to: '/member' }
+        { text: 'About Us', to: '/', onClick: onAboutClick },
+        { text: 'Gallery', to: '#/gallery', isExternal: true },
+        { text: 'Our Team', to: '/', onClick: onTeamClick },
+        { text: 'Become Member', to: '#/member', isExternal: true }
       ]
     },
-    explore: {
-      title: 'Explore',
-      links: [
-        { text: 'Features', to: '/' },
-        { text: 'News', to: '/' },
-        { text: 'Events', to: '/' },
-        { text: 'Contact', to: '/' }
-      ]
-    },
+  };
+
+  const handleLinkClick = (link, e) => {
+    e.preventDefault();
+    if (link.onClick) {
+      link.onClick();
+    } else if (link.isExternal) {
+      window.location.href = link.to;
+    }
   };
 
   return (
@@ -92,6 +92,7 @@ const Footer = () => {
                   <li key={link.text}>
                     <Link
                       to={link.to}
+                      onClick={(e) => handleLinkClick(link, e)}
                       className="text-gray-400 hover:text-white text-sm transition-colors duration-200 flex items-center"
                     >
                       <span className="hover:translate-x-1 transition-transform duration-200">

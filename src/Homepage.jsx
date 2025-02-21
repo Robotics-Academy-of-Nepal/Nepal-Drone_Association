@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import image from './assets/drone.png';
 import drone18 from './assets/drone18.jpg';
@@ -8,8 +8,12 @@ import Navbar from "./NavBar";
 import Footer from "./Footer";
 import { Camera, Battery, Gauge } from "lucide-react";
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import About from './About';
+import TeamPage from './Team';
 
 function Homepage() {
+  const aboutRef = useRef(null);
+  const teamRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedSlideIndex, setSelectedSlideIndex] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -149,9 +153,17 @@ function Homepage() {
     setIsModalOpen(true);
   };
 
+  // Add this function inside Homepage component
+  const scrollToSection = (sectionRef) => {
+    sectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <>
-      <Navbar />
+      <Navbar 
+        onAboutClick={() => scrollToSection(aboutRef)}
+        onTeamClick={() => scrollToSection(teamRef)}
+      />
       <div className="container mx-auto px-4 mt-2">
         {/* First section with drone image */}
         <div className="bg-gradient-to-b from-red-200 to-blue-200">
@@ -183,7 +195,7 @@ function Homepage() {
         </div>
 
         {/* Image sections */}
-        <div className="flex flex-col lg:flex-row items-center lg:items-stretch mt-2 mb-2 rounded-2xl">
+        {/* <div className="flex flex-col lg:flex-row items-center lg:items-stretch mt-2 mb-2 rounded-2xl">
           <div className="w-fit lg:w-1/2 flex">
             <img src={drone19} className="w-200 h-auto lg:h-100 object-cover rounded-2xl" alt="Drone" />
           </div>
@@ -218,7 +230,14 @@ function Homepage() {
           <div className="w-fit lg:w-1/2 flex mx-2">
             <img className="w-150 h-auto lg:h-100 object-cover rounded-2xl" src={drone21} alt="Drone" />
           </div>
-        </div>
+        </div> */}
+        <section ref={aboutRef}>
+          <About />
+        </section>
+
+        <section ref={teamRef}>
+          <TeamPage />
+        </section>
 
         <div className="lg:w-full mt-2 flex">
           <img className="w-full rounded-2xl cursor-pointer lg:w-full" src={drone18} alt="Drone" />
@@ -382,7 +401,10 @@ function Homepage() {
         </div>
       )}
       </div>
-      <Footer />
+      <Footer 
+        onAboutClick={() => scrollToSection(aboutRef)}
+        onTeamClick={() => scrollToSection(teamRef)}
+      />
     </>
   );
 }

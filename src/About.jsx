@@ -1,15 +1,10 @@
 import React from "react";
-import Navbar from "./NavBar";
-import Footer from "./Footer";
-import drone10 from "./assets/drone10.png";
-import drone11 from "./assets/drone11.png";
 import drone14 from './assets/drone14.jpg';
 import drone12 from './assets/drone12.jpg';
 
 function About(){
     return(
         <>
-        <Navbar />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-2">
       <div className="p-1">
         <div className="relative">
@@ -100,7 +95,6 @@ function About(){
 
         
       </div>
-      <Footer />
         </>
     )
 }

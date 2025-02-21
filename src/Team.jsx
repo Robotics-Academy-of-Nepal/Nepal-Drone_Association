@@ -68,7 +68,6 @@ const TeamPage = () => {
 
   return (
     <>
-    <Navbar />
     <div className="container mx-auto px-4 mt-2">
       {/* Header Section */}
       <div className="max-w-8xl mx-auto mb-8 bg-gradient-to-b from-red-100 to-blue-100 rounded-md p-4">
@@ -198,7 +197,6 @@ const TeamPage = () => {
         </div>
       )}
     </div>
-    <Footer />
     </>
   );
 };
