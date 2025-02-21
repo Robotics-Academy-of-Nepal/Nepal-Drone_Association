@@ -2,18 +2,18 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import image from './assets/drone.png';
 import drone18 from './assets/drone18.jpg';
-import drone19 from './assets/drone19.jpg';
-import drone21 from './assets/drone21.jpg';
 import Navbar from "./NavBar";
 import Footer from "./Footer";
 import { Camera, Battery, Gauge } from "lucide-react";
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import About from './About';
 import TeamPage from './Team';
+import ImageSlider from './Slider';
 
 function Homepage() {
   const aboutRef = useRef(null);
   const teamRef = useRef(null);
+  const newsRef= useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedSlideIndex, setSelectedSlideIndex] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -163,7 +163,9 @@ function Homepage() {
       <Navbar 
         onAboutClick={() => scrollToSection(aboutRef)}
         onTeamClick={() => scrollToSection(teamRef)}
+        onNewsClick={()=>scrollToSection(newsRef)}
       />
+      <ImageSlider />
       <div className="container mx-auto px-4 mt-2">
         {/* First section with drone image */}
         <div className="bg-gradient-to-b from-red-200 to-blue-200">
@@ -244,8 +246,9 @@ function Homepage() {
         </div>
 
         {/* News slider section */}
-        {/* News slider section */}
+        <section ref={newsRef}>
         <div className="relative w-full max-w-7xl mx-auto mt-8 mb-8 px-4">
+        <h1 className="text-3xl font-bold text-center mb-8">News & Events</h1>
           {loading ? (
             <div className="text-center p-8 bg-gradient-to-r from-red-200 via-purple-100 to-blue-200 rounded-2xl">
               Loading news...
@@ -400,6 +403,7 @@ function Homepage() {
           </div>
         </div>
       )}
+      </section>
       </div>
       <Footer 
         onAboutClick={() => scrollToSection(aboutRef)}

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import logo from './assets/logo.png';
 
-const Navbar = ({ onAboutClick, onTeamClick }) => {
+const Navbar = ({ onAboutClick, onTeamClick, onNewsClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -66,6 +66,16 @@ const Navbar = ({ onAboutClick, onTeamClick }) => {
             >
               Our Team
             </Link>
+            <Link 
+              to="/" 
+              onClick={(e) => {
+                e.preventDefault();
+                onNewsClick();
+              }} 
+              className="text-black hover:text-gray-600"
+            >
+              News & events
+            </Link>
             <Link to="/member" className="text-black hover:text-gray-600">
               Become a Member
             </Link>
@@ -116,6 +126,16 @@ const Navbar = ({ onAboutClick, onTeamClick }) => {
                 className="block px-3 py-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-md"
               >
                 Our Team
+              </Link>
+              <Link
+                to="/" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNewsClick();
+                }}
+                className="block px-3 py-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-md"
+              >
+                News & Events
               </Link>
               <Link
                 to="/member"
