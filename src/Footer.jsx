@@ -1,31 +1,67 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import facebook from './assets/facebook.png';
 import instagram from './assets/instagram.png';
-import twitter from './assets/twitter.png';
 import linkedin from './assets/linkedin.jpg';
-import NDA from './assets/NDA.jpg';
 import logo from './assets/logo.png';
 
-const Footer = ({ onAboutClick, onTeamClick }) => {
+const Footer = ({ onAboutClick, onTeamClick, onNewsClick }) => {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
+  const handleNavigation = (e, callback, section) => {
+    e.preventDefault();
+    if (isHomePage) {
+      // If on homepage, just scroll
+      callback();
+    } else {
+      // If on another page, store the target section and navigate to homepage
+      localStorage.setItem('scrollTarget', section);
+      window.location.href = '/';
+    }
+  };
+
   const footerLinks = {
     about: {
       title: 'Useful Links',
       links: [
-        { text: 'About Us', to: '/', onClick: onAboutClick },
-        { text: 'Gallery', to: '#/gallery', isExternal: true },
-        { text: 'Our Team', to: '/', onClick: onTeamClick },
-        { text: 'Become Member', to: '#/member', isExternal: true }
+        { 
+          text: 'About Us', 
+          to: '#',
+          onClick: (e) => handleNavigation(e, onAboutClick, 'about')
+        },
+        { 
+          text: 'Gallery', 
+          to: '/gallery'
+        },
+        { 
+          text: 'Our Team', 
+          to: '#',
+          onClick: (e) => handleNavigation(e, onTeamClick, 'team')
+        },
+        { 
+          text: 'News & Events', 
+          to: '#',
+          onClick: (e) => handleNavigation(e, onNewsClick, 'news')
+        },
+        { 
+          text: 'Become Member', 
+          to: '/member'
+        }
       ]
     },
   };
 
   const handleLinkClick = (link, e) => {
-    e.preventDefault();
     if (link.onClick) {
-      link.onClick();
-    } else if (link.isExternal) {
-      window.location.href = link.to;
+      link.onClick(e);
+    } else {
+      // For regular links without special navigation
+      if (!link.to.startsWith('#')) {
+        // Don't prevent default for regular routes
+        return;
+      }
+      e.preventDefault();
     }
   };
 
@@ -39,7 +75,7 @@ const Footer = ({ onAboutClick, onTeamClick }) => {
               <img 
                 src={logo} 
                 alt="Nepal Drone Association Logo"
-                className="w-24 sm:w-28 h-auto rounded-2xl" // Adjusted size
+                className="w-24 sm:w-28 h-auto rounded-2xl"
               />
               <p className="text-gray-400 mt-4 text-sm space-y-1">
                 <span className="block font-semibold text-white">Nepal Drone Association</span>
@@ -83,7 +119,7 @@ const Footer = ({ onAboutClick, onTeamClick }) => {
             </div>
           </div>
 
-          {/* Links Sections with improved spacing and hover effects */}
+          {/* Links Sections */}
           {Object.values(footerLinks).map((section) => (
             <div key={section.title} className="lg:col-span-1">
               <h3 className="font-semibold text-lg mb-4 capitalize">{section.title}</h3>
@@ -106,7 +142,7 @@ const Footer = ({ onAboutClick, onTeamClick }) => {
           ))}
         </div>
 
-        {/* Updated copyright section */}
+        {/* Copyright section */}
         <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
             <p className="text-gray-400 text-sm">

@@ -36,7 +36,6 @@ function Homepage() {
 
   
   const [cardsToShow, setCardsToShow] = useState(getCardsToShow());
-  const cardWidth = 33.33; // Fixed width for each card
 
   useEffect(() => {
     setIsVisible(true);
@@ -128,14 +127,6 @@ function Homepage() {
   };
 
   const slides = createSlides();
-  const totalSlides = Math.ceil(slides.length / Math.min(slidesPerView, slides.length));
-
-  // Update the getVisibleSlides function
-  const getVisibleSlides = () => {
-    const start = currentSlide;
-    const end = start + slidesPerView;
-    return slides.slice(start, end);
-  };
 
   const nextSlide = (e) => {
     e.stopPropagation();
@@ -153,10 +144,38 @@ function Homepage() {
     setIsModalOpen(true);
   };
 
-  // Add this function inside Homepage component
-  const scrollToSection = (sectionRef) => {
-    sectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToSection = (ref) => {
+    ref.current?.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
   };
+
+  useEffect(() => {
+    const scrollTarget = localStorage.getItem('scrollTarget');
+    
+    if (scrollTarget) {
+      // Clear the stored target
+      localStorage.removeItem('scrollTarget');
+      
+      // Wait for page to fully load
+      setTimeout(() => {
+        switch (scrollTarget) {
+          case 'about':
+            scrollToSection(aboutRef);
+            break;
+          case 'team':
+            scrollToSection(teamRef);
+            break;
+          case 'news':
+            scrollToSection(newsRef);
+            break;
+          default:
+            break;
+        }
+      }, 100);
+    }
+  }, []);
 
   return (
     <>

@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import logo from './assets/logo.png';
 
 const Navbar = ({ onAboutClick, onTeamClick, onNewsClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -22,6 +24,19 @@ const Navbar = ({ onAboutClick, onTeamClick, onNewsClick }) => {
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleNavigation = (e, callback, section) => {
+    e.preventDefault();
+    if (isHomePage) {
+      // If on homepage, just scroll
+      callback();
+      setIsOpen(false);
+    } else {
+      // If on another page, store the target section and navigate to homepage
+      localStorage.setItem('scrollTarget', section);
+      window.location.href = '/';
+    }
   };
 
   return (
@@ -46,32 +61,23 @@ const Navbar = ({ onAboutClick, onTeamClick, onNewsClick }) => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             <Link 
-              to="/" 
-              onClick={(e) => {
-                e.preventDefault();
-                onAboutClick();
-              }} 
+              to="#" 
+              onClick={(e) => handleNavigation(e, onAboutClick, 'about')} 
               className="text-black hover:text-gray-600"
             >
               About Us
             </Link>
             <Link to="/gallery" className="text-black hover:text-gray-600">Gallery</Link>
             <Link 
-              to="/" 
-              onClick={(e) => {
-                e.preventDefault();
-                onTeamClick();
-              }} 
+              to="#" 
+              onClick={(e) => handleNavigation(e, onTeamClick, 'team')} 
               className="text-black hover:text-gray-600"
             >
               Our Team
             </Link>
             <Link 
-              to="/" 
-              onClick={(e) => {
-                e.preventDefault();
-                onNewsClick();
-              }} 
+              to="#" 
+              onClick={(e) => handleNavigation(e, onNewsClick, 'news')} 
               className="text-black hover:text-gray-600"
             >
               News & events
@@ -102,11 +108,8 @@ const Navbar = ({ onAboutClick, onTeamClick, onNewsClick }) => {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <Link
-                to="/" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  onAboutClick();
-                }} 
+                to="#" 
+                onClick={(e) => handleNavigation(e, onAboutClick, 'about')} 
                 className="block px-3 py-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-md"
               >
                 About Us
@@ -119,20 +122,14 @@ const Navbar = ({ onAboutClick, onTeamClick, onNewsClick }) => {
               </Link>
               <Link
                 to="/" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  onTeamClick();
-                }}
+                onClick={(e) => handleNavigation(e, onTeamClick, 'team')} 
                 className="block px-3 py-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-md"
               >
                 Our Team
               </Link>
               <Link
                 to="/" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNewsClick();
-                }}
+                onClick={(e) => handleNavigation(e, onNewsClick, 'news')} 
                 className="block px-3 py-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-md"
               >
                 News & Events

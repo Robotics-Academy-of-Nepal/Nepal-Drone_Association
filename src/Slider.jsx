@@ -102,7 +102,7 @@ const ImageSlider = () => {
         </button>
 
         {/* Slide indicators */}
-        <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
+        {/* <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
           {slides.map((_, index) => (
             <div
               key={index}
@@ -113,7 +113,7 @@ const ImageSlider = () => {
               }`}
             />
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );
