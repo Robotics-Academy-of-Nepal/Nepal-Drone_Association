@@ -60,15 +60,15 @@ const Navbar = ({ onAboutClick, onTeamClick, onNewsClick }) => {
   return (
     <nav className="bg-white shadow-md" ref={menuRef}>
       <div className="max-w-8xl mx-auto px-4">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-22">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center h-full py-2">
             <div className="flex items-center gap-3 sm:gap-4">
-              <Link to="/#" className="flex items-center h-full group">
+              <Link to="/#" className="h-full group">
                 <img 
                   src={logo} 
                   alt="NDA Logo" 
-                  className="h-fit w-auto object-contain transition-all duration-300 ease-in-out transform group-hover:scale-132 group-hover:brightness-120 group-hover:shadow-lg"
+                  className="h-fit w-auto rounded-4xl object-contain transition-all duration-300 ease-in-out transform group-hover:scale-110 group-hover:brightness-120 group-hover:shadow-lg"
                   style={{
                     maxHeight: '100%',
                     maxWidth: '80px',
@@ -76,6 +76,7 @@ const Navbar = ({ onAboutClick, onTeamClick, onNewsClick }) => {
                   }}
                 />
               </Link>
+
               <div className="flex flex-col justify-center">
                 <p className="text-xs sm:text-sm md:text-[6px] lg:text-[12px] font-semibold leading-tight italic">
                   <span className="text-sky-500">Connecting Skies</span>

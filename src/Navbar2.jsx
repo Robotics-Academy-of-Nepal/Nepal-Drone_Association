@@ -47,14 +47,23 @@ const Navbar2 = () => {
               <img 
                 src={logo}
                 alt="NDA Logo" 
-                className="h-fit w-auto object-contain transition-all duration-300 ease-in-out transform group-hover:scale-132 group-hover:brightness-120 group-hover:shadow-lg"
+                className="h-fit w-auto rounded-4xl mx-2 object-contain transition-all duration-300 ease-in-out transform group-hover:scale-128 group-hover:brightness-120 group-hover:shadow-lg"
                 style={{
                   maxHeight: '100%',
                   maxWidth: '120px'
                 }}
               />
             </span>
+            <div className="flex flex-col justify-center">
+                <p className="text-xs sm:text-sm md:text-[6px] lg:text-[12px] font-semibold leading-tight italic">
+                  <span className="text-sky-500">Connecting Skies</span>
+                  <span className="mx-1">,</span>
+                  <br className="sm:hidden md:block lg:hidden" />
+                  <span className="text-red-400">Transforming Lives</span>
+                </p>
+              </div>
           </div>
+          
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
