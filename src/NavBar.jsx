@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import logo from './assets/logo.png';
 
@@ -7,7 +7,8 @@ const Navbar = ({ onAboutClick, onTeamClick, onNewsClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
+  const navigate = useNavigate();
+  const isHomePage = location.pathname === '/' || location.pathname === '';
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -16,26 +17,43 @@ const Navbar = ({ onAboutClick, onTeamClick, onNewsClick }) => {
       }
     }
 
+    // Check for stored scroll target when component mounts
+    const scrollTarget = localStorage.getItem('scrollTarget');
+    if (scrollTarget && isHomePage) {
+      // Clear the stored target
+      localStorage.removeItem('scrollTarget');
+      // Execute the corresponding scroll function
+      switch (scrollTarget) {
+        case 'about':
+          onAboutClick();
+          break;
+        case 'team':
+          onTeamClick();
+          break;
+        case 'news':
+          onNewsClick();
+          break;
+        default:
+          break;
+      }
+    }
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [isHomePage, onAboutClick, onTeamClick, onNewsClick]);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleNavigation = (e, callback, section) => {
+  const handleNavigation = async (e, callback, section) => {
     e.preventDefault();
     if (isHomePage) {
       // If on homepage, just scroll
       callback();
       setIsOpen(false);
     } else {
-      // If on another page, store the target section and navigate to homepage
+      // If on another page, navigate to homepage first
       localStorage.setItem('scrollTarget', section);
-      window.location.href = '/';
+      navigate('/');
     }
   };
 
@@ -61,7 +79,7 @@ const Navbar = ({ onAboutClick, onTeamClick, onNewsClick }) => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             <Link 
-              to="#/" 
+              to="#" 
               onClick={(e) => handleNavigation(e, onAboutClick, 'about')} 
               className="text-black hover:text-gray-600"
             >
@@ -69,14 +87,14 @@ const Navbar = ({ onAboutClick, onTeamClick, onNewsClick }) => {
             </Link>
             <Link to="/gallery" className="text-black hover:text-gray-600">Gallery</Link>
             <Link 
-              to="#/" 
+              to="#" 
               onClick={(e) => handleNavigation(e, onTeamClick, 'team')} 
               className="text-black hover:text-gray-600"
             >
               Our Team
             </Link>
             <Link 
-              to="#/" 
+              to="#" 
               onClick={(e) => handleNavigation(e, onNewsClick, 'news')} 
               className="text-black hover:text-gray-600"
             >
@@ -91,7 +109,7 @@ const Navbar = ({ onAboutClick, onTeamClick, onNewsClick }) => {
           {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
-              onClick={toggleMenu}
+              onClick={() => setIsOpen(!isOpen)}
               className="text-gray-600 hover:text-gray-600 focus:outline-none"
             >
               {isOpen ? (
@@ -108,7 +126,7 @@ const Navbar = ({ onAboutClick, onTeamClick, onNewsClick }) => {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <Link
-                to="/#/" 
+                to="#" 
                 onClick={(e) => handleNavigation(e, onAboutClick, 'about')} 
                 className="block px-3 py-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-md"
               >
@@ -121,14 +139,14 @@ const Navbar = ({ onAboutClick, onTeamClick, onNewsClick }) => {
                 Gallery
               </Link>
               <Link
-                to="/#." 
+                to="#" 
                 onClick={(e) => handleNavigation(e, onTeamClick, 'team')} 
                 className="block px-3 py-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-md"
               >
                 Our Team
               </Link>
               <Link
-                to="/#/" 
+                to="#" 
                 onClick={(e) => handleNavigation(e, onNewsClick, 'news')} 
                 className="block px-3 py-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-md"
               >
