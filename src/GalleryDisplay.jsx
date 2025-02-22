@@ -6,7 +6,6 @@ import VideoPlayer from './VideoPlayer';
 
 const ImageGallery = () => {
   const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,23 +13,20 @@ const ImageGallery = () => {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        setLoading(true);
+        // Show placeholder content immediately
+        setImages(Array(8).fill({ image: 'https://via.placeholder.com/400x300?text=Loading...' }));
+        
         const response = await axios.get('https://api.nepaldroneassociation.org.np/app/gallery/');
         
-        console.log('Raw API Response:', response);
-        console.log('API Data:', response.data);
-
         if (Array.isArray(response.data)) {
           setImages(response.data);
         } else {
           const imageArray = response.data.results || response.data.images || [];
           setImages(imageArray);
         }
-        setLoading(false);
       } catch (error) {
         console.error('Error fetching images:', error);
         setError('Failed to load images');
-        setLoading(false);
       }
     };
 
@@ -57,21 +53,13 @@ const ImageGallery = () => {
     document.body.style.overflow = 'unset';
   };
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
-      </div>
-    );
-  }
-
   return (
     <>
       <Navbar />
       <div className="container mx-auto p-4">
         <h1 className="text-3xl font-bold text-center mb-8">Gallery</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {images && images.map((image, index) => (
+          {images.map((image, index) => (
             <div 
               key={index} 
               className="relative group cursor-pointer rounded-lg shadow-lg overflow-hidden"
@@ -82,6 +70,7 @@ const ImageGallery = () => {
                   src={image.image}
                   alt={`Gallery Image ${index + 1}`}
                   className="w-full h-48 object-cover transition-all duration-300 group-hover:scale-105"
+                  loading="lazy"
                   onError={(e) => {
                     e.target.src = 'https://via.placeholder.com/400x300?text=Image+Not+Found';
                   }}

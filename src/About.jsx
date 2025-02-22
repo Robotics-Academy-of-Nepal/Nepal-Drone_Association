@@ -1,6 +1,7 @@
 import React from "react";
 import drone14 from './assets/drone14.jpg';
 import drone12 from './assets/drone12.jpg';
+import drone19 from './assets/drone19.jpg';
 
 function About(){
     return(
@@ -56,26 +57,44 @@ function About(){
             </div>
         </div>
 
-        <div class="flex flex-col lg:flex-row items-center lg:items-stretch rounded-2xl mt-2 mb-4">
+        <div className="flex flex-col lg:flex-row items-center lg:items-stretch mt-2 mb-2 rounded-2xl">
+          <div className="w-fit lg:w-1/2 flex">
+            <img src={drone19} className="w-200 h-auto lg:h-100 object-cover rounded-2xl" alt="Drone" />
+          </div>
+          <div className="w-fit mx-2 lg:w-1/1 bg-gradient-to-tr from-red-200 to-blue-200 p-6 flex items-center justify-center rounded-2xl">
+            <div>
+              <h2 className="text-lg md:text-xl font-bold text-center">Our Vision</h2>
+              <p className="mt-2 text-sm md:text-base text-center">
+              To establish Nepal as a global leader in drone technology, leveraging its potential to drive sustainable development and create new opportunities in diverse industries.
+              </p>
+              <p className="mt-2 text-sm md:text-base text-center">
+                DroCam 3.4k is the updated version of the very popular DroCam 3 drone. As you may believe, the most attention went to the camera.
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+        {/* <div class="flex flex-col lg:flex-row items-center lg:items-stretch rounded-2xl mt-2 mb-4">
         <div class="bg-gradient-to-b from-red-100 to-blue-100 w-fit lg:w-1/1 p-6 bg-gray-300 rounded-2xl">
             <p class=" md:text-xl font-bold text-4xl ">Our Vision</p>
             <p class="mt-2 text-sm md:text-base">To establish Nepal as a global leader in drone technology, leveraging its potential to drive sustainable development and create new opportunities in diverse industries.
         </p>
         </div>
 
-        </div>
+        </div> */}
 
         <div class="flex flex-col lg:flex-row items-center lg:items-stretch rounded-2xl mt-2 mb-4">
         <div class="bg-gradient-to-b from-red-100 to-blue-100 w-fit lg:w-1/1 p-6 bg-gray-300 rounded-2xl">
             <p class=" md:text-xl font-bold text-4xl ">What We Do</p>
             <p class="mt-2 text-sm md:text-base">1.	Professional Support: We act as an umbrella organization for all drone professionals and businesses, providing guidance, resources, and opportunities for growth.
-<br></br>2.	Advocacy: We represent the drone community to the Nepal Government, advocating for policies that support fair labor practices, innovation, and growth in the sector.
-<br></br>3.	Policy Assistance: We work closely with government agencies to draft and amend drone-related laws and policies, ensuring they are forward-looking and inclusive.
-<br></br>4.	Networking & Collaboration: We connect members with national and international organizations, fostering partnerships and knowledge exchange.
-<br></br>5.	Education & Training: We organize workshops, training sessions, and certification programs to enhance skills and ensure safety in drone operations.
-<br></br>6.	Sector Expansion: We actively promote the use of drones in agriculture, disaster management, infrastructure development, and other fields to contribute to Nepal's progress.
+      <br></br>2.	Advocacy: We represent the drone community to the Nepal Government, advocating for policies that support fair labor practices, innovation, and growth in the sector.
+      <br></br>3.	Policy Assistance: We work closely with government agencies to draft and amend drone-related laws and policies, ensuring they are forward-looking and inclusive.
+      <br></br>4.	Networking & Collaboration: We connect members with national and international organizations, fostering partnerships and knowledge exchange.
+      <br></br>5.	Education & Training: We organize workshops, training sessions, and certification programs to enhance skills and ensure safety in drone operations.
+      <br></br>6.	Sector Expansion: We actively promote the use of drones in agriculture, disaster management, infrastructure development, and other fields to contribute to Nepal's progress.
 
-</p>
+    </p>
         </div>
 
         </div>

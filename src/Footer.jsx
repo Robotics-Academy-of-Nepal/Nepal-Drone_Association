@@ -73,11 +73,13 @@ const Footer = ({ onAboutClick, onTeamClick, onNewsClick }) => {
           {/* Logo and Social Section */}
           <div className="lg:col-span-2">
             <div className="mb-4">
+              <Link to="/" className="flex items-center h-full group">
               <img 
                 src={logo} 
                 alt="Nepal Drone Association Logo"
-                className="w-24 sm:w-28 h-auto rounded-2xl"
+                className="w-24 sm:w-28 h-auto rounded-2xl transition-all duration-300 ease-in-out transform group-hover:scale-132 group-hover:brightness-120 group-hover:shadow-lg"
               />
+              </Link>
               <p className="text-gray-400 mt-4 text-sm space-y-1">
                 <span className="block font-semibold text-white">Nepal Drone Association</span>
                 <span className="block hover:text-white">nepaldroneassociation.org.np</span>
