@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import facebook from './assets/facebook.png';
 import instagram from './assets/instagram.png';
 import linkedin from './assets/linkedin.jpg';
@@ -7,17 +7,18 @@ import logo from './assets/logo.png';
 
 const Footer = ({ onAboutClick, onTeamClick, onNewsClick }) => {
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
+  const navigate = useNavigate();
+  const isHomePage = location.pathname === '/' || location.pathname === '';
 
-  const handleNavigation = (e, callback, section) => {
+  const handleNavigation = async (e, callback, section) => {
     e.preventDefault();
     if (isHomePage) {
       // If on homepage, just scroll
       callback();
     } else {
-      // If on another page, store the target section and navigate to homepage
+      // If on another page, navigate to homepage first
       localStorage.setItem('scrollTarget', section);
-      window.location.href = '/';
+      navigate('/');
     }
   };
 
@@ -149,10 +150,10 @@ const Footer = ({ onAboutClick, onTeamClick, onNewsClick }) => {
               © {new Date().getFullYear()} Nepal Drone Association. All rights reserved.
             </p>
             <div className="flex space-x-6">
-              <Link to="/" className="text-gray-400 hover:text-white text-sm transition-colors">
+              <Link to="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Privacy Policy
               </Link>
-              <Link to="/" className="text-gray-400 hover:text-white text-sm transition-colors">
+              <Link to="/terms" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Terms & Conditions
               </Link>
             </div>
