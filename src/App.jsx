@@ -10,6 +10,7 @@ import UserList from './UserData';
 import ImageUploadManager from './GalleryUpload';
 import ImageGallery from './GalleryDisplay';
 import Homepage2 from './Admin';
+import Slider from './Slider3';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/admin" element={<Homepage2 />} />
         <Route path="/admindashboard" element={<UserList />} />
         <Route path="/newslist" element={<NewsList />} />
+        <Route path="/slider" element={<Slider />} />
         <Route path="/galleryupload" element={<ImageUploadManager />} />
         <Route path="*" element={<div>Page not found</div>} />
       </Routes>

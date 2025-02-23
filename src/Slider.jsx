@@ -57,63 +57,55 @@ const ImageSlider = () => {
   }, [nextSlide]);
 
   return (
-    <div className="w-full max-w-8xl mx-auto my-8 px-4 ">
-      <div className="relative aspect-[54/20] w-full rounded-xl overflow-hidden bg-gradient-to-r from-red-200 via-purple-100 to-blue-200">
-        {/* Slides container */}
-        <div 
-          className="flex transition-transform duration-700 ease-out h-full"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+    <div className="w-full max-w-8xl mx-auto my-4 sm:my-8 px-4">
+      {/* Added creative border with gradient and animation */}
+      <div className="p-1 rounded-xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-gradient-x">
+        <div className="relative w-full rounded-xl overflow-hidden bg-gradient-to-r from-red-200 via-purple-100 to-blue-200
+          aspect-[16/12] 
+          sm:aspect-[16/12] 
+          md:aspect-[16/12] 
+          lg:aspect-[16/8]"
         >
-          {slides.map((slide, index) => (
-            <div
-              key={index}
-              className="w-full flex-shrink-0 relative"
-            >
-              <img
-                src={slide.image}
-                alt={`Slide ${index + 1}`}
-                className="w-full h-full object-contain"
-              />
-              
-              {/* Description overlay */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent">
-                <div className="p-6">
-                  <p className="text-white text-lg md:text-xl text-center">
-                    {slide.description}
-                  </p>
+          <div 
+            className="flex transition-transform duration-700 ease-out h-full"
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          >
+            {slides.map((slide, index) => (
+              <div
+                key={index}
+                className="w-full flex-shrink-0 relative"
+              >
+                <img
+                  src={slide.image}
+                  alt={`Slide ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+                
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent">
+                  <div className="p-4 md:p-6 lg:p-6">
+                    <p className="text-white text-sm md:text-lg lg:text-lg text-center leading-tight md:leading-normal">
+                      {slide.description}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {/* Updated navigation buttons */}
+          <button 
+            className="absolute left-2 md:left-6 lg:left-8 top-1/2 -translate-y-1/2 p-2 md:p-3 lg:p-4 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors backdrop-blur-sm z-10"
+            onClick={prevSlide}
+          >
+            <ChevronLeft className="w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8" />
+          </button>
+          <button 
+            className="absolute right-2 md:right-6 lg:right-8 top-1/2 -translate-y-1/2 p-2 md:p-3 lg:p-4 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors backdrop-blur-sm z-10"
+            onClick={nextSlide}
+          >
+            <ChevronRight className="w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8" />
+          </button>
         </div>
-
-        {/* Navigation arrows */}
-        <button 
-          className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors backdrop-blur-sm z-10"
-          onClick={prevSlide}
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </button>
-        <button 
-          className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors backdrop-blur-sm z-10"
-          onClick={nextSlide}
-        >
-          <ChevronRight className="w-6 h-6" />
-        </button>
-
-        {/* Slide indicators */}
-        {/* <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
-          {slides.map((_, index) => (
-            <div
-              key={index}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                currentIndex === index 
-                  ? 'bg-white w-4' 
-                  : 'bg-white/50'
-              }`}
-            />
-          ))}
-        </div> */}
       </div>
     </div>
   );
