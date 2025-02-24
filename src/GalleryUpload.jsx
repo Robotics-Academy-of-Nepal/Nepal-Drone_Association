@@ -110,116 +110,118 @@ const ImageUploadManager = () => {
 
   return (
     <>
-    <Navbar2 />
-    <div className="max-w-6xl mx-auto p-6">
-      <div className="mb-8">
-        <div className="flex flex-wrap items-center gap-4 mb-6">
-          <div className="relative">
-            <input
-              type="file"
-              multiple
-              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-              accept="image/*"
-              onChange={handleFileSelect}
-              onClick={(e) => e.target.value = null} // Allow selecting same file again
-            />
-            <div className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full">
-              <Plus size={24} />
+      <Navbar2 />
+      {/* Container with conditional max-width */}
+      <div className="max-w-screen-lg xl:max-w-none 2xl:max-w-none mx-auto p-6">
+        <div className="mb-8">
+          <div className="flex flex-wrap items-center gap-4 mb-6">
+            <div className="relative">
+              <input
+                type="file"
+                multiple
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                accept="image/*"
+                onChange={handleFileSelect}
+                onClick={(e) => e.target.value = null} // Allow selecting same file again
+              />
+              <div className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full">
+                <Plus size={24} />
+              </div>
             </div>
+            Add Images
+            
+            {selectedFiles.length > 0 && (
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-gray-600">
+                  {selectedFiles.length} {selectedFiles.length === 1 ? 'file' : 'files'} selected
+                </span>
+                <button
+                  onClick={handleUpload}
+                  disabled={loading}
+                  className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 disabled:opacity-50"
+                >
+                  <Upload size={20} />
+                  Upload All
+                </button>
+                <button
+                  onClick={() => {
+                    setSelectedFiles([]);
+                    setPreviewUrls([]);
+                    cleanupPreviews();
+                  }}
+                  className="bg-gray-500 hover:bg-gray-600 text-white p-2 rounded-full"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+            )}
           </div>
-          
-          {selectedFiles.length > 0 && (
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-gray-600">
-                {selectedFiles.length} {selectedFiles.length === 1 ? 'file' : 'files'} selected
-              </span>
-              <button
-                onClick={handleUpload}
-                disabled={loading}
-                className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 disabled:opacity-50"
-              >
-                <Upload size={20} />
-                Upload All
-              </button>
-              <button
-                onClick={() => {
-                  setSelectedFiles([]);
-                  setPreviewUrls([]);
-                  cleanupPreviews();
-                }}
-                className="bg-gray-500 hover:bg-gray-600 text-white p-2 rounded-full"
-              >
-                <X size={20} />
-              </button>
+
+          {previewUrls.length > 0 && (
+            <div className="mb-6">
+              <h3 className="text-lg font-semibold mb-2">
+                Preview ({selectedFiles.length} {selectedFiles.length === 1 ? 'image' : 'images'})
+              </h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                {previewUrls.map((url, index) => (
+                  <div key={index} className="relative group aspect-square">
+                    <img
+                      src={url}
+                      alt={`Preview ${index + 1}`}
+                      className="w-full h-full object-cover rounded-lg"
+                    />
+                    <button
+                      onClick={() => {
+                        const newFiles = selectedFiles.filter((_, i) => i !== index);
+                        const newPreviews = previewUrls.filter((_, i) => i !== index);
+                        URL.revokeObjectURL(url); // Cleanup unused preview URL
+                        setSelectedFiles(newFiles);
+                        setPreviewUrls(newPreviews);
+                      }}
+                      className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                    >
+                      <X size={16} />
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </div>
 
-        {previewUrls.length > 0 && (
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold mb-2">
-              Preview ({selectedFiles.length} {selectedFiles.length === 1 ? 'image' : 'images'})
-            </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-              {previewUrls.map((url, index) => (
-                <div key={index} className="relative group aspect-square">
-                  <img
-                    src={url}
-                    alt={`Preview ${index + 1}`}
-                    className="w-full h-full object-cover rounded-lg"
-                  />
-                  <button
-                    onClick={() => {
-                      const newFiles = selectedFiles.filter((_, i) => i !== index);
-                      const newPreviews = previewUrls.filter((_, i) => i !== index);
-                      URL.revokeObjectURL(url); // Cleanup unused preview URL
-                      setSelectedFiles(newFiles);
-                      setPreviewUrls(newPreviews);
-                    }}
-                    className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                  >
-                    <X size={16} />
-                  </button>
-                </div>
-              ))}
-            </div>
+        {error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            {error}
           </div>
         )}
-      </div>
 
-      {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-          {error}
-        </div>
-      )}
-
-      {loading && (
-        <div className="flex justify-center my-4">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
-        </div>
-      )}
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {uploadedImages.map((image) => (
-          <div key={image.id} className="relative group">
-            <div className="relative">
-              <img
-                src={image.image}
-                alt={`Upload ${image.id}`}
-                className="w-full h-48 object-cover rounded-lg"
-              />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 rounded-lg" />
-            </div>
-            <button
-              onClick={() => handleDelete(image.id)}
-              className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white p-2 rounded-full shadow-lg transform transition-all duration-300 hover:scale-110"
-            >
-              <Trash2 size={20} />
-            </button>
+        {loading && (
+          <div className="flex justify-center my-4">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
           </div>
-        ))}
+        )}
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {uploadedImages.map((image) => (
+            <div key={image.id} className="relative group">
+              <div className="relative">
+                <img
+                  src={image.image}
+                  alt={`Upload ${image.id}`}
+                  className="w-full h-48 object-cover rounded-lg"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 rounded-lg" />
+              </div>
+              <button
+                onClick={() => handleDelete(image.id)}
+                className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white p-2 rounded-full shadow-lg transform transition-all duration-300 hover:scale-110"
+              >
+                <Trash2 size={20} />
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
     </>
   );
 };

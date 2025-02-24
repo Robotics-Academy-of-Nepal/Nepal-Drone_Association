@@ -12,9 +12,7 @@ import Slider from './Slider2';
 function Homepage() {
   const aboutRef = useRef(null);
   const teamRef = useRef(null);
-  const newsRef= useRef(null);
-
-
+  const newsRef = useRef(null);
 
   const specs = [
     {
@@ -38,8 +36,6 @@ function Homepage() {
       description: "800+ Active Members",
     },
   ];
-
-    
 
   const scrollToSection = (ref) => {
     ref.current?.scrollIntoView({ 
@@ -82,10 +78,11 @@ function Homepage() {
         onNewsClick={()=>scrollToSection(newsRef)}
       />
       
-      <div className="container mx-auto px-4 mt-2">
+      {/* Container with conditional max-width */}
+      <div className="max-w-screen-lg xl:max-w-none 2xl:max-w-none mx-auto px-4 mt-2">
         {/* First section with drone image */}
         <div className="bg-gradient-to-b from-red-200 to-blue-200">
-          <div className="mt-2 w-full text-wrap flex items-center rounded-md px-2 lg:flex-row">
+          <div className="mt-2 w-full text-wrap flex items-center rounded-md px-2 lg:flex-row xl:flex-row">
             <div className="text-xs sm:text-sm md:text-2xl lg:text-5xl xl:text-5xl px-2">
               <p className="font-['Orbitron'] tracking-wider">
                 <span>Connecting Skies</span>
@@ -129,11 +126,11 @@ function Homepage() {
 
         {/* News slider section */}
         <section ref={newsRef}>
-        <div className="relative w-full max-w-8xl mx-auto mt-8 mb-8 px-4">
-        <h1 className="text-3xl font-bold text-center mb-8">News & Events</h1>
-        <Slider />
+          <div className="relative w-full max-w-8xl mx-auto mt-8 mb-8 px-4">
+            <h1 className="text-3xl font-bold text-center mb-8">News & Events</h1>
+            <Slider />
           </div>
-      </section>
+        </section>
       </div>
       <Footer 
         onAboutClick={() => scrollToSection(aboutRef)}

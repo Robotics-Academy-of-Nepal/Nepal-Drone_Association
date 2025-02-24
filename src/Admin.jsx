@@ -89,7 +89,8 @@ function Homepage2() {
   return (
     <>
       <Navbar2 />
-      <div className="container mx-auto px-4 mt-2">
+      {/* Container with conditional max-width */}
+      <div className="max-w-screen-lg xl:max-w-none 2xl:max-w-none mx-auto px-4 mt-2">
         {/* First section with drone image */}
         <div className="bg-gradient-to-b from-red-200 to-blue-200">
           <div className="mt-2 w-full text-wrap flex items-center rounded-md px-2 lg:flex-row">
