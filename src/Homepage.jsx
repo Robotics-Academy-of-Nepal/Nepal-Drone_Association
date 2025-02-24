@@ -88,10 +88,10 @@ function Homepage() {
           <div className="mt-2 w-full text-wrap flex items-center rounded-md px-2 lg:flex-row">
             <div className="text-xs sm:text-sm md:text-2xl lg:text-5xl xl:text-5xl px-2">
               <p className="font-['Orbitron'] tracking-wider">
-                <span className="text-sky-500">Connecting Skies</span>
+                <span>Connecting Skies</span>
                 <span className="mx-1">,</span>
                 <br className="sm:hidden" />
-                <span className="text-red-400">Transforming Lives</span>
+                <span>Transforming Lives</span>
               </p>
             </div>
             <div className="relative h-auto overflow-hidden">

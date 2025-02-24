@@ -59,9 +59,8 @@ const ImageSlider = () => {
   return (
     <div className="w-full max-w-8xl mx-auto my-4 sm:my-8 px-4">
       {/* Added creative border with gradient and animation */}
-      <div className="p-1 rounded-xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-gradient-x">
-        <div className="relative w-full rounded-xl overflow-hidden bg-gradient-to-r from-red-200 via-purple-100 to-blue-200
-          aspect-[16/12] 
+      <div className="p-1 rounded-xl animate-gradient-x">
+        <div className="relative w-full rounded-xl overflow-hidden
           sm:aspect-[16/12] 
           md:aspect-[16/12] 
           lg:aspect-[16/8]"
