@@ -8,7 +8,8 @@ const Slider3 = () => {
   const [loading, setLoading] = useState(true);
   const [selectedCard, setSelectedCard] = useState(null);
   const [editCard, setEditCard] = useState(null);
-  const [deleteConfirmation, setDeleteConfirmation] = useState(null); // State for delete confirmation
+  const [deleteConfirmation, setDeleteConfirmation] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null); // State for success message
 
   const token = localStorage.getItem('token');
 
@@ -78,7 +79,14 @@ const Slider3 = () => {
           'Content-Type': 'multipart/form-data'
         }
       });
-      setCards((prevCards) => [response.data, ...prevCards.filter((card) => card.id !== editCard.id)]);
+
+      // Update the cards state directly
+      setCards((prevCards) => prevCards.map((card) => (card.id === editCard.id ? response.data : card)));
+
+      // Show success message
+      setSuccessMessage('News updated successfully!');
+      setTimeout(() => setSuccessMessage(null), 5000); // Hide the message after 5 seconds
+
       closePopup();
     } catch (error) {
       console.error('Error updating card:', error);
@@ -91,6 +99,13 @@ const Slider3 = () => {
 
   return (
     <div className="relative w-full max-w-6xl mx-auto overflow-hidden">
+      {/* Success Message */}
+      {successMessage && (
+        <div className="fixed bottom-4 right-4 bg-green-500 text-white p-4 rounded shadow-lg z-50">
+          {successMessage}
+        </div>
+      )}
+
       <div
         className="flex transition-transform duration-300 ease-in-out"
         style={{ transform: `translateX(-${currentIndex * (100 / getCardsPerView())}%)` }}
@@ -179,7 +194,7 @@ const Slider3 = () => {
                 onChange={(e) => setEditCard({ ...editCard, image: e.target.files[0] })}
                 className="w-full p-2 border rounded mt-4"
               />
-              <button type="submit" className="bg-blue-500 text-white p-2 rounded mt-4">Update Card</button>
+              <button type="submit" className="bg-blue-500 text-white p-2 rounded mt-4 cursor-pointer">Update Card</button>
             </form>
           </div>
         </div>
@@ -189,7 +204,7 @@ const Slider3 = () => {
       {deleteConfirmation && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
           <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4 relative">
-            <h2 className="text-xl font-bold mb-4">Are you sure you want to delete this card?</h2>
+            <h2 className="text-xl font-bold mb-4">Are you sure you want to delete this News?</h2>
             <div className="flex justify-end space-x-4">
               <button
                 onClick={() => setDeleteConfirmation(null)} // Cancel deletion

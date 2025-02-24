@@ -47,7 +47,7 @@ const Navbar2 = () => {
               <img 
                 src={logo}
                 alt="NDA Logo" 
-                className="h-fit w-auto rounded-4xl mx-2 object-contain transition-all duration-300 ease-in-out transform group-hover:scale-128 group-hover:brightness-120 group-hover:shadow-lg"
+                className="h-fit w-auto rounded-4xl mx-2 object-contain transition-all duration-300 ease-in-out transform group-hover:scale-128 group-hover:brightness-120"
                 style={{
                   maxHeight: '100%',
                   maxWidth: '120px'
