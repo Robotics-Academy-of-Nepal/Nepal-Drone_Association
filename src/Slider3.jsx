@@ -129,10 +129,10 @@ const Slider3 = () => {
                 {card.description}
               </p>
               <div className="absolute top-4 right-4 flex space-x-2">
-                <button onClick={(e) => { e.stopPropagation(); setEditCard(card); }} className="text-blue-500">
+                <button onClick={(e) => { e.stopPropagation(); setEditCard(card); }} className="text-blue-500 -mt-6 cursor-pointer">
                   <Edit size={20} />
                 </button>
-                <button onClick={(e) => { e.stopPropagation(); setDeleteConfirmation(card.id); }} className="text-red-500">
+                <button onClick={(e) => { e.stopPropagation(); setDeleteConfirmation(card.id); }} className="text-red-500 -mt-6 cursor-pointer">
                   <Trash2 size={20} />
                 </button>
               </div>

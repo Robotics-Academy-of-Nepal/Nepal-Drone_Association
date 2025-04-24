@@ -9,6 +9,13 @@ import member5 from './assets/member5.png';
 import member6 from './assets/member6.png';
 import member7 from './assets/member7.jpg';
 
+import airlift from './assets/org_mem_logo/airlift-nepal.png';
+import dronehub from './assets/org_mem_logo/drone-hub-nepal.jpeg';
+import dronesewa from './assets/org_mem_logo/drone-sewa.jpg';
+import flyinglab from './assets/org_mem_logo/flying-lab.png';
+import geovation from './assets/org_mem_logo/geovation.png';
+import innovativeghar from './assets/org_mem_logo/innovativeGhar.png';
+
 const TeamPage = () => {
   const [selectedMember, setSelectedMember] = useState(null);
 
@@ -57,13 +64,40 @@ const TeamPage = () => {
     }
   ];
 
+  // const organizationalMembers = [
+  //   "Nepal Flying Labs",
+  //   "Airlift Technology Pvt.Ltd",
+  //   "Geovation Nepal",
+  //   "Innovative Ghar Nepal",
+  //   "Drone Sewa Pvt.Ltd",
+  //   "Drone Hub Nepal Pvt.Ltd"
+  // ];
+
   const organizationalMembers = [
-    "Nepal Flying Labs",
-    "Airlift Technology Pvt.Ltd",
-    "Geovation Nepal",
-    "Innovative Ghar Pvt. Ltd",
-    "Drone Sewa Pvt.Ltd",
-    "Drone Hub Nepal Pvt.Ltd"
+    {
+      name: "Nepal Flying Labs",
+      logo: flyinglab
+    },
+    {
+      name: "Airlift Technology Pvt.Ltd",
+      logo: airlift
+    },
+    {
+      name: "Geovation Nepal",
+      logo: geovation
+    },
+    {
+      name: "Innovative Ghar Nepal",
+      logo: innovativeghar
+    },
+    {
+      name: "Drone Sewa Pvt.Ltd",
+      logo: dronesewa
+    },
+    {
+      name: "Drone Hub Nepal Pvt.Ltd",
+      logo: dronehub
+    }
   ];
 
   return (
@@ -146,14 +180,19 @@ const TeamPage = () => {
           </div>
           <div className="p-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {organizationalMembers.map((org, index) => (
-                <div 
-                  key={index}
-                  className="p-4 bg-gray-50 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <p className="text-gray-900 font-medium">{org}</p>
-                </div>
-              ))}
+            {organizationalMembers.map((org, index) => (
+              <div 
+                key={index}
+                className="p-4 bg-gray-50 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow flex items-center space-x-4 cursor-pointer"
+              >
+                <img 
+                  src={org.logo} 
+                  alt={org.name} 
+                  className="w-10 h-10 object-contain rounded"
+                />
+                <p className="text-gray-900 font-medium">{org.name}</p>
+              </div>
+            ))}
             </div>
           </div>
         </div>

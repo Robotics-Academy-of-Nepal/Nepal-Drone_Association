@@ -131,7 +131,7 @@ function Homepage2() {
         </div>
 
         {/* News slider section */}
-        <div className="relative w-full max-w-8xl mx-auto mt-8 mb-8 px-4">
+        {/* <div className="relative w-full max-w-8xl mx-auto mt-8 mb-8 px-4">
           <h1 className="text-3xl font-bold text-center mb-8">News & Events</h1>
           <div className="flex justify-center mt-8">
             <button
@@ -142,17 +142,17 @@ function Homepage2() {
             </button>
           </div>
           <Slider3 />
-        </div>
+        </div> */}
 
         {/* Success Message */}
-        {message && (
+        {/* {message && (
           <div className="fixed bottom-4 right-4 bg-green-500 text-white p-4 rounded-lg shadow-lg">
             {message}
           </div>
-        )}
+        )} */}
 
         {/* Modal for Add News Form */}
-        {isModalOpen && (
+        {/* {isModalOpen && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white rounded-lg p-6 w-full max-w-md">
               <h2 className="text-2xl font-bold mb-4">Add News</h2>
@@ -203,7 +203,7 @@ function Homepage2() {
               </form>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </>
   );

@@ -11,6 +11,7 @@ import ImageUploadManager from './GalleryUpload';
 import ImageGallery from './GalleryDisplay';
 import Homepage2 from './Admin';
 import Slider from './Slider3';
+import AdminNews from './AdminNews';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/newslist" element={<NewsList />} />
         <Route path="/slider" element={<Slider />} />
         <Route path="/galleryupload" element={<ImageUploadManager />} />
+        <Route path="/AdminNews" element={<AdminNews />} />
         <Route path="*" element={<div>Page not found</div>} />
       </Routes>
     </>

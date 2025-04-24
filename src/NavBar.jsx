@@ -58,7 +58,7 @@ const Navbar = ({ onAboutClick, onTeamClick, onNewsClick }) => {
   };
 
   return (
-    <nav className="bg-white shadow-md" ref={menuRef}>
+    <nav className="bg-white shadow-md sticky top-0 left-0 z-10" ref={menuRef}>
       <div className="max-w-8xl mx-auto px-4">
         <div className="flex justify-between items-center h-22">
           {/* Logo */}
