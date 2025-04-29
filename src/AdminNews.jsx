@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Navbar2 from './Navbar2';
 import Slider3 from './Slider3';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+
 
 function AdminNews() {
     
@@ -65,12 +67,18 @@ function AdminNews() {
       <h1 className="text-3xl font-bold text-center mb-6">Admin - Add News</h1>
       
       <div className="flex justify-center">
-        <button
+        {/* <button
           onClick={() => setIsModalOpen(true)}
           className="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700"
         >
           Add News
-        </button>
+        </button> */}
+        <Link
+                to="/AddNewsEvents"
+                className="block mx-auto px-3 py-2 text-white bg-[#003893] hover:bg-[#DC143C] rounded-md"
+              >
+                Add News
+        </Link>
       </div>
 
       {message && (

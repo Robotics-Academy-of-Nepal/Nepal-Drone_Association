@@ -15,6 +15,8 @@ import AdminNews from './AdminNews';
 import GalleryGrid from './GalleryGrid';
 import NewsGrid from './NewsGrid';
 
+import NewsAndEventForm from './NewsAndEventForm';
+
 function App() {
   return (
     <>
@@ -34,6 +36,8 @@ function App() {
         <Route path="/galleryupload" element={<ImageUploadManager />} />
         <Route path="/AdminNews" element={<AdminNews />} />
         <Route path="*" element={<div>Page not found</div>} />
+
+        <Route path="/AddNewsEvents" element={<NewsAndEventForm />} />
       </Routes>
     </>
   )

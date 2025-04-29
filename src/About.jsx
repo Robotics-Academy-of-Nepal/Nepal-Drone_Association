@@ -17,14 +17,14 @@ function About() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent rounded-lg" />
 
-            <div className="absolute inset-0 p-4 sm:p-6 lg:p-8 flex flex-col justify-end">
+            {/* <div className="absolute inset-0 p-4 sm:p-6 lg:p-8 flex flex-col justify-end">
               <h2 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2">
                 About us
               </h2>
               <p className="text-white/90 text-sm sm:text-base md:text-lg mt-2 sm:mt-4 max-w-2xl">
                 Know something about us.
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
 
