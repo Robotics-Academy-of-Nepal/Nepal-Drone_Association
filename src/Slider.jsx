@@ -26,25 +26,25 @@ const ImageSlider = () => {
       description: "Use of Drone in Health Equipment Delivery"
     },
     {
-        image: drone15,
-        description: "Use of Drones in Urban Mapping"
+      image: drone15,
+      description: "Use of Drones in Urban Mapping"
     },
     {
-        image: drone16,
-        description: "Marriott Hotel Event Photos"
+      image: drone16,
+      description: "Marriott Hotel Event Photos"
     }
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = useCallback(() => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === slides.length - 1 ? 0 : prevIndex + 1
     );
   }, [slides.length]);
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? slides.length - 1 : prevIndex - 1
     );
   };
@@ -65,7 +65,7 @@ const ImageSlider = () => {
           md:aspect-[16/12] 
           lg:aspect-[16/8]"
         >
-          <div 
+          <div
             className="flex transition-transform duration-700 ease-out h-full"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
@@ -79,7 +79,18 @@ const ImageSlider = () => {
                   alt={`Slide ${index + 1}`}
                   className="w-full h-full object-cover"
                 />
-                
+
+                <div className="absolute top-40 left-30 text-xs sm:text-sm md:text-2xl lg:text-5xl xl:text-5xl px-2">
+                  <div className="bg-sky-500/50 p-2 rounded inline-block">
+                    <p className="font-['Orbitron'] tracking-wider">
+                      <span className='text-[#003893]'>Connecting Skies</span>
+                      <span className="mx-1">,</span>
+                      <br className="sm:hidden" /><br />
+                      <span className='text-[#DC143C]'>Transforming Lives</span>
+                    </p>
+                  </div>
+                </div>
+
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent">
                   <div className="p-4 md:p-6 lg:p-6">
                     <p className="text-white text-sm md:text-lg lg:text-lg text-center leading-tight md:leading-normal">
@@ -92,14 +103,14 @@ const ImageSlider = () => {
           </div>
 
           {/* Updated navigation buttons */}
-          <button 
-            className="absolute left-2 md:left-6 lg:left-8 top-1/2 -translate-y-1/2 p-2 md:p-3 lg:p-4 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors backdrop-blur-sm z-10"
+          <button
+            className="absolute left-2 md:left-6 lg:left-8 top-1/2 -translate-y-1/2 p-2 md:p-3 lg:p-4 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors backdrop-blur-sm z-5"
             onClick={prevSlide}
           >
             <ChevronLeft className="w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8" />
           </button>
-          <button 
-            className="absolute right-2 md:right-6 lg:right-8 top-1/2 -translate-y-1/2 p-2 md:p-3 lg:p-4 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors backdrop-blur-sm z-10"
+          <button
+            className="absolute right-2 md:right-6 lg:right-8 top-1/2 -translate-y-1/2 p-2 md:p-3 lg:p-4 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors backdrop-blur-sm z-5"
             onClick={nextSlide}
           >
             <ChevronRight className="w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8" />

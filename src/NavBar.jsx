@@ -58,17 +58,17 @@ const Navbar = ({ onAboutClick, onTeamClick, onNewsClick }) => {
   };
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 left-0 z-10" ref={menuRef}>
+    <nav className="bg-white shadow-md sticky top-0 left-0 z-50" ref={menuRef}>
       <div className="max-w-8xl mx-auto px-4">
         <div className="flex justify-between items-center h-22">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center h-full py-2">
-            <div className="flex items-center gap-3 sm:gap-4">
+            <div className="flex items-center gap-3 sm:gap-4 ">
               <Link to="/#" className="h-full group">
                 <img 
                   src={logo} 
                   alt="NDA Logo" 
-                  className="h-fit w-auto rounded-4xl mx-2 object-contain transition-all duration-300 ease-in-out transform group-hover:scale-114 group-hover:brightness-120"
+                  className="h- fit w-auto rounded-4xl mx-2 object-contain transition-all duration-300 ease-in-out transform group-hover:scale-114 group-hover:brightness-120"
                   style={{
                     maxHeight: '100%',
                     maxWidth: '80px',
@@ -79,10 +79,13 @@ const Navbar = ({ onAboutClick, onTeamClick, onNewsClick }) => {
 
               <div className="flex flex-col justify-center">
                 <p className="text-xs sm:text-sm md:text-[6px] lg:text-[12px] font-semibold leading-tight italic">
-                  <span className="text-sky-500">Connecting Skies</span>
+                  <span className="text-[#003893] text-xl">Nepal Drone Association</span>
+                  <br className="sm:block md:block lg:block" />
+                  <span className="text-[#003893]">Connecting Skies</span>
                   <span className="mx-1">,</span>
                   <br className="sm:hidden md:block lg:hidden" />
-                  <span className="text-red-400">Transforming Lives</span>
+                  <span className="text-[#DC143C]">Transforming Lives</span>
+                  
                 </p>
               </div>
             </div>
@@ -90,32 +93,33 @@ const Navbar = ({ onAboutClick, onTeamClick, onNewsClick }) => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8 md:text-[10px] lg:text-[16px]">
+            <Link to="/#" className="text-[#003893] hover:text-[#DC143C]">Home</Link>
             <Link 
               to="#" 
               onClick={(e) => handleNavigation(e, onAboutClick, 'about')} 
-              className="text-black hover:text-gray-600"
+              className="text-[#003893] hover:text-[#DC143C]"
             >
               About Us
             </Link>
-            <Link to="/gallery" className="text-black hover:text-gray-600">Gallery</Link>
+            <Link to="/gallery1" className="text-[#003893] hover:text-[#DC143C]">Gallery</Link>
             <Link 
               to="#" 
               onClick={(e) => handleNavigation(e, onTeamClick, 'team')} 
-              className="text-black hover:text-gray-600"
+              className="text-[#003893] hover:text-[#DC143C]"
             >
               Our Team
             </Link>
             <Link 
               to="#" 
               onClick={(e) => handleNavigation(e, onNewsClick, 'news')} 
-              className="text-black hover:text-gray-600"
+              className="text-[#003893] hover:text-[#DC143C]"
             >
               News & events
             </Link>
-            <Link to="/member" className="text-black hover:text-gray-600">
+            <Link to="/member" className="text-[#003893] hover:text-[#DC143C]">
               Become a Member
             </Link>
-            <Link to="/login" className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-600">LOGIN</Link>
+            <Link to="/login" className="bg-[#003893] text-white px-4 py-2 rounded-md hover:bg-[#DC143C]">LOGIN</Link>
           </div>
 
           {/* Mobile Menu Button */}

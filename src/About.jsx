@@ -29,7 +29,7 @@ function About() {
         </div>
 
         <div className="flex flex-col lg:flex-row items-center lg:items-stretch rounded-2xl mt-2 mb-4">
-          <div className="bg-gradient-to-b from-red-100 to-blue-100 w-fit lg:w-1/1 p-6 bg-gray-300 rounded-2xl">
+          <div className="bg-gradient-to-r from-[#DC143C] to-[#003893] text-white w-fit lg:w-1/1 p-6 bg-gray-300 rounded-2xl">
             <p className="md:text-xl font-bold text-4xl">About us</p>
             <p className="mt-2 text-sm md:text-base">
               The Nepal Drone Association (NDA) is the premier organization dedicated to uniting and empowering the growing community of drone professionals, enthusiasts, and businesses in Nepal. Our association was founded with a clear mission: to foster a thriving drone ecosystem, advocate for the rights of industry stakeholders, and establish Nepal as a leader in drone technology and innovation.<br></br>
@@ -41,7 +41,7 @@ function About() {
         </div>
 
         <div className="flex flex-col lg:flex-row items-center lg:items-stretch rounded-2xl mt-2 mb-4">
-          <div className="bg-gradient-to-tr from-red-100 to-blue-100 w-fit lg:w-1/1 p-6 bg-gray-300 flex items-center justify-center rounded-2xl">
+          <div className="bg-gradient-to-l from-[#DC143C] to-[#003893] text-white w-fit lg:w-1/1 p-6 bg-gray-300 flex items-center justify-center rounded-2xl">
             <div>
               <h2 className="text-lg md:text-xl font-bold text-center">Our Mission.</h2>
               <p className="mt-2 text-sm md:text-base text-center">
@@ -50,6 +50,14 @@ function About() {
               <p className="mt-2 text-sm md:text-base text-center">
                 DroCam has included its Vision Positioning System(VPS), VPS locks the drone<br></br>
                 in place when necessary, and it can stay put for hours.
+              </p>
+
+              <h2 className="text-lg md:text-xl font-bold text-center mt-5">Our Vision</h2>
+              <p className="mt-2 text-sm md:text-base text-center">
+                To establish Nepal as a global leader in drone technology, leveraging its potential to drive sustainable development and create new opportunities in diverse industries.
+              </p>
+              <p className="mt-2 text-sm md:text-base text-center">
+                DroCam 3.4k is the updated version of the very popular DroCam 3 drone. As you may believe, the most attention went to the camera.
               </p>
             </div>
           </div>
@@ -60,22 +68,40 @@ function About() {
 
         <div className="flex flex-col lg:flex-row items-center lg:items-stretch mt-2 mb-2 rounded-2xl">
           <div className="w-fit lg:w-1/2 flex">
-            <img src={drone19} className="w-200 h-auto lg:h-100 object-cover rounded-2xl" alt="Drone" />
+            <img src={drone19} className="w-200 h-auto lg:h-auto object-cover rounded-2xl" alt="Drone" />
           </div>
-          <div className="w-fit mx-2 lg:w-1/1 bg-gradient-to-tr from-red-200 to-blue-200 p-6 flex items-center justify-center rounded-2xl">
+          <div className="w-fit mx-2 lg:w-1/1 bg-gradient-to-r from-[#DC143C] to-[#003893] p-6 flex items-center justify-center rounded-2xl text-white">
             <div>
-              <h2 className="text-lg md:text-xl font-bold text-center">Our Vision</h2>
+              {/* <h2 className="text-lg md:text-xl font-bold text-center">Our Vision</h2>
               <p className="mt-2 text-sm md:text-base text-center">
                 To establish Nepal as a global leader in drone technology, leveraging its potential to drive sustainable development and create new opportunities in diverse industries.
               </p>
               <p className="mt-2 text-sm md:text-base text-center">
                 DroCam 3.4k is the updated version of the very popular DroCam 3 drone. As you may believe, the most attention went to the camera.
+              </p> */}
+              <p className="md:text-xl font-bold text-4xl">What We Do</p>
+              <p className="mt-2 text-sm md:text-base">
+                1. Professional Support: We act as an umbrella organization for all drone professionals and businesses, providing guidance, resources, and opportunities for growth.
+                <br></br>2. Advocacy: We represent the drone community to the Nepal Government, advocating for policies that support fair labor practices, innovation, and growth in the sector.
+                <br></br>3. Policy Assistance: We work closely with government agencies to draft and amend drone-related laws and policies, ensuring they are forward-looking and inclusive.
+                <br></br>4. Networking & Collaboration: We connect members with national and international organizations, fostering partnerships and knowledge exchange.
+                <br></br>5. Education & Training: We organize workshops, training sessions, and certification programs to enhance skills and ensure safety in drone operations.
+                <br></br>6. Sector Expansion: We actively promote the use of drones in agriculture, disaster management, infrastructure development, and other fields to contribute to Nepal's progress.
               </p>
+
+              <p className="md:text-xl font-bold text-4xl mt-5">Why Choose NDA</p>
+              <p className="mt-2 text-sm md:text-base">
+                ● Expert Guidance: Led by experienced professionals, NDA offers unparalleled insights and leadership in the drone sector.
+                <br></br>● Advocacy & Representation: We ensure that the voices of drone professionals and businesses are heard at the policy-making level.
+                <br></br>● Innovation & Growth: Our initiatives drive innovation, helping members stay ahead in the rapidly evolving drone industry.
+                <br></br><br></br>Join us in shaping the future of drone technology in Nepal. Together, we can harness the potential of drones to transform industries, improve lives, and contribute to a sustainable and prosperous future.
+              </p>
+
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row items-center lg:items-stretch rounded-2xl mt-2 mb-4">
+        {/* <div className="flex flex-col lg:flex-row items-center lg:items-stretch rounded-2xl mt-2 mb-4">
           <div className="bg-gradient-to-b from-red-100 to-blue-100 w-fit lg:w-1/1 p-6 bg-gray-300 rounded-2xl">
             <p className="md:text-xl font-bold text-4xl">What We Do</p>
             <p className="mt-2 text-sm md:text-base">
@@ -87,9 +113,9 @@ function About() {
               <br></br>6. Sector Expansion: We actively promote the use of drones in agriculture, disaster management, infrastructure development, and other fields to contribute to Nepal's progress.
             </p>
           </div>
-        </div>
+        </div> */}
 
-        <div className="flex flex-col lg:flex-row items-center lg:items-stretch rounded-2xl mt-2 mb-4">
+        {/* <div className="flex flex-col lg:flex-row items-center lg:items-stretch rounded-2xl mt-2 mb-4">
           <div className="bg-gradient-to-b from-red-100 to-blue-100 w-fit lg:w-1/1 p-6 bg-gray-300 rounded-2xl">
             <p className="md:text-xl font-bold text-4xl">Why Choose NDA</p>
             <p className="mt-2 text-sm md:text-base">
@@ -99,7 +125,7 @@ function About() {
               <br></br><br></br>Join us in shaping the future of drone technology in Nepal. Together, we can harness the potential of drones to transform industries, improve lives, and contribute to a sustainable and prosperous future.
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

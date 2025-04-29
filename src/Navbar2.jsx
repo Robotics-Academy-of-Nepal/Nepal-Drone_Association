@@ -38,7 +38,7 @@ const Navbar2 = () => {
   };
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 left-0 z-10" ref={menuRef}>
+    <nav className="bg-white shadow-md sticky top-0 left-0 z-50" ref={menuRef}>
       <div className="max-w-8xl mx-auto px-4">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
@@ -56,22 +56,24 @@ const Navbar2 = () => {
             </span>
             <div className="flex flex-col justify-center">
                 <p className="text-xs sm:text-sm md:text-[6px] lg:text-[12px] font-semibold leading-tight italic">
-                  <span className="text-sky-500">Connecting Skies</span>
+                  <span className="text-[#003893]">Nepal Drone Association</span>
+                  <br className="sm:block md:block lg:block" />
+                  <span className="text-[#003893]">Connecting Skies</span>
                   <span className="mx-1">,</span>
                   <br className="sm:hidden md:block lg:hidden" />
-                  <span className="text-red-400">Transforming Lives</span>
+                  <span className="text-[#DC143C]">Transforming Lives</span>
                 </p>
               </div>
           </div>
           
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link to="/AdminNews" className="text-black hover:text-gray-600">News Management</Link>
-            <Link to="/admindashboard" className="text-black hover:text-gray-600">User Management</Link>
-            <Link to="/galleryupload" className="text-black hover:text-gray-600">Gallery Management</Link>
-            <Link to="/admin" className="text-black hover:text-gray-600">Admin Panel</Link>
-            <button onClick={handleLogout} className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-600">LOGOUT</button>
+          <div className="hidden md:flex items-center space-x-8 text-[#003893]">
+            <Link to="/AdminNews" className="hover:text-[#DC143C]">News Management</Link>
+            <Link to="/admindashboard" className="hover:text-[#DC143C]">User Management</Link>
+            <Link to="/galleryupload" className="hover:text-[#DC143C]">Gallery Management</Link>
+            <Link to="/admin" className=" hover:text-[#DC143C]">Admin Panel</Link>
+            <button onClick={handleLogout} className="bg-[#003893] text-white px-4 py-2 rounded-md hover:bg-[#DC143C]">LOGOUT</button>
           </div>
 
           {/* Mobile Menu Button */}

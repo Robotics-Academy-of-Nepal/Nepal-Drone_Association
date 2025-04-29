@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import About from './About';
 import TeamPage from './Team';
 import ImageSlider from './Slider';
+import News from './NewsGrid';
 import { Users, Building2, Plane, UserPlus } from "lucide-react";
 import Slider from './Slider2';
 
@@ -81,30 +82,31 @@ function Homepage() {
       {/* Container with conditional max-width */}
       <div className="max-w-screen-lg xl:max-w-none 2xl:max-w-none mx-auto px-4 mt-2">
         {/* First section with drone image */}
-        <div className="bg-gradient-to-b from-red-200 to-blue-200">
+        <div className="bg-gradient-to-r from-[#003893] to-[#DC143C] text-white">
           <div className="mt-2 w-full text-wrap flex items-center rounded-md px-2 lg:flex-row xl:flex-row">
-            <div className="text-xs sm:text-sm md:text-2xl lg:text-5xl xl:text-5xl px-2">
+            {/* <div className="text-xs sm:text-sm md:text-2xl lg:text-5xl xl:text-5xl px-2">
               <p className="font-['Orbitron'] tracking-wider">
                 <span>Connecting Skies</span>
                 <span className="mx-1">,</span>
                 <br className="sm:hidden" />
                 <span>Transforming Lives</span>
               </p>
-            </div>
+            </div> */}
             <div className="relative h-auto overflow-hidden">
+              
               <ImageSlider />
             </div>
           </div>
 
           {/* Specs section */}
-          <div className="rounded-lg mx-auto p-6 mt-2">
+          <div className="rounded-lg mx-auto p-6 mt-2 text-white">
             <div className="rounded-lg p-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {specs.map((spec, index) => (
                   <div key={spec.title} className="flex flex-col items-center text-center p-4">
                     {spec.icon}
                     <h3 className="text-lg font-semibold mb-2">{spec.title}</h3>
-                    <p className="text-sm text-gray-600">{spec.description}</p>
+                    <p className="text-sm">{spec.description}</p>
                   </div>
                 ))}
               </div>
@@ -120,15 +122,16 @@ function Homepage() {
           <TeamPage />
         </section>
 
-        <div className="lg:w-full mt-2 flex">
+        {/* <div className="lg:w-full mt-2 flex">
           <img className="w-full rounded-2xl cursor-pointer lg:w-full" src={drone18} alt="Drone" />
-        </div>
+        </div> */}
 
         {/* News slider section */}
         <section ref={newsRef}>
           <div className="relative w-full max-w-8xl mx-auto mt-8 mb-8 px-4">
             <h1 className="text-3xl font-bold text-center mb-8">News & Events</h1>
-            <Slider />
+            {/* <Slider /> */}
+            <News />
           </div>
         </section>
       </div>

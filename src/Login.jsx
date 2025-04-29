@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Loader2, X } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import logo from './assets/logo.png';
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -48,14 +49,24 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-300 flex items-center justify-center p-4 overflow-hidden relative">
+    <>
+    <div className="min-h-screen bg-gray-300 flex flex-col items-center justify-center p-4 overflow-hidden relative">
+      <img
+        src={logo}
+        alt="NDA Logo"
+        className="w-auto rounded-4xl mx-2 object-contain transition-all duration-300 ease-in-out transform group-hover:scale-128 group-hover:brightness-120"
+        style={{
+          maxHeight: '100%',
+          maxWidth: '120px'
+        }}
+      /><br></br>
 
       <div className=" p-8 rounded-xl bg-gradient-to-tr from-red-200 to-blue-200 shadow-2xl w-full max-w-md transform transition-all duration-500 hover:scale-105 relative z-10 antialiased">
         <div className="text-center mb-8 transform-gpu">
           <div className='flex justify-between items-center'>
             <h1 className="text-3xl font-bold mb-2 subpixel-antialiased">Login</h1>
             <Link to="/"><X size={24} /></Link>
-          </div> 
+          </div>
           <p className="text-gray-400 subpixel-antialiased">Access your drone dashboard</p>
         </div>
 
@@ -124,6 +135,7 @@ const Login = () => {
 
       </div>
     </div>
+    </>
   );
 };
 

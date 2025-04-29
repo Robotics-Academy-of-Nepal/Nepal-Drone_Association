@@ -98,7 +98,7 @@ const Slider3 = () => {
   }
 
   return (
-    <div className="relative w-full max-w-6xl mx-auto overflow-hidden">
+    <div className="relative w-full max-w-6xl mx-auto overflow-hidden ">
       {/* Success Message */}
       {successMessage && (
         <div className="fixed bottom-4 right-4 bg-green-500 text-white p-4 rounded shadow-lg z-50">

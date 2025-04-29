@@ -73,7 +73,7 @@ const ImageGallery = () => {
                   className="w-full h-48 object-cover transition-all duration-300 group-hover:scale-105"
                   loading="lazy"
                   onError={(e) => {
-                    e.target.src = 'https://via.placeholder.com/400x300?text=Image+Not+Found';
+                    e.target.src = 'https://via.placeholdezr.com/400x300?text=Image+Not+Found';
                   }}
                 />
               </div>

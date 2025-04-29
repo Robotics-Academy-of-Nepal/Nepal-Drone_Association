@@ -50,7 +50,7 @@ const Slider = () => {
   }
 
   return (
-    <div className="relative w-full max-w-6xl mx-auto overflow-hidden">
+    <div className="relative w-full max-w-8xl px-5 mx-auto overflow-hidden ">
       <div
         className="flex transition-transform duration-300 ease-in-out"
         style={{ transform: `translateX(-${currentIndex * (100 / getCardsPerView())}%)` }}
@@ -58,7 +58,7 @@ const Slider = () => {
         {cards.map((card) => (
           <div
             key={card.id}
-            className="flex-shrink-0 w-full lg:w-1/3 md:w-1/2 p-6 transition-transform duration-300 hover:scale-105 cursor-pointer "
+            className="flex-shrink-0 w-full lg:w-1/4 md:w-1/2 p-6 transition-transform duration-300 hover:scale-105 cursor-pointer "
             onClick={() => handleCardClick(card)}
           >
             <div className="bg-white p-6 rounded-lg shadow-lg bg-gradient-to-b from-red-200 to-blue-200">

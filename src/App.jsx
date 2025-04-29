@@ -12,6 +12,8 @@ import ImageGallery from './GalleryDisplay';
 import Homepage2 from './Admin';
 import Slider from './Slider3';
 import AdminNews from './AdminNews';
+import GalleryGrid from './GalleryGrid';
+import NewsGrid from './NewsGrid';
 
 function App() {
   return (
@@ -20,12 +22,14 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/about" element={<About />} />
         <Route path="/gallery" element={<ImageGallery />} />
+        <Route path="/gallery1" element={<GalleryGrid />} />
         <Route path="/member" element={<MembershipForm />} />
         <Route path="/login" element={<Login />} />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/admin" element={<Homepage2 />} />
         <Route path="/admindashboard" element={<UserList />} />
         <Route path="/newslist" element={<NewsList />} />
+        <Route path="/newslist1" element={<NewsGrid />} />
         <Route path="/slider" element={<Slider />} />
         <Route path="/galleryupload" element={<ImageUploadManager />} />
         <Route path="/AdminNews" element={<AdminNews />} />
