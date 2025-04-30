@@ -47,6 +47,22 @@ function Homepage() {
 
   useEffect(() => {
     const scrollTarget = localStorage.getItem('scrollTarget');
+
+    const getImages = async () =>{
+      try{
+        const response = await axios.get('http://192.168.1.6/app/featured-images/');
+        if(response){
+          console.log(response.data);
+        }
+      }
+      catch(error){
+        console.error("Error fetching images:", error);
+      }
+    };
+
+    useEffect (()=>{
+      getImages();
+    },[]);
     
     if (scrollTarget) {
       // Clear the stored target

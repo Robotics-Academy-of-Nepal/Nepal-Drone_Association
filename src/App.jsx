@@ -14,6 +14,7 @@ import Slider from './Slider3';
 import AdminNews from './AdminNews';
 import GalleryGrid from './GalleryGrid';
 import NewsGrid from './NewsGrid';
+import AdminNewsGrid from './AdminNewsGrid';
 
 import NewsAndEventForm from './NewsAndEventForm';
 
@@ -32,6 +33,7 @@ function App() {
         <Route path="/admindashboard" element={<UserList />} />
         <Route path="/newslist" element={<NewsList />} />
         <Route path="/newslist1" element={<NewsGrid />} />
+        <Route path="/adminnewslist" element={<AdminNewsGrid />} />
         <Route path="/slider" element={<Slider />} />
         <Route path="/galleryupload" element={<ImageUploadManager />} />
         <Route path="/AdminNews" element={<AdminNews />} />
