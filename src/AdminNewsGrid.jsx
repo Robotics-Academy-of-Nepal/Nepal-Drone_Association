@@ -16,7 +16,7 @@ const AdminNewsGrid = () => {
   const getNews = async () => {
     try {
       const response = await axios.get(
-        "http://192.168.1.6:8100/app/news-events/"
+        "https://api.nepaldroneassociation.org.np/app/news-events/"
       );
       if (response.status === 200) {
         setNewsData(response.data);
@@ -59,7 +59,7 @@ const AdminNewsGrid = () => {
     if (!confirmDelete) return;
     try {
       const response = await axios.delete(
-        `http://192.168.1.6:8100/app/news-events/${id}/`
+        `https://api.nepaldroneassociation.org.np/app/news-events/${id}/`
       );
       if (response) {
         alert("News deleted successfull");
@@ -76,7 +76,7 @@ const AdminNewsGrid = () => {
     formData.append("image", image);
     try {
       const response = await axios.post(
-        `http://192.168.1.6:8100/app/news-event-images/`,
+        `https://api.nepaldroneassociation.org.np/app/news-event-images/`,
         formData,
         {
           headers: {
@@ -99,7 +99,7 @@ const AdminNewsGrid = () => {
     if (!confirmDelete) return;
     try {
       const response = await axios.delete(
-        `http://192.168.1.6:8100/app/news-event-images/${id}/`
+        `https://api.nepaldroneassociation.org.np/app/news-event-images/${id}/`
       );
       if (response) {
         alert("Image deleted successfully");

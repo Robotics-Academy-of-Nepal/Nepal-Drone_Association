@@ -12,7 +12,7 @@ const AdminGalleryGrid = () => {
   const getGalleryEvents = async () => {
     try {
       const response = await axios.get(
-        "http://192.168.1.6:8100/app/gallery-events/"
+        "https://api.nepaldroneassociation.org.np/app/gallery-events/"
       );
       if (response.status === 200) {
         setGalleryData(response.data);
@@ -42,7 +42,7 @@ const AdminGalleryGrid = () => {
 
     try {
       const response = await axios.delete(
-        `http://192.168.1.6:8100/app/gallery-events/${id}/`
+        `https://api.nepaldroneassociation.org.np/app/gallery-events/${id}/`
       );
       if (response) {
         alert("Gallery images deleted successfull");
@@ -61,7 +61,7 @@ const AdminGalleryGrid = () => {
 
     try {
       const response = await axios.delete(
-        `http://192.168.1.6:8100/app/gallery-images/${id}/`
+        `https://api.nepaldroneassociation.org.np/app/gallery-images/${id}/`
       );
       if (response.status === 204 || response.status === 200) {
         setSelectedEvent((prevEvent) => ({
@@ -81,7 +81,7 @@ const AdminGalleryGrid = () => {
     formData.append("image", image);
     try {
       const response = await axios.post(
-        `http://192.168.1.6:8100/app/gallery-images/`,
+        `https://api.nepaldroneassociation.org.np/app/gallery-images/`,
         formData,
         {
           headers: {

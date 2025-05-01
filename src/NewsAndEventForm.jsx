@@ -21,7 +21,7 @@ const NewsAndEventForm = () => {
   
     try {
       // Step 1: Create the news/event first (without images)
-      const response = await axios.post('http://192.168.1.6:8100/app/news-events/', {
+      const response = await axios.post('https://api.nepaldroneassociation.org.np/app/news-events/', {
         title,
         content,
         date,
@@ -36,7 +36,7 @@ const NewsAndEventForm = () => {
         imgForm.append('image', images[i]);
         imgForm.append('is_featured', i === featuredImageIndex);
   
-        await axios.post('http://192.168.1.6:8100/app/news-event-images/', imgForm, {
+        await axios.post('https://api.nepaldroneassociation.org.np/app/news-event-images/', imgForm, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
       }

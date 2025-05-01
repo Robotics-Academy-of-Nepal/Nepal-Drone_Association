@@ -56,7 +56,7 @@ const NewsGrid = () => {
   const getNews = async () => {
     try {
       const response = await axios.get(
-        "http://192.168.1.6:8100/app/news-events/"
+        "https://api.nepaldroneassociation.org.np/app/news-events/"
       );
       if (response.status === 200) {
         setNewsData(response.data);

@@ -43,7 +43,7 @@ const ImageSlider = () => {
   const getFeaturedImages = async () => {
     try {
       const response = await axios.get(
-        `http://192.168.1.6:8100/app/featured-images/`
+        `https://api.nepaldroneassociation.org.np/app/featured-images/`
       );
       if (response.data && Array.isArray(response.data)) {
         const mappedSlides = response.data.map((item) => ({
@@ -86,7 +86,7 @@ const ImageSlider = () => {
   const handleClick = async (id) => {
     try {
       const response = await axios.get(
-        `http://192.168.1.6:8100/app/news-events/${id}/`
+        `https://api.nepaldroneassociation.org.np/app/news-events/${id}/`
       );
       if (response.data) {
         setIsPopupData(response.data);

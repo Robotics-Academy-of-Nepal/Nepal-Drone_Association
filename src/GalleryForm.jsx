@@ -21,7 +21,7 @@ const GalleryForm = () => {
 
     try {
       // Step 1: Create the event (without images)
-      const response = await axios.post('http://192.168.1.6:8100/app/gallery-events/', {
+      const response = await axios.post('https://api.nepaldroneassociation.org.np/app/gallery-events/', {
         name,
         description,
         date,
@@ -36,7 +36,7 @@ const GalleryForm = () => {
         imgForm.append('image', images[i]);
         imgForm.append('is_featured', i === featuredImageIndex);
 
-        await axios.post('http://192.168.1.6:8100/app/gallery-images/', imgForm, {
+        await axios.post('https://api.nepaldroneassociation.org.np/app/gallery-images/', imgForm, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
       }
