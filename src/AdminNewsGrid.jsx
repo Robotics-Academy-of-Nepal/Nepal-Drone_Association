@@ -4,17 +4,19 @@ import axios from "axios";
 // import { FaTrash } from "react-icons/fa";
 // import { FaEdit } from "react-icons/fa";
 import { FaTrash, FaEdit } from "react-icons/fa";
-
+import { RxCross2 } from "react-icons/rx";
 
 const AdminNewsGrid = () => {
   const [selectedNews, setSelectedNews] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isFormOpen, setIsFormOpen] = useState(false);
   const [newsData, setNewsData] = useState([]);
+  const [image, setImage] = useState(null);
 
   const getNews = async () => {
     try {
       const response = await axios.get(
-        "http://127.0.0.1:8100/app/news-events/"
+        "http://192.168.1.6:8100/app/news-events/"
       );
       if (response.status === 200) {
         setNewsData(response.data);
@@ -51,10 +53,13 @@ const AdminNewsGrid = () => {
   };
 
   const handleDelete = async (id) => {
-    alert("Are you sure you want to delete this news?");
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this Gallery?"
+    );
+    if (!confirmDelete) return;
     try {
       const response = await axios.delete(
-        `http://127.0.0.1:8100/app/news-events/${id}/`
+        `http://192.168.1.6:8100/app/news-events/${id}/`
       );
       if (response) {
         alert("News deleted successfull");
@@ -62,6 +67,46 @@ const AdminNewsGrid = () => {
       }
     } catch (error) {
       console.log("Failed to delete the news", error);
+    }
+  };
+
+  const handleSubmit = async (id) => {
+    const formData = new FormData();
+    formData.append("news_event", id);
+    formData.append("image", image);
+    try {
+      const response = await axios.post(
+        `http://192.168.1.6:8100/app/news-event-images/`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      if (response) {
+        alert("Image uploaded successfully");
+        setIsFormOpen(false);
+        getNews();
+      }
+    } catch (error) {
+      console.error("Failed to upload image", error);
+    }
+  };
+
+  const handleSpecificDelete = async (id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this image?");
+    if (!confirmDelete) return;
+    try {
+      const response = await axios.delete(
+        `http://192.168.1.6:8100/app/news-event-images/${id}/`
+      );
+      if (response) {
+        alert("Image deleted successfully");
+        getNews(); 
+      }
+    } catch (error) {
+      console.error("Failed to delete image", error);
     }
   };
 
@@ -116,7 +161,7 @@ const AdminNewsGrid = () => {
       </div>
 
       {/* Popup with Auto Image Slider */}
-      {selectedNews && (
+      {/* {selectedNews && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto relative">
             <button
@@ -138,12 +183,90 @@ const AdminNewsGrid = () => {
             <p className="text-center text-gray-500 mb-4">
               {new Date(selectedNews.date).toLocaleDateString()}
             </p>
-            <p className="text-center text-gray-700">
-              {selectedNews.content}
-            </p>
+            <p className="text-center text-gray-700">{selectedNews.content}</p>
           </div>
         </div>
-      )}
+      )} */}
+
+      {selectedNews && (
+              <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div className="bg-white p-6 rounded-lg max-w-5xl w-full max-h-[80vh] overflow-y-auto">
+                  <div className="flex items-center justify-center gap-4 mb-5">
+                    <h2 className="text-2xl font-bold text-center">
+                      {selectedNews.name} - Images
+                    </h2>
+                    <button
+                      onClick={() => setIsFormOpen(true)}
+                      className="text-center bg-blue-500 rounded-md text-white px-3 py-1"
+                    >
+                      Add Image
+                    </button>
+                  </div>
+                  {isFormOpen && (
+                    <div>
+                      <form
+                        onSubmit={(e) => {
+                          e.preventDefault();
+                          handleSubmit(selectedNews.id);
+                          className =
+                            "flex flex-col items-center p-4 bg-white shadow-md rounded-lg shadow-gray-300 my-3";
+                        }}
+                      >
+                        <div className="flex justify-end items-end w-full">
+                          <RxCross2
+                            onClick={() => setIsFormOpen(false)}
+                            className="text-gray-900 text-lg "
+                          />
+                        </div>
+                        <p className="text-center text-black mb-4 font-normal text-lg">
+                          Add Image
+                        </p>
+                        <input
+                          type="file"
+                          name="image"
+                          accept="image/*"
+                          className="mb-4 w-full border border-gray-300 rounded p-3"
+                          onChange={(e) => setImage(e.target.files[0])}
+                        />
+                        <button
+                          type="submit"
+                          className="mt-6 block mx-auto px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md"
+                        >
+                          Upload
+                        </button>
+                      </form>
+                    </div>
+                  )}
+                  <div className="relative grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                    {selectedNews.images.map((img) => (
+                      <div key={img.id} className="relative">
+                        <div className="absolute top-1 right-2 text-red p-1 rounded-full cursor-pointer z-10">
+                          {/* <p>{img.event}</p> */}
+                          <FaTrash
+                            className="text-red-500"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleSpecificDelete(img.id);
+                            }}
+                          />
+                        </div>
+                        <img
+                          src={img.image}
+                          alt="Event"
+                          className="w-full h-40 object-cover rounded mt-7"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  <button
+                    onClick={closePopup}
+                    className="mt-6 block mx-auto px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            )}
     </>
   );
 };

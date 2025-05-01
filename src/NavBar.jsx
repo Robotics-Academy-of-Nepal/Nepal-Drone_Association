@@ -123,7 +123,7 @@ const Navbar = ({ onAboutClick, onTeamClick, onNewsClick }) => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden md">
+          <div className="md:hidden flex">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-gray-600 hover:text-gray-600 focus:outline-none"

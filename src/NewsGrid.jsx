@@ -56,7 +56,7 @@ const NewsGrid = () => {
   const getNews = async () => {
     try {
       const response = await axios.get(
-        "http://127.0.0.1:8100/app/news-events/"
+        "http://192.168.1.6:8100/app/news-events/"
       );
       if (response.status === 200) {
         setNewsData(response.data);
@@ -142,15 +142,15 @@ const NewsGrid = () => {
                 className="w-full h-72 object-cover rounded-md"
               />
             </div>
-            <h2 className="text-2xl font-bold text-center mb-2">
-              {selectedNews.name}
-            </h2>
-            <p className="text-center text-gray-500 mb-4">
-              {new Date(selectedNews.date).toLocaleDateString()}
-            </p>
-            <p className="text-center text-gray-700">
-              {selectedNews.description}
-            </p>
+            <div className="flex justify-between items-center">
+              <h2 className="text-2xl font-bold text-center mb-2">
+                {selectedNews.title}
+              </h2>
+              <p className="text-center text-gray-500 mb-4">
+                {new Date(selectedNews.date).toLocaleDateString()}
+              </p>
+            </div>
+            <p className="text-left text-gray-900">{selectedNews.content}</p>
           </div>
         </div>
       )}

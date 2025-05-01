@@ -48,19 +48,6 @@ function Homepage() {
   useEffect(() => {
     const scrollTarget = localStorage.getItem('scrollTarget');
 
-    const getImages = async () => {
-      try {
-        const response = await axios.get('http://127.0.0.1:8100/app/featured-images/');
-        if (response) {
-          console.log(response.data);
-        }
-      } catch (error) {
-        console.error("Error fetching images:", error);
-      }
-    };
-
-    getImages(); // ✅ Correctly calling the async function
-
     if (scrollTarget) {
       localStorage.removeItem('scrollTarget');
 

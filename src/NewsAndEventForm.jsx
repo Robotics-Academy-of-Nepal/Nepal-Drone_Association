@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Navbar2 from './Navbar2';
 
 const NewsAndEventForm = () => {
   const [title, setTitle] = useState('');
@@ -20,7 +21,7 @@ const NewsAndEventForm = () => {
   
     try {
       // Step 1: Create the news/event first (without images)
-      const response = await axios.post('http://127.0.0.1:8100/app/news-events/', {
+      const response = await axios.post('http://192.168.1.6:8100/app/news-events/', {
         title,
         content,
         date,
@@ -35,7 +36,7 @@ const NewsAndEventForm = () => {
         imgForm.append('image', images[i]);
         imgForm.append('is_featured', i === featuredImageIndex);
   
-        await axios.post('http://127.0.0.1:8100/app/news-event-images/', imgForm, {
+        await axios.post('http://192.168.1.6:8100/app/news-event-images/', imgForm, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
       }
@@ -56,13 +57,15 @@ const NewsAndEventForm = () => {
   
 
   return (
-    <div className="p-4 max-w-xl mx-auto border rounded shadow">
+    <>
+    <Navbar2/>
+      <div className="p-4 max-w-xl mt-8 mx-auto shadow-gray-300 rounded-md shadow">
       <h2 className="text-xl font-bold mb-4">Add News & Event</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Title"
-          className="block w-full mb-2 p-2 border rounded"
+          className="block w-full mb-2 p-2 border border-gray-300 rounded-md"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
@@ -70,14 +73,14 @@ const NewsAndEventForm = () => {
 
         <textarea
           placeholder="Content"
-          className="block w-full mb-2 p-2 border rounded"
+          className="block w-full mb-2 p-2 border border-gray-300 rounded-md"
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />
 
         <input
           type="date"
-          className="block w-full mb-4 p-2 border rounded"
+          className="block w-full mb-4 p-2 border border-gray-300 rounded-md"
           value={date}
           onChange={(e) => setDate(e.target.value)}
         />
@@ -88,7 +91,7 @@ const NewsAndEventForm = () => {
           accept="image/*"
           multiple
           onChange={handleImageChange}
-          className="mb-4"
+          className="mb-4 w-full border border-gray-300 p-2 rounded-md"
         />
 
         {images.length > 0 && (
@@ -111,12 +114,13 @@ const NewsAndEventForm = () => {
 
         <button
           type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
         >
           Submit News & Images
         </button>
       </form>
     </div>
+    </>
   );
 };
 
