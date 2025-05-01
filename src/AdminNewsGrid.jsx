@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./NavBar";
 import axios from "axios";
-import { FaTrash } from "react-icons/fa";
-import { FaEdit } from "react-icons/fa";
+// import { FaTrash } from "react-icons/fa";
+// import { FaEdit } from "react-icons/fa";
+import { FaTrash, FaEdit } from "react-icons/fa";
+
 
 const AdminNewsGrid = () => {
   const [selectedNews, setSelectedNews] = useState(null);
@@ -12,7 +14,7 @@ const AdminNewsGrid = () => {
   const getNews = async () => {
     try {
       const response = await axios.get(
-        "http://192.168.1.6:8100/app/news-events/"
+        "http://127.0.0.1:8100/app/news-events/"
       );
       if (response.status === 200) {
         setNewsData(response.data);
@@ -52,7 +54,7 @@ const AdminNewsGrid = () => {
     alert("Are you sure you want to delete this news?");
     try {
       const response = await axios.delete(
-        `http://192.168.1.6:8100/app/news-events/${id}/`
+        `http://127.0.0.1:8100/app/news-events/${id}/`
       );
       if (response) {
         alert("News deleted successfull");
@@ -77,12 +79,12 @@ const AdminNewsGrid = () => {
             >
               <div className="absolute top-1 right-2 text-red p-1 rounded-full cursor-pointer">
                 <div className="flex items-center gap-4">
-                  <FaEdit
+                  {/* <FaEdit
                     className="text-blue-500 text-xl"
                     onClick={(e) => {
                       e.stopPropagation();
                     }}
-                  />
+                  /> */}
                   <FaTrash
                     className="text-red-500"
                     onClick={(e) => {
@@ -96,7 +98,7 @@ const AdminNewsGrid = () => {
                 <img
                   src={featuredImage.image}
                   alt={news.name}
-                  className="w-full h-52 object-cover"
+                  className="w-full h-52 object-cover mt-10"
                 />
               )}
               <div className="p-4 mt-3">
@@ -131,13 +133,13 @@ const AdminNewsGrid = () => {
               />
             </div>
             <h2 className="text-2xl font-bold text-center mb-2">
-              {selectedNews.name}
+              {selectedNews.title}
             </h2>
             <p className="text-center text-gray-500 mb-4">
               {new Date(selectedNews.date).toLocaleDateString()}
             </p>
             <p className="text-center text-gray-700">
-              {selectedNews.description}
+              {selectedNews.content}
             </p>
           </div>
         </div>

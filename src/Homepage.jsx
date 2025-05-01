@@ -39,7 +39,7 @@ function Homepage() {
   ];
 
   const scrollToSection = (ref) => {
-    ref.current?.scrollIntoView({ 
+    ref.current?.scrollIntoView({
       behavior: 'smooth',
       block: 'start'
     });
@@ -48,27 +48,22 @@ function Homepage() {
   useEffect(() => {
     const scrollTarget = localStorage.getItem('scrollTarget');
 
-    const getImages = async () =>{
-      try{
-        const response = await axios.get('http://192.168.1.6/app/featured-images/');
-        if(response){
+    const getImages = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:8100/app/featured-images/');
+        if (response) {
           console.log(response.data);
         }
-      }
-      catch(error){
+      } catch (error) {
         console.error("Error fetching images:", error);
       }
     };
 
-    useEffect (()=>{
-      getImages();
-    },[]);
-    
+    getImages(); // ✅ Correctly calling the async function
+
     if (scrollTarget) {
-      // Clear the stored target
       localStorage.removeItem('scrollTarget');
-      
-      // Wait for page to fully load
+
       setTimeout(() => {
         switch (scrollTarget) {
           case 'about':
@@ -89,27 +84,16 @@ function Homepage() {
 
   return (
     <>
-      <Navbar 
+      <Navbar
         onAboutClick={() => scrollToSection(aboutRef)}
         onTeamClick={() => scrollToSection(teamRef)}
-        onNewsClick={()=>scrollToSection(newsRef)}
+        onNewsClick={() => scrollToSection(newsRef)}
       />
-      
-      {/* Container with conditional max-width */}
+
       <div className="max-w-screen-lg xl:max-w-none 2xl:max-w-none mx-auto px-4 mt-2">
-        {/* First section with drone image */}
-        <div className="bg-gradient-to-r from-[#003893] to-[#DC143C] text-white">
-          <div className="mt-2 w-full text-wrap flex items-center rounded-md px-2 lg:flex-row xl:flex-row">
-            {/* <div className="text-xs sm:text-sm md:text-2xl lg:text-5xl xl:text-5xl px-2">
-              <p className="font-['Orbitron'] tracking-wider">
-                <span>Connecting Skies</span>
-                <span className="mx-1">,</span>
-                <br className="sm:hidden" />
-                <span>Transforming Lives</span>
-              </p>
-            </div> */}
+        <div className="bg-gradient-to-r from-[#003893] to-[#DC143C] text-white w-[95%] rounded-2xl mx-auto">
+          <div className="mt-2 w-full flex items-center rounded-md px-2 lg:flex-row xl:flex-row">
             <div className="relative h-auto overflow-hidden">
-              
               <ImageSlider />
             </div>
           </div>
@@ -118,7 +102,7 @@ function Homepage() {
           <div className="rounded-lg mx-auto p-6 mt-2 text-white">
             <div className="rounded-lg p-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {specs.map((spec, index) => (
+                {specs.map((spec) => (
                   <div key={spec.title} className="flex flex-col items-center text-center p-4">
                     {spec.icon}
                     <h3 className="text-lg font-semibold mb-2">{spec.title}</h3>
@@ -138,11 +122,6 @@ function Homepage() {
           <TeamPage />
         </section>
 
-        {/* <div className="lg:w-full mt-2 flex">
-          <img className="w-full rounded-2xl cursor-pointer lg:w-full" src={drone18} alt="Drone" />
-        </div> */}
-
-        {/* News slider section */}
         <section ref={newsRef}>
           <div className="relative w-full max-w-8xl mx-auto mt-8 mb-8 px-4">
             <h1 className="text-3xl font-bold text-center mb-8">News & Events</h1>
@@ -151,7 +130,8 @@ function Homepage() {
           </div>
         </section>
       </div>
-      <Footer 
+
+      <Footer
         onAboutClick={() => scrollToSection(aboutRef)}
         onTeamClick={() => scrollToSection(teamRef)}
       />

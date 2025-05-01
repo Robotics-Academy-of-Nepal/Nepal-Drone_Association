@@ -8,7 +8,7 @@ function About() {
     <>
       {/* Container with conditional max-width */}
       <div className="max-w-screen-lg xl:max-w-none 2xl:max-w-none mx-auto px-4 sm:px-6 lg:px-8 mt-2">
-        <div className="p-1">
+        {/* <div className="p-1">
           <div className="relative">
             <img
               src={drone14}
@@ -17,16 +17,16 @@ function About() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent rounded-lg" />
 
-            {/* <div className="absolute inset-0 p-4 sm:p-6 lg:p-8 flex flex-col justify-end">
+            <div className="absolute inset-0 p-4 sm:p-6 lg:p-8 flex flex-col justify-end">
               <h2 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2">
                 About us
               </h2>
               <p className="text-white/90 text-sm sm:text-base md:text-lg mt-2 sm:mt-4 max-w-2xl">
                 Know something about us.
               </p>
-            </div> */}
+            </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="flex flex-col lg:flex-row items-center lg:items-stretch rounded-2xl mt-2 mb-4">
           <div className="bg-gradient-to-r from-[#DC143C] to-[#003893] text-white w-fit lg:w-1/1 p-6 bg-gray-300 rounded-2xl">

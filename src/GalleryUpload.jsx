@@ -236,6 +236,8 @@ import { useState, useEffect } from 'react';
 import { Plus, X, Upload, Trash2 } from 'lucide-react';
 import Navbar2 from './Navbar2';
 import axios from 'axios';
+import AdminGalleryGrid from './AdminGalleryGrid';
+import { Link } from 'react-router-dom';
 
 // Resize function
 const resizeImage = (file, maxSize = 800) =>
@@ -359,7 +361,8 @@ const ImageUploadManager = () => {
       <Navbar2 />
       <div className="max-w-screen-lg xl:max-w-none 2xl:max-w-none mx-auto p-6">
         <div className="mb-8">
-          <div className="flex flex-wrap items-center gap-4 mb-6">
+        <h1 className="text-3xl font-bold text-center mb-6">Admin - Add Gallery</h1>
+          {/* <div className="flex flex-wrap items-center gap-4 mb-6">
             <div className="relative">
               <input
                 type="file"
@@ -374,6 +377,7 @@ const ImageUploadManager = () => {
               </div>
             </div>
             Add Images
+
 
             {selectedFiles.length > 0 && (
               <div className="flex items-center gap-2">
@@ -400,8 +404,12 @@ const ImageUploadManager = () => {
                 </button>
               </div>
             )}
+          </div> */}
+          <div className="flex justify-center">
+            <Link to='/AddGallery' className=" w-auto mx-auto px-3 py-2 text-white bg-[#003893] hover:bg-[#DC143C] rounded-md">
+              Add Gallery Image
+            </Link>
           </div>
-
           {previewUrls.length > 0 && (
             <div className="mb-6">
               <h3 className="text-lg font-semibold mb-2">
@@ -447,27 +455,9 @@ const ImageUploadManager = () => {
           </div>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {uploadedImages.map((image) => (
-            <div key={image.id} className="relative group">
-              <div className="relative">
-                <img
-                  src={image.image}
-                  alt={`Upload ${image.id}`}
-                  className="w-full h-48 object-cover rounded-lg"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 rounded-lg" />
-              </div>
-              <button
-                onClick={() => handleDelete(image.id)}
-                className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white p-2 rounded-full shadow-lg transform transition-all duration-300 hover:scale-110"
-              >
-                <Trash2 size={20} />
-              </button>
-            </div>
-          ))}
-        </div>
+      
       </div>
+      <AdminGalleryGrid/>
     </>
   );
 };

@@ -56,7 +56,7 @@ const Navbar2 = () => {
             </span>
             <div className="flex flex-col justify-center">
                 <p className="text-xs sm:text-sm md:text-[6px] lg:text-[12px] font-semibold leading-tight italic">
-                  <span className="text-[#003893]">Nepal Drone Association</span>
+                  <span className="text-[#003893] text-xl">Nepal Drone Association</span>
                   <br className="sm:block md:block lg:block" />
                   <span className="text-[#003893]">Connecting Skies</span>
                   <span className="mx-1">,</span>
@@ -94,34 +94,34 @@ const Navbar2 = () => {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-[#003893]">
             <Link
                 to="/AdminNews"
-                className="block px-3 py-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-md"
+                className="block px-3 py-2 hover:text-[#DC143C] hover:bg-gray-50 rounded-md"
               >
                 News Management
               </Link>
               <Link
                 to="/admin"
-                className="block px-3 py-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-md"
+                className="block px-3 py-2 hover:text-[#DC143C] hover:bg-gray-50 rounded-md"
               >
                 Admin Panel
               </Link>
               <Link
                 to="/galleryupload"
-                className="block px-3 py-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-md"
+                className="block px-3 py-2 hover:text-[#DC143C] hover:bg-gray-50 rounded-md"
               >
                 Gallery Management
               </Link>
               <Link
                 to="/admindashboard"
-                className="block px-3 py-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-md"
+                className="block px-3 py-2 hover:text-[#DC143C] hover:bg-gray-50 rounded-md"
               >
                 User Management
               </Link>
               <button
                 onClick={handleLogout}
-                className="block w-full text-left px-3 py-2 text-white bg-black hover:bg-gray-600 rounded-md"
+                className="block w-full text-left px-3 py-2 text-white bg-[#003893] hover:bg-[#DC143C] rounded-md"
               >
                 LOGOUT
               </button>

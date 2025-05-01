@@ -15,8 +15,10 @@ import AdminNews from './AdminNews';
 import GalleryGrid from './GalleryGrid';
 import NewsGrid from './NewsGrid';
 import AdminNewsGrid from './AdminNewsGrid';
+import AdminGalleryGrid from './AdminGalleryGrid';
 
 import NewsAndEventForm from './NewsAndEventForm';
+import GalleryForm from './GalleryForm';
 
 function App() {
   return (
@@ -34,12 +36,14 @@ function App() {
         <Route path="/newslist" element={<NewsList />} />
         <Route path="/newslist1" element={<NewsGrid />} />
         <Route path="/adminnewslist" element={<AdminNewsGrid />} />
+        <Route path="/admingallerylist" element={<AdminGalleryGrid />} />
         <Route path="/slider" element={<Slider />} />
         <Route path="/galleryupload" element={<ImageUploadManager />} />
         <Route path="/AdminNews" element={<AdminNews />} />
         <Route path="*" element={<div>Page not found</div>} />
 
         <Route path="/AddNewsEvents" element={<NewsAndEventForm />} />
+        <Route path="/AddGallery" element={<GalleryForm />} />
       </Routes>
     </>
   )

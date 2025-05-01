@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const NewsAndEventForm = () => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+const GalleryForm = () => {
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
   const [date, setDate] = useState('');
   const [images, setImages] = useState([]);
   const [featuredImageIndex, setFeaturedImageIndex] = useState(null);
@@ -17,62 +17,61 @@ const NewsAndEventForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
-      // Step 1: Create the news/event first (without images)
-      const response = await axios.post('http://127.0.0.1:8100/app/news-events/', {
-        title,
-        content,
+      // Step 1: Create the event (without images)
+      const response = await axios.post('http://127.0.0.1:8100/app/gallery-events/', {
+        name,
+        description,
         date,
       });
-  
-      const createdNewsEvent = response.data;
-  
-      // Step 2: Upload images one by one using FormData
+
+      const createdEvent = response.data;
+
+      // Step 2: Upload images
       for (let i = 0; i < images.length; i++) {
         const imgForm = new FormData();
-        imgForm.append('news_event', createdNewsEvent.id); // make sure your serializer accepts this field
+        imgForm.append('event', createdEvent.id); // Make sure backend expects this field
         imgForm.append('image', images[i]);
         imgForm.append('is_featured', i === featuredImageIndex);
-  
-        await axios.post('http://127.0.0.1:8100/app/news-event-images/', imgForm, {
+
+        await axios.post('http://127.0.0.1:8100/app/gallery-images/', imgForm, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
       }
-  
-      alert('News and images uploaded successfully!');
-      setTitle('');
-      setContent('');
+
+      alert('Event and images uploaded successfully!');
+      setName('');
+      setDescription('');
       setDate('');
       setImages([]);
       setFeaturedImageIndex(null);
-      navigate('/AdminNews');
+      navigate('/galleryupload');
     } catch (error) {
-      console.log('Upload failed:', error.response?.data || error.message);
+      console.error('Upload failed:', error.response?.data || error.message);
       console.log('Date value:', date);
-      alert('Upload failed. See console for more.');
+      alert('Upload failed. See console for more info.');
     }
   };
-  
 
   return (
     <div className="p-4 max-w-xl mx-auto border rounded shadow">
-      <h2 className="text-xl font-bold mb-4">Add News & Event</h2>
+      <h2 className="text-xl font-bold mb-4">Add Gallery Event</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Title"
+          placeholder="Name"
           className="block w-full mb-2 p-2 border rounded"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           required
         />
 
         <textarea
-          placeholder="Content"
+          placeholder="Description"
           className="block w-full mb-2 p-2 border rounded"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
         />
 
         <input
@@ -80,6 +79,7 @@ const NewsAndEventForm = () => {
           className="block w-full mb-4 p-2 border rounded"
           value={date}
           onChange={(e) => setDate(e.target.value)}
+          required
         />
 
         <label className="block mb-2 font-semibold">Add Images:</label>
@@ -113,11 +113,11 @@ const NewsAndEventForm = () => {
           type="submit"
           className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
         >
-          Submit News & Images
+          Submit Gallery Images
         </button>
       </form>
     </div>
   );
 };
 
-export default NewsAndEventForm;
+export default GalleryForm;
