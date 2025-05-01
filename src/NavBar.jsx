@@ -92,7 +92,7 @@ const Navbar = ({ onAboutClick, onTeamClick, onNewsClick }) => {
           </div>
 
           {/* Desktop Menu */}
-          <div className="sm:hidden md:flex items-center space-x-8 md:text-[10px] lg:text-[16px]">
+          <div className="hidden md:flex items-center space-x-8 md:text-[10px] lg:text-[16px]">
             <Link to="/#" className="text-[#003893] hover:text-[#DC143C]">Home</Link>
             <Link 
               to="#" 
@@ -123,7 +123,7 @@ const Navbar = ({ onAboutClick, onTeamClick, onNewsClick }) => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex">
+          <div className="md:hidden sm:flex">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-gray-600 hover:text-gray-600 focus:outline-none"
@@ -139,7 +139,7 @@ const Navbar = ({ onAboutClick, onTeamClick, onNewsClick }) => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden">
+          <div className="md:hidden flex">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-[#003893]">
               <Link
                 to="#" 
