@@ -112,13 +112,13 @@ const NewsGrid = () => {
                 />
               )}
               <div className="p-4">
-                <div className="flex justify-between items-center mb-2">
-                  <h2 className="text-lg font-semibold mb-2">{news.title}</h2>
-                  <p className="text-gray-500 text-sm mb-2">
-                    {new Date(news.date).toLocaleDateString()}
-                  </p>
-                </div>
-                <p className="text-gray-700">{news.content}</p>
+                <p className="text-gray-500 text-sm mb-2 text-right">
+                  {new Date(news.date).toLocaleDateString()}
+                </p>
+                {/* <div className="flex justify-between items-center mb-2"> */}
+                <h2 className="text-lg font-semibold mb-2 text-justify">{news.title}</h2>
+                {/* </div> */}
+                <p className="text-gray-700 line-clamp-4 text-justify">{news.content}</p>
               </div>
             </div>
           );
@@ -142,15 +142,15 @@ const NewsGrid = () => {
                 className="w-full h-72 object-cover rounded-md"
               />
             </div>
-            <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-bold text-center mb-2">
-                {selectedNews.title}
-              </h2>
-              <p className="text-center text-gray-500 mb-4">
+            <div>
+              <p className="text-right items-end flex justify-end w-full text-gray-500 mb-2">
                 {new Date(selectedNews.date).toLocaleDateString()}
               </p>
             </div>
-            <p className="text-left text-gray-900">{selectedNews.content}</p>
+            {/* <div className="flex justify-between items-center"> */}
+            <h2 className="text-2xl font-bold mb-2">{selectedNews.title}</h2>
+            {/* </div> */}
+            <p className="text-gray-900 text-justify">{selectedNews.content}</p>
           </div>
         </div>
       )}

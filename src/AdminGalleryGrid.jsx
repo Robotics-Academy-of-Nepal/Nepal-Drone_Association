@@ -138,14 +138,14 @@ const AdminGalleryGrid = () => {
                   className="w-full h-52 object-cover mt-10"
                 />
               )}
-              <div className="p-4 mt-3">
-                <div className="flex justify-between items-center mb-2">
-                  <h2 className="text-lg font-semibold mb-2">{event.name}</h2>
-                  <p className="text-gray-500 text-sm mb-2">
-                    {new Date(event.date).toLocaleDateString()}
-                  </p>
-                </div>
-                <p className="text-gray-700">{event.description}</p>
+              <div className="p-4 mt-1">
+                <p className="text-gray-500 text-right text-sm mb-2">
+                  {new Date(event.date).toLocaleDateString()}
+                </p>
+                {/* <div className="flex justify-between items-center mb-2"> */}
+                <h2 className="text-lg font-semibold mb-2 text-justify">{event.name}</h2>
+                {/* </div> */}
+                <p className="text-gray-700 line-clamp-4 text-justify">{event.description}</p>
               </div>
             </div>
           );
@@ -158,11 +158,12 @@ const AdminGalleryGrid = () => {
           <div className="bg-white p-6 rounded-lg max-w-5xl w-full max-h-[80vh] overflow-y-auto">
             <div className="flex items-center justify-center gap-4 mb-5">
               <h2 className="text-2xl font-bold text-center">
-                {selectedEvent.name} - Images
+                {/* {selectedEvent.name} */}
+                Images
               </h2>
               <button
                 onClick={() => setIsFormOpen(true)}
-                className="text-center bg-blue-500 rounded-md text-white px-3 py-1"
+                className="text-center bg-blue-500 text-nowrap rounded-md text-white px-3 py-1"
               >
                 Add Image
               </button>
@@ -183,7 +184,7 @@ const AdminGalleryGrid = () => {
                       className="text-gray-900 text-lg "
                     />
                   </div>
-                  <p className="text-center text-black mb-4 font-normal text-lg">
+                  <p className="text-center text-black mb-4 font-normal text-lg text-nowrap">
                     Add Image
                   </p>
                   <input

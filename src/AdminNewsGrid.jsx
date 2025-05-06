@@ -147,13 +147,13 @@ const AdminNewsGrid = () => {
                 />
               )}
               <div className="p-4 mt-3">
-                <div className="flex justify-between items-center mb-2">
-                  <h2 className="text-lg font-semibold mb-2">{news.title}</h2>
-                  <p className="text-gray-500 text-sm mb-2">
+              <p className="text-gray-500 text-sm mb-2 text-right">
                     {new Date(news.date).toLocaleDateString()}
                   </p>
-                </div>
-                <p className="text-gray-700">{news.content}</p>
+                {/* <div className="flex justify-between items-center mb-2"> */}
+                  <h2 className="text-lg font-semibold mb-2">{news.title}</h2>
+                {/* </div> */}
+                <p className="text-gray-700 line-clamp-4">{news.content}</p>
               </div>
             </div>
           );

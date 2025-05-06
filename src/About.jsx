@@ -47,21 +47,21 @@ function About() {
               <p className="mt-2 text-sm md:text-base text-center">
                 To foster a thriving drone ecosystem in Nepal by supporting professionals, advocating for industry-friendly policies, and promoting the safe and innovative application of drone technology.
               </p>
-              <p className="mt-2 text-sm md:text-base text-center">
+              {/* <p className="mt-2 text-sm md:text-base text-center">
                 DroCam has included its Vision Positioning System(VPS), VPS locks the drone<br></br>
                 in place when necessary, and it can stay put for hours.
-              </p>
+              </p> */}
 
               <h2 className="text-lg md:text-xl font-bold text-center mt-5">Our Vision</h2>
               <p className="mt-2 text-sm md:text-base text-center">
                 To establish Nepal as a global leader in drone technology, leveraging its potential to drive sustainable development and create new opportunities in diverse industries.
               </p>
-              <p className="mt-2 text-sm md:text-base text-center">
+              {/* <p className="mt-2 text-sm md:text-base text-center">
                 DroCam 3.4k is the updated version of the very popular DroCam 3 drone. As you may believe, the most attention went to the camera.
-              </p>
+              </p> */}
             </div>
           </div>
-          <div className="w-fit lg:w-1/2 flex mx-2 w-fit">
+          <div className="w-fit lg:w-1/2 flex mx-2">
             <img className="w-150 h-auto lg:h-100 object-cover rounded-2xl" src={drone12} alt="Drone" />
           </div>
         </div>

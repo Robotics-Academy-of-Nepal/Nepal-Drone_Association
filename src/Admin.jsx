@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios'; // Import axios
 import drone18 from './assets/drone18.jpg';
 import About from './About';
-import TeamPage from './Team';
 import ImageSlider from './Slider';
 import { Users, Building2, Plane, UserPlus } from "lucide-react";
 import Slider3 from './Slider3';
 import Navbar2 from './Navbar2';
+import AdminTeam from './AdminTeam';
+import AdminAddOrganization from './AdminAddOrganization';
 
 function Homepage2() {
   const [title, setTitle] = useState('');
@@ -116,7 +117,8 @@ function Homepage2() {
         </div>
 
         <About />
-        <TeamPage />
+        <AdminTeam />
+        <AdminAddOrganization/>
 
         {/* <div className="lg:w-full mt-2 flex">
           <img className="w-full rounded-2xl cursor-pointer lg:w-full" src={drone18} alt="Drone" />

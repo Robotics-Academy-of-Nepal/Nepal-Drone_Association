@@ -19,6 +19,8 @@ import AdminGalleryGrid from './AdminGalleryGrid';
 
 import NewsAndEventForm from './NewsAndEventForm';
 import GalleryForm from './GalleryForm';
+import AddOrganization from './AddOrganization';
+import AddExecutiveMember from './AddExecutiveMember';
 
 function App() {
   return (
@@ -44,6 +46,8 @@ function App() {
 
         <Route path="/AddNewsEvents" element={<NewsAndEventForm />} />
         <Route path="/AddGallery" element={<GalleryForm />} />
+        <Route path="/add_organization" element={<AddOrganization />} />
+        <Route path="/add_executive_member" element={<AddExecutiveMember/>} />
       </Routes>
     </>
   )
