@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import Navbar from './NavBar';
-import Footer from './Footer';
-import member1 from './assets/member1.jpg';
-import member2 from './assets/member2.png';
-import member3 from './assets/member3.jpg';
-import member4 from './assets/member4.jpg';
-import member5 from './assets/member5.png';
-import member6 from './assets/member6.png';
-import member7 from './assets/member7.jpg';
+import React, { useEffect, useState } from "react";
+import Navbar from "./NavBar";
+import Footer from "./Footer";
+import member1 from "./assets/member1.jpg";
+import member2 from "./assets/member2.png";
+import member3 from "./assets/member3.jpg";
+import member4 from "./assets/member4.jpg";
+import member5 from "./assets/member5.png";
+import member6 from "./assets/member6.png";
+import member7 from "./assets/member7.jpg";
 
-import airlift from './assets/org_mem_logo/airlift-nepal.png';
-import dronehub from './assets/org_mem_logo/drone-hub-nepal.jpeg';
-import dronesewa from './assets/org_mem_logo/drone-sewa.jpg';
-import flyinglab from './assets/org_mem_logo/flying-lab.png';
-import geovation from './assets/org_mem_logo/geovation.png';
-import innovativeghar from './assets/org_mem_logo/innovativeGhar.png';
+import airlift from "./assets/org_mem_logo/airlift-nepal.png";
+import dronehub from "./assets/org_mem_logo/drone-hub-nepal.jpeg";
+import dronesewa from "./assets/org_mem_logo/drone-sewa.jpg";
+import flyinglab from "./assets/org_mem_logo/flying-lab.png";
+import geovation from "./assets/org_mem_logo/geovation.png";
+import innovativeghar from "./assets/org_mem_logo/innovativeGhar.png";
 
-import linkedin from './assets/linkedin-1.svg';
-import axios from 'axios';
+import linkedin from "./assets/linkedin-1.svg";
+import axios from "axios";
 
 const TeamPage = () => {
   const [selectedMember, setSelectedMember] = useState(null);
@@ -40,11 +40,11 @@ const TeamPage = () => {
         setTeamData(mappedMembers);
         console.log(mappedMembers);
       }
-      navigate('/admin');
+      navigate("/admin");
     } catch (error) {
       console.log("Error fetching team members", error);
     }
-  }
+  };
   useEffect(() => {
     getTeamMembers();
   }, []);
@@ -68,7 +68,7 @@ const TeamPage = () => {
   useEffect(() => {
     getOrganizationData();
   }, []);
-  
+
   // const teamMembers = [
   //   {
   //     name: "Raj Bikram Maharjan",
@@ -115,7 +115,6 @@ const TeamPage = () => {
   //   }
   // ];
 
-
   // const organizationalMembers = [
   //   {
   //     name: "Nepal Flying Labs",
@@ -147,7 +146,7 @@ const TeamPage = () => {
   //     logo: dronehub,
   //     link: "https://dronehubnepal.com"
   //   }
-  // ];
+  // ]
 
   return (
     <>
@@ -179,83 +178,70 @@ const TeamPage = () => {
         </div> */}
 
         {/* Executive Members Table */}
+
         <div className="mb-8 rounded-lg shadow-md overflow-hidden bg-gradient-to-r from-[#DC143C] to-[#003893] p-4">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">Members</h1>
-          <p className="text-white text-lg mb-8">
-            At the Nepal Drone Association, our team is the cornerstone of our mission to drive
-            innovation and growth in Nepal’s drone sector. Comprised of experienced
-            professionals, industry pioneers, and passionate advocates, our team brings
-            together a wealth of knowledge and expertise in drone technology, policy
-            development, and sectoral applications.<br></br>
-            Each member of our team has a proven track record in areas such as drone
-            operations, regulatory advocacy, training, and fostering collaborations. Together,
-            we share a common vision to elevate Nepal’s drone industry to new heights,
-            leveraging our diverse skills to address challenges, seize opportunities, and create
-            a thriving ecosystem for drone professionals and businesses.<br></br>
-            With years of collective experience in fields like agriculture, disaster management,
-            infrastructure development, and environmental conservation, we are uniquely
-            equipped to guide the industry toward sustainable growth. Our dedication to
-            excellence, innovation, and collaboration ensures that we stay at the forefront of
-            advancements in drone technology, making a lasting impact on the nation and its
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Members
+          </h1>
+          <p className="text-white text-sm mb-8">
+            At the Nepal Drone Association, our team is the cornerstone of our
+            mission to drive innovation and growth in Nepal’s drone sector.
+            Comprised of experienced professionals, industry pioneers, and
+            passionate advocates, our team brings together a wealth of knowledge
+            and expertise in drone technology, policy development, and sectoral
+            applications.<br></br>
+            Each member of our team has a proven track record in areas such as
+            drone operations, regulatory advocacy, training, and fostering
+            collaborations. Together, we share a common vision to elevate
+            Nepal’s drone industry to new heights, leveraging our diverse skills
+            to address challenges, seize opportunities, and create a thriving
+            ecosystem for drone professionals and businesses.<br></br>
+            With years of collective experience in fields like agriculture,
+            disaster management, infrastructure development, and environmental
+            conservation, we are uniquely equipped to guide the industry toward
+            sustainable growth. Our dedication to excellence, innovation, and
+            collaboration ensures that we stay at the forefront of advancements
+            in drone technology, making a lasting impact on the nation and its
             people.<br></br>
-            Join us on this journey as we pave the way for a vibrant and dynamic drone
-            industry in Nepal.
+            Join us on this journey as we pave the way for a vibrant and dynamic
+            drone industry in Nepal.
           </p>
-          <div className="p-4 border-b border-gray-200">
-            <h1 className="text-2xl font-semibold text-white">Executive Members</h1>
-          </div>
-          <div className="overflow-x-auto rounded-md">
-            <table className="w-full border-collapse text-white">
-              <thead className="bg-gray-100">
-                <tr className='bg-blue-900'>
-                  <th className="px-4 py-3 text-left text-sm text-white font-semibold">Photo</th>
-                  <th className="px-4 py-3 text-left text-sm text-white font-semibold">Name</th>
-                  <th className="px-4 py-3 text-left text-sm font-semibold text-white hidden md:table-cell">Position</th>
-                  <th className="px-4 py-3 text-left text-sm text-white font-semibold">Description</th>
-                  <th className="px-4 py-3 text-left text-sm text-white font-semibold">LinkedIn</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {teamData.map((member, index) => (
-                  <tr
-                    key={index}
-                    className="hover:bg-gray-50 cursor-pointer hover:text-black"
-                    onClick={() => setSelectedMember(member)}
-                  >
-                    <td className="px-4 py-4">
-                      <div className="w-20 h-20 rounded-full overflow-hidden">
-                        <img
-                          src={member.image}
-                          alt={member.name}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    </td>
-                    <td className="px-4 py-4 text-sm font-medium">{member.name}</td>
-                    <td className="px-4 py-4 text-sm hidden md:table-cell">{member.position}</td>
-                    <td className="px-4 py-4 text-sm line-clamp-4">
-                      {member.description.substring(0, 250)}
-                      <span className="text-blue-900 ml-2">. . .</span>
-                    </td>
-                    <td className='px-4 py-4'>
-                      <a href={member.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}>
-                        <img src={linkedin} className='w-10'/>
-                      </a>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div>
+            <h1 className="text-2xl font-semibold text-white mb-4">
+              Executive Members
+            </h1>
+            <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 gap-6">
+              {teamData.map((member, index) => (
+                <div
+                  key={index}
+                  className="bg-slate-600 rounded-2xl shadow-lg overflow-hidden cursor-pointer transform transition-transform hover:scale-105"
+                  onClick={() => setSelectedMember(member)}
+                >
+                  <div className="flex flex-col items-center p-4">
+                    <div className="w-24 h-24 rounded-full overflow-hidden mb-4">
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h2 className="text-lg font-semibold text-white">
+                      {member.name}
+                    </h2>
+                    <p className="text-sm text-blue-200">{member.position}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
         {/* Organizational Members Section */}
         <div className="rounded-lg shadow-md overflow-hidden bg-gradient-to-l from-[#DC143C] to-[#003893] p-4 mb-4">
           <div className="p-6 border-b border-gray-200">
-            <h2 className="text-xl font-semibold text-white">Organizational Members</h2>
+            <h2 className="text-xl font-semibold text-white">
+              Organizational Members
+            </h2>
           </div>
           <div className="p-6">
             <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
@@ -282,7 +268,6 @@ const TeamPage = () => {
               ))}
             </div>
           </div>
-
         </div>
 
         {/* Modal for full description */}
@@ -317,9 +302,20 @@ const TeamPage = () => {
                 </div>
               </div>
               <div className="p-6">
-                <p className="text-base leading-relaxed whitespace-pre-line text-gray-700">
+                <p className="text-base leading-relaxed whitespace-pre-line text-gray-700 mb-4">
                   {selectedMember.description}
                 </p>
+                {selectedMember.link && (
+                  <a
+                    href={selectedMember.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium transition"
+                  >
+                    <img src={linkedin} alt="LinkedIn" className="w-6 h-6" />
+                    View LinkedIn
+                  </a>
+                )}
               </div>
             </div>
           </div>
