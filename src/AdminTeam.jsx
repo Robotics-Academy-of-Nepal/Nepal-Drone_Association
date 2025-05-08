@@ -6,6 +6,7 @@ import member4 from "./assets/member4.jpg";
 import member5 from "./assets/member5.png";
 import member6 from "./assets/member6.png";
 import member7 from "./assets/member7.jpg";
+import { FaTrash } from "react-icons/fa";
 
 import linkedin from "./assets/linkedin-1.svg";
 import axios from "axios";
@@ -79,33 +80,33 @@ const AdminTeam = () => {
         setTeamData(mappedMembers);
         // console.log(mappedMembers);
       }
-      navigate('/admin');
+      navigate("/admin");
     } catch (error) {
       console.log("Error fetching team members", error);
     }
-  }
+  };
   useEffect(() => {
     getTeamMembers();
   }, []);
 
-  const handleDelete = async (id)=>{
+  const handleDelete = async (id) => {
     console.log(id);
     const confirmDelete = window.confirm(
-        "Are you sure you want to delete executive member?"
+      "Are you sure you want to delete executive member?"
+    );
+    if (!confirmDelete) return;
+    try {
+      const response = await axios.delete(
+        `https://api.nepaldroneassociation.org.np/app/team-members/${id}/`
       );
-      if (!confirmDelete) return;
-      try {
-        const response = await axios.delete(
-          `https://api.nepaldroneassociation.org.np/app/team-members/${id}/`
-        );
-        if (response) {
-          alert("executive member deleted successfully");
-          getTeamMembers();
-        }
-      } catch (error) {
-        console.error("Failed to delete executive member", error);
+      if (response) {
+        alert("executive member deleted successfully");
+        getTeamMembers();
       }
-  }
+    } catch (error) {
+      console.error("Failed to delete executive member", error);
+    }
+  };
 
   return (
     <>
@@ -141,7 +142,7 @@ const AdminTeam = () => {
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Members
           </h1>
-          <p className="text-white text-lg mb-8">
+          <p className="text-white text-base mb-8">
             At the Nepal Drone Association, our team is the cornerstone of our
             mission to drive innovation and growth in Nepal’s drone sector.
             Comprised of experienced professionals, industry pioneers, and
@@ -174,115 +175,98 @@ const AdminTeam = () => {
               </button>
             </Link>
           </div>
-          <div className="overflow-x-auto rounded-md">
-            <table className="w-full border-collapse text-white">
-              <thead className="bg-gray-100">
-                <tr className="bg-blue-900">
-                  <th className="px-4 py-3 text-left text-sm text-white font-semibold">
-                    Photo
-                  </th>
-                  <th className="px-4 py-3 text-left text-sm text-white font-semibold">
-                    Name
-                  </th>
-                  <th className="px-4 py-3 text-left text-sm font-semibold text-white">
-                    Position
-                  </th>
-                  <th className="px-4 py-3 text-left text-sm text-white font-semibold">
-                    Description
-                  </th>
-                  <th className="px-4 py-3 text-left text-sm text-white font-semibold">
-                    LinkedIn
-                  </th>
-                  <th className="px-4 py-3 text-left text-sm text-white font-semibold">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {teamData.map((member, index) => (
-                  <tr
-                    key={index}
-                    className="hover:bg-gray-50 cursor-pointer hover:text-black"
-                    onClick={() => setSelectedMember(member)}
-                  >
-                    <td className="px-4 py-4">
-                      <div className="w-20 h-20 rounded-full overflow-hidden">
+          <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-3 lg:grid-cols-6 gap-6 mt-6">
+            {teamData.map((member, index) => (
+              <div
+                key={index}
+                className="bg-slate-600 rounded-2xl shadow-lg overflow-hidden cursor-pointer transform transition-transform hover:scale-105"
+                onClick={() => setSelectedMember(member)}
+              >
+               {/* Delete */}
+                <button
+                  className="absolute top-3 right-4 text-white hover:text-red-500 transition"
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent triggering the modal
+                    handleDelete(parseInt(member.id));
+                  }}
+                >
+                  <FaTrash className="text-red-600" size={20} />
+                </button>
+                <div className="flex flex-col items-center p-4">
+                  <div className="w-24 h-24 rounded-full overflow-hidden mb-4">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h2 className="text-lg font-semibold text-white text-center">
+                    {member.name}
+                  </h2>
+                  <p className="text-sm text-blue-200 text-center">
+                    {member.position}
+                  </p>
+                </div>
+                <div className="flex justify-center p-2">
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Modal for full description */}
+          {selectedMember && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+              <div className="bg-gradient-to-r from-red-100 to-blue-100 rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+                <div className="p-6 border-b border-gray-200">
+                  <div className="flex justify-between items-start">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-24 h-24 rounded-lg overflow-hidden shadow-lg">
                         <img
-                          src={member.image}
-                          alt={member.name}
+                          src={selectedMember.image}
+                          alt={selectedMember.name}
                           className="w-full h-full object-cover"
                         />
                       </div>
-                    </td>
-                    <td className="px-4 py-4 text-sm font-medium">
-                      {member.name} 
-                    </td>
-                    <td className="px-4 py-4 text-sm font-medium">
-                      {member.position}
-                    </td>
-                    <td className="px-4 py-4 text-sm line-clamp-5 text-justify">
-                      {member.description}
-                      <span className="text-blue-900 ml-2">. . .</span>
-                    </td>
-                    <td className="px-4 py-4">
-                      <a
-                        href={member.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <img src={linkedin} className="w-10" />
-                      </a>
-                    </td>
-                    <td className="px-4 py-4">
-                        <button className="bg-[#003893] text-white font-normal px-3 py-2 text-nowrap rounded transition-transform hover:bg-[#393e5f]" onClick={(e)=>{e.stopPropagation(); handleDelete(parseInt(member.id))}}>Delete</button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        {/* Modal for full description */}
-        {selectedMember && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-            <div className="bg-gradient-to-r from-red-100 to-blue-100 rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-              <div className="p-6 border-b border-gray-200">
-                <div className="flex justify-between items-start">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-24 h-24 rounded-lg overflow-hidden shadow-lg">
-                      <img
-                        src={selectedMember.image}
-                        alt={selectedMember.name}
-                        className="w-full h-full object-cover"
-                      />
+                      <div>
+                        <h3 className="text-2xl font-semibold text-gray-900">
+                          {selectedMember.name}
+                        </h3>
+                        <p className="text-lg text-gray-600 mt-1">
+                          {selectedMember.position}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-2xl font-semibold text-gray-900">
-                        {selectedMember.name}
-                      </h3>
-                      <p className="text-lg text-gray-600 mt-1">
-                        {selectedMember.position}
-                      </p>
-                    </div>
+                    <button
+                      onClick={() => setSelectedMember(null)}
+                      className="text-gray-500 hover:text-gray-700 cursor-pointer p-2 rounded-full hover:bg-gray-100"
+                    >
+                      ✕
+                    </button>
                   </div>
-                  <button
-                    onClick={() => setSelectedMember(null)}
-                    className="text-gray-500 hover:text-gray-700 cursor-pointer p-2 rounded-full hover:bg-gray-100"
-                  >
-                    ✕
-                  </button>
+                </div>
+                <div className="p-6">
+                  <p className="text-base leading-relaxed whitespace-pre-line text-gray-700 mb-6">
+                    {selectedMember.description}
+                  </p>
+                  <div className="flex space-x-4 justify-end">
+                    <a
+                      href={selectedMember.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center"
+                    >
+                      <img
+                        src={linkedin}
+                        className="w-10 hover:scale-110 transition-transform"
+                        alt="LinkedIn"
+                      />
+                    </a>
+                  </div>
                 </div>
               </div>
-              <div className="p-6">
-                <p className="text-base leading-relaxed whitespace-pre-line text-gray-700">
-                  {selectedMember.description}
-                </p>
-              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </>
   );
