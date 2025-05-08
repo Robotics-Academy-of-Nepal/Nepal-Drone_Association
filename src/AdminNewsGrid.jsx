@@ -52,6 +52,23 @@ const AdminNewsGrid = () => {
     setSelectedNews(null);
   };
 
+  // const getFullImageUrl = (url) => {
+  //   if (!url) {
+  //     return ;
+  //   }
+  //   if (url.startsWith("http")) {
+  //     return url;
+  //   }
+  //   return `https://api.nepaldroneassociation.org.np${url}`;
+  // };
+  const getFullImageUrl = (imagePath) => {
+      if (!imagePath) return "https://via.placeholder.com/300x200?text=No+Image"; 
+      return imagePath.startsWith('http') 
+        ? imagePath 
+        : `https://api.nepaldroneassociation.org.np${imagePath}`;
+    };
+  
+
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this Gallery?"
@@ -141,7 +158,7 @@ const AdminNewsGrid = () => {
               </div>
               {featuredImage && (
                 <img
-                  src={featuredImage.image}
+                  src={getFullImageUrl(featuredImage.image)}
                   alt={news.name}
                   className="w-full h-52 object-cover mt-10"
                 />
@@ -251,7 +268,7 @@ const AdminNewsGrid = () => {
                           />
                         </div>
                         <img
-                          src={img.image}
+                          src={getFullImageUrl(img.image)}
                           alt="Event"
                           className="w-full h-40 object-cover rounded mt-7"
                         />
