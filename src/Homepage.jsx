@@ -9,6 +9,7 @@ import ImageSlider from './Slider';
 import News from './NewsGrid';
 import { Users, Building2, Plane, UserPlus } from "lucide-react";
 import Slider from './Slider2';
+import GeneralMembers from './GeneralMember';
 
 function Homepage() {
   const aboutRef = useRef(null);
@@ -108,6 +109,7 @@ function Homepage() {
         <section ref={teamRef}>
           <TeamPage />
         </section>
+
 
         <section ref={newsRef}>
           <div className="relative w-full max-w-8xl mx-auto mt-8 mb-8 px-4">

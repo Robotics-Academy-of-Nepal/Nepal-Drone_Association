@@ -54,7 +54,12 @@ const GalleryGrid = () => {
 
               {featuredImage && (
                 <img
-                  src={featuredImage.image}
+                  src={
+                    featuredImage.image.startsWith("http")
+                      ? featuredImage.image
+                      : `https://api.nepaldroneassociation.org.np${featuredImage.image}`
+                  }
+                  // src={featuredImage.image.startsWith('http') ? featuredImage.image : `https://api.nepaldroneassociation.org.np${featuredImage.image}`}
                   alt={event.name}
                   className="w-full h-52 object-cover mt-10"
                 />
@@ -64,9 +69,13 @@ const GalleryGrid = () => {
                   {new Date(event.date).toLocaleDateString()}
                 </p>
                 {/* <div className="flex justify-between items-center mb-2"> */}
-                  <h2 className="text-lg font-semibold mb-2 text-justify">{event.name}</h2>
+                <h2 className="text-lg font-semibold mb-2 text-justify">
+                  {event.name}
+                </h2>
                 {/* </div> */}
-                <p className="text-gray-700 text-justify">{event.description}</p>
+                <p className="text-gray-700 text-justify">
+                  {event.description}
+                </p>
               </div>
             </div>
           );
@@ -84,7 +93,12 @@ const GalleryGrid = () => {
               {selectedEvent.images.map((img) => (
                 <img
                   key={img.id}
-                  src={img.image}
+                  src={
+                    img.image.startsWith("http")
+                      ? img.image
+                      : `https://api.nepaldroneassociation.org.np${img.image}`
+                  }
+                  // src={img.image}
                   alt="Event"
                   className="w-full h-40 object-cover rounded"
                 />

@@ -26,8 +26,10 @@ const Login = () => {
 
       });
 
-      if (response.data.token) {
+      if (response.data) {
         localStorage.setItem('token', response.data.token);
+        // console.log('Token:', response.data.token);
+        // localStorage.setItem("user", JSON.stringify(response.data.user));
         if (response.data.is_superuser) {
           navigate('/admin');
         } else {

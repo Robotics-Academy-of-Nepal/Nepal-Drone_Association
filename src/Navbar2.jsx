@@ -32,6 +32,7 @@ const Navbar2 = () => {
     if (confirmLogout) {
       // Remove the token from local storage
       localStorage.removeItem('token');
+      // localStorage.removeItem('user');
       // Optionally, you can redirect the user to the login page or home page
       navigate('/');
     }
@@ -56,7 +57,7 @@ const Navbar2 = () => {
             </span>
             <div className="flex flex-col justify-center">
                 <p className="text-xs sm:text-sm md:text-[6px] lg:text-[12px] font-semibold leading-tight italic">
-                  <span className="text-[#003893] text-xl">Nepal Drone Association</span>
+                  <span className="text-[#003893] text-xl">Nepal <span className='text-2xl text-[#DC143C]'>Drone</span> Association</span>
                   <br className="sm:block md:block lg:block" />
                   <span className="text-[#003893]">Connecting Skies</span>
                   <span className="mx-1">,</span>

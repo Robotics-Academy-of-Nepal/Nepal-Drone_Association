@@ -18,6 +18,7 @@ import innovativeghar from "./assets/org_mem_logo/innovativeGhar.png";
 
 import linkedin from "./assets/linkedin-1.svg";
 import axios from "axios";
+import GeneralMembers from "./GeneralMember";
 
 const TeamPage = () => {
   const [selectedMember, setSelectedMember] = useState(null);
@@ -148,37 +149,30 @@ const TeamPage = () => {
   //   }
   // ]
 
+  const [generalMember, setGeneralMember] = useState([]);
+
+  const getGeneralMember = async () => {
+    try {
+      const response = await axios.get(
+        "https://api.nepaldroneassociation.org.np/app/general-members/"
+      );
+      if (response.status === 200) {
+        setGeneralMember(response.data);
+        // console.log(response.data);
+      }
+    } catch (error) {
+      console.error("Error fetching organization data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getGeneralMember();
+  }, []);
+
   return (
     <>
       {/* Container with conditional max-width */}
       <div className="max-w-screen-lg xl:max-w-none 2xl:max-w-none mx-auto px-4 mt-2">
-        {/* Header Section */}
-        {/* <div className="mb-8 bg-gradient-to-b from-red-100 to-blue-100 rounded-md p-4">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Nepal Drone Association</h1>
-          <p className="text-gray-900 text-lg mb-8">
-            At the Nepal Drone Association, our team is the cornerstone of our mission to drive 
-            innovation and growth in Nepal’s drone sector. Comprised of experienced 
-            professionals, industry pioneers, and passionate advocates, our team brings 
-            together a wealth of knowledge and expertise in drone technology, policy 
-            development, and sectoral applications.<br></br>
-            Each member of our team has a proven track record in areas such as drone 
-            operations, regulatory advocacy, training, and fostering collaborations. Together, 
-            we share a common vision to elevate Nepal’s drone industry to new heights, 
-            leveraging our diverse skills to address challenges, seize opportunities, and create 
-            a thriving ecosystem for drone professionals and businesses.<br></br>
-            With years of collective experience in fields like agriculture, disaster management, 
-            infrastructure development, and environmental conservation, we are uniquely 
-            equipped to guide the industry toward sustainable growth. Our dedication to 
-            excellence, innovation, and collaboration ensures that we stay at the forefront of 
-            advancements in drone technology, making a lasting impact on the nation and its 
-            people.<br></br>
-            Join us on this journey as we pave the way for a vibrant and dynamic drone 
-            industry in Nepal.
-          </p>
-        </div> */}
-
-        {/* Executive Members Table */}
-
         <div className="mb-8 rounded-lg shadow-md overflow-hidden bg-gradient-to-r from-[#DC143C] to-[#003893] p-4">
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Members
@@ -232,6 +226,41 @@ const TeamPage = () => {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Organizational Members Section */}
+        <div className="rounded-lg shadow-md overflow-hidden bg-gradient-to-l from-[#DC143C] to-[#003893] p-4 mb-4">
+          <div className="p-6 border-b border-gray-200">
+            <h2 className="text-xl font-semibold text-white">
+              General Members
+            </h2>
+          </div>
+          <div className="p-2">
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {generalMember ? (
+                generalMember.map((org, index) => (
+                  <div key={index} className="relative w-24 h-24 mx-auto">
+                    <a
+                      href={org.link}
+                      title={org.name}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src={org.image}
+                        alt={org.name}
+                        className="w-24 h-24 rounded-full object-cover border-white border"
+                      />
+                    </a>
+                  </div>
+                ))
+              ) : (
+                <p className="text-white text-lg">
+                  No organization data available
+                </p>
+              )}
             </div>
           </div>
         </div>

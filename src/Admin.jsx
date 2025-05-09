@@ -8,6 +8,7 @@ import Slider3 from './Slider3';
 import Navbar2 from './Navbar2';
 import AdminTeam from './AdminTeam';
 import AdminAddOrganization from './AdminAddOrganization';
+import GeneralMembers from './GeneralMember';
 
 function Homepage2() {
   const [title, setTitle] = useState('');
@@ -118,6 +119,7 @@ function Homepage2() {
 
         <About />
         <AdminTeam />
+        <GeneralMembers/>
         <AdminAddOrganization/>
 
         {/* <div className="lg:w-full mt-2 flex">

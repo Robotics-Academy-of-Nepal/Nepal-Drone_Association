@@ -184,7 +184,7 @@ const ImageSlider = () => {
                     </div>
                   </div>
 
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent">
+                  <div className="absolute md:bottom-0 bottom-20 left-0 right-0 md:bg-gradient-to-t from-black/70 md:to-transparent">
                     <div className="p-4 md:p-6 lg:p-6">
                       <p className="text-white text-sm md:text-lg lg:text-lg text-center leading-tight md:leading-normal">
                         {slide.description}
